@@ -17,7 +17,7 @@ include "../config/koneksi.php";
 			session_start();
 			$_SESSION['level'] = $row['level'];
             $_SESSION['nama'] = $row['nama'];
-			header('Location: ../index_admin.php');
+			header('Location: ../index_baru.php');
 
 		}else{
 			header('Location: ../index.php?page=login&pesan=salah');

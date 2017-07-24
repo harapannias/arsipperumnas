@@ -16,8 +16,7 @@ body {
 .header_admin{
 	position: relative;
 	height: 150px;
-    background-image: url('assets/img/logo.jpg')
-	background-color: #e8e8e8;
+    background-image: url('../img/header.jpg');
 	border-bottom: 1px solid #ccc7c7;
 }
 .login_as{
@@ -442,6 +441,9 @@ p.pembukaan{
 .pembukaan ol{
  line-height: 25px;
 }
+
+
 .header {
-    
+    width: 100%;
+    height: auto;
 }

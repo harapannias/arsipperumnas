@@ -1,1 +1,0 @@
-<h3>Selamat Datang <?php if($_SESSION['level'] == 1) { echo "Super Admin";} else { echo"Operator";}?></h3>

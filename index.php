@@ -3,54 +3,41 @@
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="">
 	<meta name="author" content="">
-	<link rel="icon" href="assets/img/logo_kota_medan.png">
-	<!-- Deklarasi css-->
-	<link href="assets/css/style.css" rel="stylesheet">
-	<link href="assets/js/jquery-ui-1.11.4/jquery-ui.min.css" rel="stylesheet">
-
+	<link rel="icon" href="assets/img/logo.png">
+	<link rel="stylesheet" href="assets/css/style_login.css">
 	<title>Sistem Informasi Pengarsipan Perumnas Regional 1 Medan</title>
 </head>
 <body>
-	<div class="header_admin">
-        <center><h1>PERUMNAS REGIONAL I MEDAN</h1></center>
-	</div>
-	<div class="container">
-        <div style="text-align: center;">
-	<div class="login-container">
-		<div class="login-header">Form Login Aplikasi</div>
+
+	<div class="login-first">
+	<?php if(isset($_GET['pesan'])){ ?>
+	<div class="error">Username atau password salah<br> silahkan login kembali.</div>
+	<?php } ?>
 		<div class="login-data">
 			<form action="login/validasi_login.php" method="post">
-				<div class="login-caption-header">Silahkan login terlebih dahulu untuk mengakses aplikasi.</div>
-				<?php if(isset($_GET['pesan'])){ ?>
-					<div class="error"><i>Username atau password salah, silahkan login kembali.</i></div>
-					<?php } ?>
-					<div class="form-login">
-						<label class="form-login-caption">Username</label>
-						<input type="text" class="form-login-control" name="username" autocomplete="false">
-					</div>
-					<div class="form-login">
-						<label class="form-login-caption">Password</label>
-						<input type="password" class="form-login-control" name="password" autocomplete="false">
-					</div>
-					<div class="form-login">
-						<label class="form-login-caption">&nbsp;</label>
-						<div class="form-login-control">
-							<a href="index.php" class="btn btn-danger">Batal</a>
-							<button type="submit" class="btn btn-success">Login</button>
-						</div>
-					</div>
-				</form>
-			</div>
-			<div style="text-align: right; padding: 0 10px; font-size: 11px"><i>&nbsp;</i></div>
+				<div class="login-caption-header"><img src="assets/img/logo.png" class="logologin"></div>
+				<div class="login-header">SISTEM INFORMASI PENGARSIPAN PERUMNAS REGIONAL I MEDAN</div>
+				<div class="label">
+					<label>Username</label>
+				</div>
+				<div>
+					<input type="text" name="username" class="input">
+				</div>
+				<div class="label">
+					<label>Password</label>
+				</div>
+				<div>
+					<input type="password" class="input" name="password" require>
+				</div>
+				<div>
+					<button type="submit" class="btn-login">LOGIN</button>
+				</div>
+			</form>
 		</div>
 	</div>
-	</div>
-	<div class="footer">&copy; 2017 - PERUMNAS Regional I Medan</div>
-	<script src="assets/js/jquery.min.js"></script>
-	<script src="assets/js/jquery-ui-1.11.4/jquery-ui.js"></script>
-	<script src="assets/js/app.js"></script>
+	<div class="footer"><font color="#3366ff">PERUMNAS Regional I Medan</font><p></p>2017</div>
 </body>
 </html>

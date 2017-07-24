@@ -1,0 +1,81 @@
+body {
+    background-color: #ececec;
+}
+.list-group-item a{
+    color: #555;
+    padding-left: 27px;
+    padding-right: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-decoration: none;
+}
+.list-group-item{
+    border: none;
+}
+#header {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow-y: hidden; 
+    overflow-x: hidden;
+    background-color: #333;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+#menukiri {
+    margin-top: 7%;
+    height: 100%;
+    background-color: #FFF;
+    border-right: 1px solid #cacaca;
+    border-top: 1px solid #cacaca;
+    padding: 0;
+    overflow: auto;
+    position: fixed;
+}
+.scroll-wrapper {
+    height: 90% !important;
+    max-height: 90%;
+    overflow-y: auto;
+}
+.scroolbar-inner {
+    overflow: hidden !important;
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+#menukanan{
+    width: 81%;
+    margin-left: 18%;
+    margin-top: 9%;
+    margin-bottom: 100px;
+}
+.isi { 
+     width: 100%;
+     position: relative;
+     overflow-x: scroll auto;
+     background-color: white;
+     padding: 20px;
+     padding-bottom: 30px;
+     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+.dropdownrevisi {
+    width: 100%;
+    border: 0px;
+    box-shadow: none;
+    position: relative;
+}
+.dropdownrevisi li{
+    border: none;
+    background-color: transparent;
+    list-style: none;
+    text-decoration: none;
+}
+font {
+    margin-left: 10px;
+    font-style: normal;
+}
+.kalender {
+    margin-top: 10px;
+    margin-left: -40px;
+}
