@@ -152,3 +152,8 @@ function pageLoginCheck($page){
 		echo "<script>window.location.replace('?page=login');</script>";
 	}
 }
+
+function dd($var) {
+	var_dump($var);
+	die();
+}

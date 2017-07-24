@@ -35,7 +35,7 @@ if(empty(isset($_SESSION['level']))){
             <div class="row">
                 <div class="col-md-2 scroll-wrapper scrollbar-inner" id="menukiri">
                     <div class="list-group scroll-wrapper scrollbar-inner" style="position: relative;">
-                        <a href="?pageb=home" class="list-group-item">
+                        <a href="?page=home" class="list-group-item">
                             <span class="glyphicon glyphicon-home"></span>
                             <font>Dashboard</font>
                         </a>
@@ -45,16 +45,16 @@ if(empty(isset($_SESSION['level']))){
                             <span class="caret"></span></button>
                         </button>
                         <div id="demo" class="collapse out dropdownrevisi">
-                            <li class="list-group-item"><a href="?pageb=tambah_operator">Tambah Data</a></li>
-                            <li class="list-group-item"><a href="?pageb=user_operator">Daftar Operator</a></li>
+                            <li class="list-group-item"><a href="?page=tambah_operator">Tambah Data</a></li>
+                            <li class="list-group-item"><a href="?page=user_operator">Daftar Operator</a></li>
                         </div>
                         <button type="button" class="list-group-item" data-toggle="collapse" data-target="#demo1">
                             <span class="glyphicon glyphicon-folder-open"></span> 
                             <font>Arsip Surat Masuk</font>
                             <span class="caret"></span></button>
                             <div id="demo1" class="collapse out dropdownrevisi">
-                                <li class="list-group-item"><a href="?pageb=form_suratmasuk">Tambah Surat</a></li>
-                                <li class="list-group-item"><a href="?pageb=daftar_surat_masuk">Daftar Surat</a></li>
+                                <li class="list-group-item"><a href="?page=form_suratmasuk">Tambah Surat</a></li>
+                                <li class="list-group-item"><a href="?page=daftar_surat_masuk">Daftar Surat</a></li>
                             </div>
                         </button>
                         <button type="button" class="list-group-item" data-toggle="collapse" data-target="#demo2">
@@ -62,8 +62,8 @@ if(empty(isset($_SESSION['level']))){
                             <font>Arsip Surat keluar</font>
                             <span class="caret"></span></button>
                             <div id="demo2" class="collapse out dropdownrevisi">
-                                <li class="list-group-item"><a href="?pageb=form_suratkeluar">Tambah Surat</a></li>
-                                <li class="list-group-item"><a href="?pageb=daftar_surat_keluar">Daftar Surat</a></li>
+                                <li class="list-group-item"><a href="?page=form_suratkeluar">Tambah Surat</a></li>
+                                <li class="list-group-item"><a href="?page=daftar_surat_keluar">Daftar Surat</a></li>
                             </div>
                         </button>
                         <button type="button" class="list-group-item" data-toggle="collapse" data-target="#demo3">
@@ -71,11 +71,11 @@ if(empty(isset($_SESSION['level']))){
                             <font>Laporan</font>
                             <span class="caret"></span></button>
                             <div id="demo3" class="collapse out dropdownrevisi">
-                                <li class="list-group-item"><a href="?pageb=laporan_operator">Data Operator</a></li>
+                                <li class="list-group-item"><a href="?page=laporan_operator">Data Operator</a></li>
                                 <li class="list-group-item"><a href="#">Arsip Surat Masuk</a></li>
                                 <li class="list-group-item"><a href="#">Arsip Surat Keluar</a></li>
                             </div>
-                        <a href="?pageb=logout" onclick="return confirm('Anda yakin ingin logout?')" class="list-group-item">
+                        <a href="?page=logout" onclick="return confirm('Anda yakin ingin logout?')" class="list-group-item">
                             <span class="glyphicon glyphicon-off"></span>
                             <font>Log Out</font>
                         </a>
@@ -84,7 +84,7 @@ if(empty(isset($_SESSION['level']))){
                 <div class="col-md-10" id="menukanan">
                     <div class="isi">
                         <div class="container-fluid">
-                            <?php include "config/pageb_helper.php" ?>
+                            <?php include "config/page_helper.php" ?>
                         </div>
                     </div>
                 </div>

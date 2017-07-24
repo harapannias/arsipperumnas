@@ -1,3 +1,3 @@
 <?php
 
-$link = mysqli_connect("localhost", "root", "", "pendataan_penduduk");
+$link = mysqli_connect("localhost", "sa", "sa@123", "pengarsipan");
