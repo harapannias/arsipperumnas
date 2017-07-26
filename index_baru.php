@@ -71,9 +71,9 @@ if(empty(isset($_SESSION['level']))){
                             <font>Laporan</font>
                             <span class="caret"></span></button>
                             <div id="demo3" class="collapse out dropdownrevisi">
-                                <li class="list-group-item"><a href="?pageb=laporan_operator">Data Operator</a></li>
-                                <li class="list-group-item"><a href="#">Arsip Surat Masuk</a></li>
-                                <li class="list-group-item"><a href="#">Arsip Surat Keluar</a></li>
+                                <li class="list-group-item"><a href="laporan/laporan_operator.php">Data Operator</a></li>
+                                <li class="list-group-item"><a href="laporan/laporan_surat_masuk.php">Arsip Surat Masuk</a></li>
+                                <li class="list-group-item"><a href="laporan/laporan_surat_keluar">Arsip Surat Keluar</a></li>
                             </div>
                         <a href="?pageb=logout" onclick="return confirm('Anda yakin ingin logout?')" class="list-group-item">
                             <span class="glyphicon glyphicon-off"></span>
@@ -103,10 +103,8 @@ if(empty(isset($_SESSION['level']))){
     <script src="assets/date/js/bootstrap-datepicker.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
-            $('.datepicker').datepicker();
+            $('.datepicker').datepicker()
         })
-    </script>
-    <script type="text/javascript">
         $(".fileUpload").click(function() {
             document.getElementById("uploadBtn").click();
         });

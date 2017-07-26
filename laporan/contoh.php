@@ -1,7 +1,8 @@
 <?php
-require('../assets/fpdf/fpdf.php');
-$o = new FPDF('L');
+require('../assets/fpdf/customFPDF.php');
+$o = new customFPDF('L');
 $o->AddPage();
+
 //Logo
 $y = 31;
 $o->setY($y);
@@ -11,7 +12,7 @@ $o->Image('../assets/img/logo.jpg',175,10,-1300,0,0,'R');
 $o->SetFont('Arial','B',16);
 $o->setY($y+20);
 $o->setX(25);
-$o->cell(240,10,'Laporan Surat Masuk',0,0,'C');
+$o->cell(240,10,'Laporan Operator',0,0,'C');
 
 //tabel
 $o->ln();
@@ -75,8 +76,7 @@ $x+=30;
 
 // $o->setlineWidth(0,1);
 // $o->line(270,$y,23,$y);
-
-$link = mysqli_connect("localhost", "root", "", "pendataan_penduduk");
+require('../config/koneksi.php');
 $sql = "select * from tb_user";
 $no = 0;
 if ($result = mysqli_query($link, $sql)) {
@@ -153,9 +153,39 @@ if ($result = mysqli_query($link, $sql)) {
 			$o->MultiCell(30,$height,$row['status'],1,'C');
 			$x+=30;
 			$o->SetXY($x, $y);
+			if ($y>=170) {
+				$o->AddPage();
+				$y-=$y;
+			}
 
 		}
 	}
 }
+if ($y>=130) {
+	$o->AddPage();
+	$y-=$y;
+}
+
+$prow=10;
+$y =$y+$prow;
+$o->setY($y);
+$o->setX(25);
+$o->cell(170,10);
+$o->cell(90,10,'Medan,',0,0,'L',0);
+$y =$y+$prow;
+$o->setY($y);
+$o->setX(25);
+$o->cell(170,10);
+$o->cell(90,10,'Kepala Bagian SDM',0,0,'L',0);
+$y =$y+30;
+$o->setY($y);
+$o->setX(25);
+$o->cell(170,10);
+$o->cell(90,10,'Berkat Jaya Harefa',0,0,'L',0);
+$y =$y-201;
+$o->setY($y);
+$o->setX(25);
+$o->cell(170,10);
+$o->cell(90,10,'NIP : 010100100100 10 10 1',0,0,'L',0);
 $o->Output();
 ?>
