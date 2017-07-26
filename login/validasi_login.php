@@ -10,7 +10,7 @@ if(isset($_POST['username'], $_POST['password'])){
 
 include "../config/koneksi.php";
 
-	$query = "select * from tb_user where username = '".$username."' and password = '".$password."'";
+	$query = "select * from tp_user where username = '".$username."' and password = '".md5($password)."'";
 	if ($result = mysqli_query($link, $query)) {
 		$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 		if(!empty($row)){

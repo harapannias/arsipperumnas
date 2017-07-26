@@ -1,12 +1,12 @@
 <?php
 require_once "helpers.php";
 
-if(isset($_GET['pageb'])){
+if(isset($_GET['page'])){
 
-	switch ($_GET['pageb']) {
+	switch ($_GET['page']) {
 		
 		case 'home':
-		include "pageb/home.php";
+		include "page/home.php";
 		break;
 		case 'logout':
 		include "login/logout.php";
@@ -14,33 +14,36 @@ if(isset($_GET['pageb'])){
 		
         //operator
 		case 'user_operator':
-		include("pageb/data_operator.php");
+		include("page/data_operator.php");
 		break;
 		case 'tambah_operator':
-		include("pageb/tambah_operator.php");
+		include("page/operator/tambah_operator.php");
+		break;
+		case 'edit_operator':
+		include("page/operator/edit_operator.php");
 		break;
             
         //Surat Masuk
         case 'form_suratmasuk':
-		include("pageb/form_suratmasuk.php");
+		include("page/form_suratmasuk.php");
 		break;
         case 'form_suratkeluar':
-		include("pageb/form_suratkeluar.php");
+		include("page/form_suratkeluar.php");
 		break;
         case 'daftar_surat_masuk':
-		include("pageb/daftar_surat_masuk.php");
+		include("page/daftar_surat_masuk.php");
 		break;
         case 'daftar_surat_keluar':
-		include("pageb/daftar_surat_keluar.php");
+		include("page/daftar_surat_keluar.php");
 		break;
         case 'surat_keluar':
-		include("pageb/surat_keluar.php");
+		include("page/surat_keluar.php");
 		break;
         case 'laporan_operator':
-		include("pageb/laporan_operator.php");
+		include("page/laporan_operator.php");
 		break;
 		}
 
 }else{
-	include "pageb/home.php";
+	include "page/home.php";
 }
