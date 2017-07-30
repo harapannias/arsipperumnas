@@ -67,7 +67,7 @@
 							<td align="center"><?= $row['disposisi']?></td>
 							<td>Preview</td>
 							<td>
-								<a href="?pageb=form_suratmasuk&id=<?= $row['nmr_urut']?>" class="btn btn-success btn-xs">Edit</a>
+								<a href="?page=form_suratmasuk&id=<?= $row['nmr_urut']?>" class="btn btn-success btn-xs">Edit</a>
 							</td>
 						</tr>
 						<?php

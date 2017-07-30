@@ -116,4 +116,13 @@ ul.breadcrumb li a:hover {
     margin-bottom: 0px;
 }
 
+.list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover {
+    z-index: 2;
+    color: #333;
+    background-color: #ededed;
+    border-color: #c9c9c9;
+}
 
+.cursor-pointer {
+    cursor: pointer;
+}

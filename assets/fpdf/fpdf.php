@@ -57,8 +57,8 @@ protected $ws;                 // word spacing
 protected $images;             // array of used images
 protected $PageLinks;          // array of links in pages
 protected $links;              // array of internal links
-protected $AutoPageBreak;      // automatic page breaking
-protected $PageBreakTrigger;   // threshold used to trigger page breaks
+protected $Autopagereak;      // automatic page breaking
+protected $pagereakTrigger;   // threshold used to trigger page breaks
 protected $InHeader;           // flag set when processing header
 protected $InFooter;           // flag set when processing footer
 protected $AliasNbPages;       // alias for total number of pages
@@ -160,7 +160,7 @@ function __construct($orientation='P', $unit='mm', $size='A4')
 	// Line width (0.2 mm)
 	$this->LineWidth = .567/$this->k;
 	// Automatic page break
-	$this->SetAutoPageBreak(true,2*$margin);
+	$this->SetAutopagereak(true,2*$margin);
 	// Default display mode
 	$this->SetDisplayMode('default');
 	// Enable compression
@@ -199,12 +199,12 @@ function SetRightMargin($margin)
 	$this->rMargin = $margin;
 }
 
-function SetAutoPageBreak($auto, $margin=0)
+function SetAutopagereak($auto, $margin=0)
 {
 	// Set auto page break mode and triggering margin
-	$this->AutoPageBreak = $auto;
+	$this->Autopagereak = $auto;
 	$this->bMargin = $margin;
-	$this->PageBreakTrigger = $this->h-$margin;
+	$this->pagereakTrigger = $this->h-$margin;
 }
 
 function SetDisplayMode($zoom, $layout='default')
@@ -567,17 +567,17 @@ function Text($x, $y, $txt)
 	$this->_out($s);
 }
 
-function AcceptPageBreak()
+function Acceptpagereak()
 {
 	// Accept automatic page break or not
-	return $this->AutoPageBreak;
+	return $this->Autopagereak;
 }
 
 function Cell($w, $h=0, $txt='', $border=0, $ln=0, $align='', $fill=false, $link='')
 {
 	// Output a cell
 	$k = $this->k;
-	if($this->y+$h>$this->PageBreakTrigger && !$this->InHeader && !$this->InFooter && $this->AcceptPageBreak())
+	if($this->y+$h>$this->pagereakTrigger && !$this->InHeader && !$this->InFooter && $this->Acceptpagereak())
 	{
 		// Automatic page break
 		$x = $this->x;
@@ -908,7 +908,7 @@ function Image($file, $x=null, $y=null, $w=0, $h=0, $type='', $link='')
 	// Flowing mode
 	if($y===null)
 	{
-		if($this->y+$h>$this->PageBreakTrigger && !$this->InHeader && !$this->InFooter && $this->AcceptPageBreak())
+		if($this->y+$h>$this->pagereakTrigger && !$this->InHeader && !$this->InFooter && $this->Acceptpagereak())
 		{
 			// Automatic page break
 			$x2 = $this->x;
@@ -1115,7 +1115,7 @@ protected function _beginpage($orientation, $size, $rotation)
 		}
 		$this->wPt = $this->w*$this->k;
 		$this->hPt = $this->h*$this->k;
-		$this->PageBreakTrigger = $this->h-$this->bMargin;
+		$this->pagereakTrigger = $this->h-$this->bMargin;
 		$this->CurOrientation = $orientation;
 		$this->CurPageSize = $size;
 	}

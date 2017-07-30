@@ -1,41 +1,30 @@
-<?php
+<?php 
+session_start();
+include "../config/koneksi.php";
+include "../config/helpers.php";
 
 $username = null;
 $password = null;
 
 if(isset($_POST['username'], $_POST['password'])){
-	$username = htmlspecialchars($_POST['username']);
-	$password = htmlspecialchars($_POST['password']);
+	$username = e($_POST['username']);
+	$password = e($_POST['password']);
 }
 
-include "../config/koneksi.php";
 
-	$query = "select * from tp_user where username = '".$username."' and password = '".md5($password)."'";
-	if ($result = mysqli_query($link, $query)) {
-		$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-		if(!empty($row)){
-			session_start();
-			$_SESSION['level'] = $row['level'];
-            $_SESSION['nama'] = $row['nama'];
-			header('Location: ../index_baru.php');
+$query = "select * from tp_user where username = '$username'";
 
-		}else{
-			header('Location: ../index.php?page=login&pesan=salah');
-		}
-	}else{
-		echo mysqli_error($link);
-	}
+$loginPass = md5($password);
+$loginQuery = "select * from tp_user where username = '$username' and password = '$loginPass'";
 
-function is_penduduk($link, $username){
-	$query = "select * from tb_keluarga where nomor_kk = '".$username."'";
-	if ($result = mysqli_query($link, $query)) {
-		$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-		if(!empty($row)){
-			return true;
-		}else{
-			return false;
-		}
-	}else{
-		echo mysqli_error($link);
-	}
+if(execGetCount($query) > 0) {
+	$dataLogin = execSelectQuery($loginQuery);
+
+	//store login information to session
+	$_SESSION['login_detail'] = array_shift($dataLogin);
+	header('Location: ../index.php');
+
+} else {
+	echo 'Maaf, pengguna "'.$username.'" tidak dikenali dalam sistem ini';
 }
+	var_dump($_SESSION);

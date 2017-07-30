@@ -58,7 +58,7 @@
 				<td>Melamar Pekerjaan</td>
 				<td>Preview</td>
 				<td>
-					<a href="?pageb=form_suratmasuk&id=ASM002" class="btn btn-success btn-xs">Edit</a>
+					<a href="?page=form_suratmasuk&id=ASM002" class="btn btn-success btn-xs">Edit</a>
 				</td>
 			</tr>
 			<tr>
@@ -72,7 +72,7 @@
 				<td>Melamar Pekerjaan</td>
 				<td>Preview</td>
 				<td>
-					<a href="?pageb=form_suratmasuk&id=ASM003" class="btn btn-success btn-xs">Edit</a>
+					<a href="?page=form_suratmasuk&id=ASM003" class="btn btn-success btn-xs">Edit</a>
 				</td>
 			</tr>
 			<tr>
@@ -86,7 +86,7 @@
 				<td>Melamar Pekerjaan</td>
 				<td>Preview</td>
 				<td>
-					<a href="?pageb=form_suratmasuk&id=ASM001" class="btn btn-success btn-xs">Edit</a>
+					<a href="?page=form_suratmasuk&id=ASM001" class="btn btn-success btn-xs">Edit</a>
 				</td>
 			</tr>
 			<tr>
@@ -100,7 +100,7 @@
 				<td>Melamar Pekerjaan</td>
 				<td>Preview</td>
 				<td>
-					<a href="?pageb=form_suratmasuk&id=ASM004" class="btn btn-success btn-xs">Edit</a>
+					<a href="?page=form_suratmasuk&id=ASM004" class="btn btn-success btn-xs">Edit</a>
 				</td>
 			</tr>
 			<tr>
@@ -114,7 +114,7 @@
 				<td>Melamar Pekerjaan</td>
 				<td>Preview</td>
 				<td>
-					<a href="?pageb=form_suratmasuk&id=ASM004" class="btn btn-success btn-xs">Edit</a>
+					<a href="?page=form_suratmasuk&id=ASM004" class="btn btn-success btn-xs">Edit</a>
 				</td>
 			</tr>
 

@@ -48,8 +48,8 @@ require('../config/koneksi.php');
 
 
 		$sql = $o->getQuery('tb_user');
-		$result = mysqli_query($link, $sql);
-		mysqli_num_rows($result);
+		if ($result = mysqli_query($link, $sql)){
+		if (mysqli_num_rows($result)> 0) {
 		$no = 0; 
 		while ($row = mysqli_fetch_assoc($result)) {
 			$no++;
@@ -83,7 +83,7 @@ require('../config/koneksi.php');
 			$o->automaticBreak(170, $y);
 			$y = $o->automaticBreakTop(170, $y);
 
-		}
+		}}}
 		$o->automaticBreak(130, $y);
 		$y = $o->automaticBreakTop(130, $y);
 

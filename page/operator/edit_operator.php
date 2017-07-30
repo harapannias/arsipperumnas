@@ -82,7 +82,7 @@ if(isset($_GET['id'])){
             <div class="form-group">        
               <div class="col-sm-offset-2 col-sm-10">
                 <button type="submit" class="btn btn-success">Edit</button>
-                <a href="?pageb=user_operator" type="submit" class="btn btn-danger">Batal</a>
+                <a href="?page=user_operator" type="submit" class="btn btn-danger">Batal</a>
               </div>
             </div>
           </form>

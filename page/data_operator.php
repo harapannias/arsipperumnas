@@ -3,7 +3,7 @@
 		<hr>
 	</h2>
 	<ul class="breadcrumb">
-	<li><a href="#">Home</a></li>
+		<li><a href="#">Home</a></li>
 		<li>Data Operator</li>
 	</ul>
 
@@ -11,7 +11,7 @@
 	<h4>Berikut daftar operator yang telah terdaftar</h4>
 	<p>&nbsp;</p>
 	<div style="overflow-x: auto;">
-		<table class="table table-striped" width="">
+		<table class="table table-striped table-hover" width="">
 			<tr>
 				<th width="5%">No.</th>
 				<th>Kode Operator</th>
@@ -24,38 +24,32 @@
 			<?php
 			include "config/koneksi.php";
 			$sql = "select * from tp_user";
-			if ($result = mysqli_query($link, $sql)) {
-				if(mysqli_num_rows($result) > 0){
-					$no = 1; 
-					while ($row = mysqli_fetch_assoc($result)) {
-						?>
-						<tr>
-							<td><?= $no ?></td>
-							<td><?= $row['kode_operator']?></td>
-							<td><?= $row['nama']?></td>
-							<td><?= $row['username']?></td>
-							<td><?= $row['level']?></td>
-							<td><?= $row['status']?></td>
-							<td>
-								<a href="?page=edit_operator&id=<?= $row['id_user']?>" class="btn btn-success btn-xs">Edit</a>
-							</td>
-						</tr>
-						<?php
-						$no++;
-					}
-				}else{
+			$data = execSelectQuery($sql);
+			if(count($data) > 0) {
+				foreach ($data as $i => $row) {
 					?>
 					<tr>
-						<td colspan="6">Tidak ada data</td>
+						<td><?= ($i +1) ?></td>
+						<td><?= $row['kode_operator']?></td>
+						<td><?= $row['nama']?></td>
+						<td><?= $row['username']?></td>
+						<td><?= getLevelOperator($row['level'])?></td>
+						<td><?= getStatus($row['status'])?></td>
+						<td>
+							<a href="?page=edit_operator&id=<?= $row['id_user']?>" class="btn btn-success btn-xs"> Edit </a>
+						</td>
 					</tr>
 					<?php
 				}
 			}else{
-				echo "Terjadi kelasalahan saat mengambil data kelurahan di database. " . mysqli_error($link);
+				?>
+				<tr>
+					<td colspan="7" class="text-center">Tidak ada data</td>
+				</tr>
+				<?php
 			}
 			mysqli_close($link);
 			?>
-
 		</table>
 	</div>
 </div>
