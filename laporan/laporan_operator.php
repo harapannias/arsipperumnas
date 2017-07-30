@@ -25,85 +25,105 @@ require('../config/koneksi.php');
 		$y = $o->GetY();
 		$o->setFillColor(233,233,233);  
 
-		$o->SetFont('Arial','',12);
+		$o->SetFont('Arial','',10);
 
-		$o->MultiCell(10,10,'No',1,'C',0,0); 
+		$o->MultiCell(10,20,'No',1,'C',0,0); 
 		$x+=10;                           
 		$o->SetXY($x, $y);               
 
-		$o->MultiCell(30,10,'Kode Operator',1,'C',0,0); 
-		$x+=30;                           
+		$o->MultiCell(20,10,'Kode Operator',1,'C',0,0); 
+		$x+=20;                           
 		$o->SetXY($x, $y);               
 
-		$o->MultiCell(120,10,'Nama',1,'C',0,0);
-		$x+=120;
+		$o->MultiCell(70,20,'Nama',1,'C',0,0);
+		$x+=70;
 		$o->SetXY($x, $y);               
 
-		$o->MultiCell(50,10,'Username',1,'C',0,0);
+		$o->MultiCell(50,20,'Username',1,'C',0,0);
 		$x+=50;
+		$o->SetXY($x, $y);   
+
+		$o->MultiCell(35,20,'Tanggal Daftar',1,'C',0,0);
+		$x+=35;
+		$o->SetXY($x, $y);  
+
+		$o->MultiCell(35,20,'Login Terakhir',1,'C',0,0);
+		$x+=35;
 		$o->SetXY($x, $y);               
 
-		$o->MultiCell(30,10,'Status',1,'C',0,0);
-		$x+=30;
+		$o->MultiCell(30,20,'Status',1,'C',0,0);
+		$x+=40;
+		$y+=10;
 
 
-		$sql = $o->getQuery('tb_user');
-		if ($result = mysqli_query($link, $sql)){
-		if (mysqli_num_rows($result)> 0) {
+		$sql = $o->getQuery('tp_user');
+		$result = mysqli_query($link, $sql);
+		mysqli_num_rows($result);
 		$no = 0; 
 		while ($row = mysqli_fetch_assoc($result)) {
 			$no++;
 			$x=25;
 			$y+=10;              
 			$o->SetXY($x, $y);
-			$height = $o->tableHeight($row['nama'], 50);
-			$height1 = $o->tableWrap($row['nama'], 50, $height);
+			$height = $o->tableHeight($row['nama'], 40);
+			$height1 = $o->tableWrap($row['nama'], 40, $height);
 
 			$o->MultiCell(10,$height,$no,1,'C');
 			$x+=10;
 			$o->SetXY($x, $y);
 
-			$o->MultiCell(30,$height,$row['kode_operator'],1,'C');
-			$x+=30;
+			$o->MultiCell(20,$height,$row['kode_operator'],1,'C');
+			$x+=20;
 			$o->SetXY($x, $y);
 
-			$o->MultiCell(120,$height1,$row['nama'],1,'L');
-			$x+=120;
+			$o->MultiCell(70,$height1,$row['nama'],1,'L');
+			$x+=70;
 			$o->SetXY($x, $y);
 
 			$o->MultiCell(50,$height,$row['username'],1,'C');
 			$x+=50;
 			$o->SetXY($x, $y);
-			$y += $o->marginTable($row['nama'], 50, $y);			
-			$y-=10;
-			$o->customHeight();
+			
+			$o->MultiCell(35,$height,$row['wk_rekam'],1,'C');
+			$x+=35;
+			$o->SetXY($x, $y);
+
+
+			$o->MultiCell(35,$height,$row['login_terakhir'],1,'C');
+			$x+=35;
+			$o->SetXY($x, $y);
+
+			$y += $o->marginTable($row['nama'], 40, $y);
+			$y-=$o->customHeight();
+			
 			$o->MultiCell(30,$height,$row['status'],1,'C');
 			$x+=30;
 			$o->SetXY($x, $y);
+			// $y += $o->tableWrapFix($row['username'], 25, $height);
 			$o->automaticBreak(170, $y);
 			$y = $o->automaticBreakTop(170, $y);
 
-		}}}
-		$o->automaticBreak(130, $y);
-		$y = $o->automaticBreakTop(130, $y);
-
-		$prow=10;
-		$y =$y+$prow;
+		}
+		$o->automaticBreak(110, $y);
+		$y = $o->automaticBreakTop(110, $y);
+		$y = $o->getY();
+		$prow=5;
+		$y =$y+20+$prow;
 		$o->setY($y);
 		$o->setX(25);
-		$o->cell(170,10);
+		$o->cell(170,7);
 		$o->cell(90,10,'Medan,',0,0,'L',0);
 		$y =$y+$prow;
 		$o->setY($y);
 		$o->setX(25);
 		$o->cell(170,10);
 		$o->cell(90,10,'Kepala Bagian SDM',0,0,'L',0);
-		$y =$y+30;
+		$y =$y+20;
 		$o->setY($y);
 		$o->setX(25);
 		$o->cell(170,10);
 		$o->cell(90,10,'Berkat Jaya Harefa',0,0,'L',0);
-		$y =$y-201;
+		$y =$y-204;
 		$o->setY($y);
 		$o->setX(25);
 		$o->cell(170,10);
