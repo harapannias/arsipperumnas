@@ -18,12 +18,15 @@ class customFPDF extends FPDF
 	} 
 	public function tableWrap($row, $max, $height) {
 		return (strlen($row) >= $max ? $height1= $height-10 : $height);
+	} 
+	public function tableWrapFix($row, $max, $y) {
+		return (strlen($row) >= $max ? $y= $y-10 : $y=$y - 10);
 	}
 	public function marginTable($row, $max, $y) {
 		return (strlen($row) >= $max ? $y= 20 : $y = 10);
 	} 
 	public function customHeight() {
-		return "\$y-=10;";
+		return "10";
 	}
 	public function automaticBreak($max, $y) {
 		return ($y >= $max ? $this->AddPage() : $y);

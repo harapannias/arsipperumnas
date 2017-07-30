@@ -1,109 +1,140 @@
 <?php
-
-function dd($arg) {
-	var_dump($arg);
-	die();
-}
-
-
 require('../assets/fpdf/customFPDF.php');
-$o = new customFPDF('L');
-$o->AddPage();
-//Logo
-$y = 31;
-$o->setY($y);
-$o->Image('../assets/img/logo.jpg',175,10,-1300,0,0,'R');
+require('../config/koneksi.php');
 
-//Judul
-$o->SetFont('Arial','B',16);
-$o->setY($y+20);
-$o->setX(25);
-$o->cell(240,10,'Laporan Surat Masuk',0,0,'L');
+	$o = new customFPDF('L');
+		$o->AddPage();
 
-//tabel
-$o->ln();
-$o->setY($y+40);
-$o->setX(25);
-$start_awal=$o->GetX(); 
-$get_xxx = $o->GetX();
-$get_yyy = $o->GetY();
-$o->setFillColor(233,233,233);
-$height_cell = 10;     
+		//Logo
+		$y = 31;
+		$o->setY($y);
+		$o->Image('../assets/img/logo.jpg',175,10,-1300,0,0,'R');
 
-$o->SetFont('Arial','',12);
+		//Judul
+		$o->SetFont('Arial','B',16);
+		$o->setY($y+20);
+		$o->setX(25);
+		$o->cell(240,10,'Laporan Surat Masuk',0,0,'C');
 
-$o->MultiCell(10,$height_cell,'No',0,'L',0,0); 
-$get_xxx+=15;                           
-$o->SetXY($get_xxx, $get_yyy);               
+		//tabel
+		$o->ln();
+		$o->setY($y+40);
+		$o->setX(25);
+		$o->GetX(25); 
+		$x = $o->GetX();
+		$y = $o->GetY();
+		$o->setFillColor(233,233,233);  
 
-$o->MultiCell(30,$height_cell,'Kode Operator',0,'L',0,0); 
-$get_xxx+=35;                           
-$o->SetXY($get_xxx, $get_yyy);               
+		$o->SetFont('Arial','',10);
 
-$o->MultiCell(120,$height_cell,'Nama',0,'L',0,0);
-$get_xxx+=125;
-$o->SetXY($get_xxx, $get_yyy);               
+		$o->MultiCell(10,20,'No',1,'C',0,0); 
+		$x+=10;                           
+		$o->SetXY($x, $y);               
 
-$o->MultiCell(40,$height_cell,'Username',0,'L',0,0);
-$get_xxx+=45;
-$o->SetXY($get_xxx, $get_yyy);               
+		$o->MultiCell(20,10,'Nomor Urut',1,'C',0,0); 
+		$x+=20;                           
+		$o->SetXY($x, $y);               
 
-$o->MultiCell(30,$height_cell,'Status',0,'L',0,0);
-$get_xxx+=35;
+		$o->MultiCell(50,20,'Nomor Berkas',1,'C',0,0);
+		$x+=50;
+		$o->SetXY($x, $y);               
 
-$o->setlineWidth(0,1);
-$o->line(270,$get_yyy,23,$get_yyy);
+		$o->MultiCell(40,20,'Penerima',1,'C',0,0);
+		$x+=40;
+		$o->SetXY($x, $y);               
 
-$link = mysqli_connect("localhost", "root", "", "pendataan_penduduk");
-$sql = "select * from tb_user";
-$no = 0;
-if ($result = mysqli_query($link, $sql)) {
-	if(mysqli_num_rows($result) > 0){
-		$no = 1; 
+		$o->MultiCell(30,20,'Tanggal Masuk',1,'C',0,0);
+		$x+=30;
+		$o->SetXY($x, $y);
+		
+		$o->MultiCell(30,10,'Nomor Surat Masuk',1,'C',0,0);
+		$x+=30;
+		$o->SetXY($x, $y);
+
+		$o->MultiCell(30,20,'Jenis Masuk',1,'C',0,0);
+		$x+=30;
+		$o->SetXY($x, $y);
+
+		$o->MultiCell(40,20,'Perihal',1,'C',0,0);
+		$x+=40;
+		$y+=10;
+
+
+		$sql = $o->getQuery('tp_user');
+		$result = mysqli_query($link, $sql);
+		mysqli_num_rows($result);
+		$no = 0; 
 		while ($row = mysqli_fetch_assoc($result)) {
-
-			$height = $o->getCustomHeight(strlen($row['nama']), 50);
-
-			$o->SetFont('Arial', '', 12);
-			$o->Cell(13);
-			$o->Cell(15, $height, $no, 1, 0, 'L');
-			$o->Cell(35, $height, $row['kode_operator'], 1, 0, 'L');
-			$o->MultiCell(125, $height, $row['nama'], 1);
-
-			$o->SetY($o->getCustomY($height));
-			$o->SetX(198);
-			$o->Cell(45, $height, $row['username'], 1, 0, 'L');
-			$o->Cell(35, $height, $row['status'], 1, 0, 'L');
-
-			$o->Ln();
 			$no++;
+			$x=25;
+			$y+=10;              
+			$o->SetXY($x, $y);
+			$height = $o->tableHeight($row['username'], 25);
+			$height1 = $o->tableWrap($row['username'], 25, $height);
+
+			$o->MultiCell(10,$height,$no,1,'C');
+			$x+=10;
+			$o->SetXY($x, $y);
+
+			$o->MultiCell(20,$height,$row['kode_operator'],1,'C');
+			$x+=20;
+			$o->SetXY($x, $y);
+
+			$o->MultiCell(50,$height,$row['nama'],1,'L');
+			$x+=50;
+			$o->SetXY($x, $y);
+
+			$o->MultiCell(40,$height1,$row['username'],1,'L');
+			$x+=40;
+			$o->SetXY($x, $y);
+			$y += $o->marginTable($row['nama'], 50, $y);			
+			
+			$y-=$o->customHeight();
+			
+			$o->MultiCell(30,$height,$row['status'],1,'C');
+			$x+=30;
+			$o->SetXY($x, $y);
+			
+			$o->MultiCell(30,$height,$row['status'],1,'C');
+			$x+=30;
+			$o->SetXY($x, $y);
+			
+			$o->MultiCell(30,$height,$row['status'],1,'C');
+			$x+=30;
+			$o->SetXY($x, $y);
+
+			$o->MultiCell(40,$height,$row['status'],1,'C');
+			$x+=40;
+			$o->SetXY($x, $y);
+			
+			$y += $o->tableWrapFix($row['username'], 25, $height);
+			$o->automaticBreak(170, $y);
+			$y = $o->automaticBreakTop(170, $y);
+
 		}
-	}
-}
-$get_yyy+=$height_cell;
-$o->setlineWidth(0,1);
-$o->line(270,$get_yyy,23,$get_yyy);
-$prow = 10;
-$y = $get_yyy;
-$y =$y+$prow;
-$o->setY($y= $y+110);
-$o->setX(25);
-$o->cell(170,10);
-$o->cell(90,10,'Medan,',0,0,'L',0);
-$y =$y+$prow;
-$o->setY($y);
-$o->setX(25);
-$o->cell(170,10);
-$o->cell(90,10,'Kepala Bagian SDM',0,0,'L',0);
-$y =$y+30;
-$o->setY($y);
-$o->setX(25);
-$o->cell(170,10);
-$o->cell(90,10,'Berkat Jaya Harefa',0,0,'L',0);
-$y =$y+10;
-$o->setY($y);
-$o->setX(25);
-$o->cell(170,10);
-$o->cell(90,10,'NIP : 010100100100 10 10 1',0,0,'L',0);
-$o->Output();
+		$o->automaticBreak(110, $y);
+		$y = $o->automaticBreakTop(110, $y);
+		$y = $o->getY();
+		$prow=5;
+		$y =$y+10+$prow;
+		$o->setY($y);
+		$o->setX(25);
+		$o->cell(170,7);
+		$o->cell(90,10,'Medan,',0,0,'L',0);
+		$y =$y+$prow;
+		$o->setY($y);
+		$o->setX(25);
+		$o->cell(170,10);
+		$o->cell(90,10,'Kepala Bagian SDM',0,0,'L',0);
+		$y =$y+20;
+		$o->setY($y);
+		$o->setX(25);
+		$o->cell(170,10);
+		$o->cell(90,10,'Berkat Jaya Harefa',0,0,'L',0);
+		$y =$y-204;
+		$o->setY($y);
+		$o->setX(25);
+		$o->cell(170,10);
+		$o->cell(90,10,'NIP : 010100100100 10 10 1',0,0,'L',0);
+	$o->Output();
 ?>
