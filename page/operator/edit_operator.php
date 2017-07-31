@@ -26,7 +26,7 @@ if(isset($_GET['id'])){
     <h4 class="page-caption">Silahkan mengedit data operator.</h4>
 
 
-    <form class="form-horizontal" role="form">
+    <form class="form-horizontal" role="form" action="?page=simpan_operator&ref=edit" method="post">
 
       <?php
       $sql = "select * from tp_user where id_user='".$id."'";
@@ -38,28 +38,32 @@ if(isset($_GET['id'])){
             
             <div class="form-group">
               <label class="col-sm-2" for="nama_lengkap">Nama Lengkap</label>
-              <div class="col-sm-3">          
+              <div class="col-sm-4">          
                 <input type="text" class="form-control" required="true" value="<?= $row['nama']?>" name="nama_lengkap" id="nama_lengkap" placeholder="Nama Lengkap">
               </div>
             </div>
 
             <div class="form-group">
+              <label class="col-sm-2" for="level_operator">Level Operator</label>
+              <div class="col-sm-3">          
+                <select class="form-control" required="true" name="level_operator" id="level_operator">
+                <?php foreach(getListLevelOperator() as $level) { ?>
+                  <option <?= setSelectedItem($level['level'], $row['level'])?> class="form-control" required="true" value="<?= $level['id'] ?>"><?= $level['level'] ?></option>
+                <?php } ?>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
               <label class="col-sm-2" for="username">Username</label>
-              <div class="col-sm-4">          
+              <div class="col-sm-3">          
                 <input type="text" class="form-control" required="true" value="<?= $row['username']?>" name="username" id="username" placeholder="Username">
               </div>
             </div>
 
             <div class="form-group">
-              <label class="col-sm-2" for="pwd">Password</label>
+              <label class="col-sm-2" for="password">Edit Password</label>
               <div class="col-sm-4">          
-                <input type="password" class="form-control" required="true" value="<?= $row['password']?>" name="password" placeholder="Password">
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label class="col-sm-2" for="pwd">Edit Password</label>
-              <div class="col-sm-3">          
                 <div class="input-group">
                   <span class="input-group-addon">
                   <label><input id="chkUbahPassword" type="checkbox"></label>
@@ -73,15 +77,17 @@ if(isset($_GET['id'])){
               <label class="col-sm-2" for="pwd">Status</label>
               <div class="col-sm-2">          
                 <select class="form-control" required="true" name="status">
-                  <option <?= setSelectedItem('Aktif', $row['status'])?> class="form-control" required="true">Aktif</option>
-                  <option <?= setSelectedItem('Tidak Aktif', $row['status'])?>class="form-control" required="true">Tidak Aktif</option>
+                <option value="">-Pilih-</option>
+                  <option <?= setSelectedItem('1', $row['status'])?> class="form-control" value="1">Aktif</option>
+                  <option <?= setSelectedItem('0', $row['status'])?> class="form-control" value="0">Tidak Aktif</option>
                 </select>
               </div>
             </div>
 
             <div class="form-group">        
               <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-success">Edit</button>
+              <input type="hidden" name="id_ref" value="<?= $row['id_user']?>">
+                <button type="submit" class="btn btn-success">Update Data</button>
                 <a href="?page=user_operator" type="submit" class="btn btn-danger">Batal</a>
               </div>
             </div>
@@ -93,12 +99,6 @@ if(isset($_GET['id'])){
   }
 }
 ?>
-<script>
-  $('#chkUbahPassword').change(function() {
-    if($('#chkUbahPassword').prop('checked', true)) {
-      alert('yes');
-    } else {
-      alert('no');
-    }
-  });
+<script type="text/javascript">
+  
 </script>
