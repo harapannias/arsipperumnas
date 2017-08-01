@@ -34,6 +34,10 @@ authenticateCheck('index');
         <div class="row">
             <div class="col-md-2 scroll-wrapper scrollbar-inner" id="menukiri">
                 <div class="list-group scroll-wrapper scrollbar-inner" style="position: relative;">
+                <div class="container-fluid" id="profil">
+                    <div class="avatar"><img src="assets/img/Perumnas2.jpg" class="img img-circle"></div>
+                    <div class="profil-name"><b>Berkat Jaya Harefa</b></div>
+                </div>
                 <a id="menu" href="?page=home" class="list-group-item <?= (isUrlMatch('?page=home') || isUrlMatch('')) ? 'active' : ''  ?>">
                         <span class="glyphicon glyphicon-home"></span>
                         <font>Dashboard</font>
