@@ -13,8 +13,8 @@ if(isset($_GET['page'])){
 		break;
 		
         //operator
-		case 'user_operator':
-		include("page/data_operator.php");
+		case 'daftar_operator':
+		include("page/operator/data_operator.php");
 		break;
 		case 'tambah_operator':
 		include("page/operator/tambah_operator.php");
@@ -22,16 +22,21 @@ if(isset($_GET['page'])){
 		case 'edit_operator':
 		include("page/operator/edit_operator.php");
 		break;
+		case 'simpan_operator':
+		include("page/operator/simpan_operator.php");
+		break;
             
         //Surat Masuk
-        case 'form_suratmasuk':
-		include("page/form_suratmasuk.php");
-		break;
-        case 'form_suratkeluar':
-		include("page/form_suratkeluar.php");
+        case 'tambah_surat_masuk':
+		include("page/surat_masuk/tambah_surat_masuk.php");
 		break;
         case 'daftar_surat_masuk':
-		include("page/daftar_surat_masuk.php");
+		include("page/surat_masuk/daftar_surat_masuk.php");
+		break;
+
+		//Surat Keluar
+        case 'form_suratkeluar':
+		include("page/form_suratkeluar.php");
 		break;
         case 'daftar_surat_keluar':
 		include("page/daftar_surat_keluar.php");

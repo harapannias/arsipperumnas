@@ -32,20 +32,21 @@ function dd($var) {
 function authenticateCheck($fromPage) {
 	switch ($fromPage) {
 		case 'login':
-			if(isset($_SESSION["login_detail"])) {
-				header('Location: index.php');
-			}
+		if(isset($_SESSION["login_detail"])) {
+			header('Location: index.php');
+		}
 		break;
 
 		case 'index':
-			if(!isset($_SESSION["login_detail"])) {
-				header('Location: login.php');
-			}
+		if(!isset($_SESSION["login_detail"])) {
+			header('Location: login.php');
+		}
 		break;
 	}
 }
 
 function redirect($arg) {
+	header('Status: Move Permanently');	
 	header('Location: ' . $arg);	
 }
 
@@ -82,22 +83,22 @@ function e($arg) {
 function getLevelOperator($level) {
 	switch ($level) {
 		case '1':
-			return 'Administrator';
-			break;
+		return 'Administrator';
+		break;
 		case '2':
-			return 'Operator';
-			break;
+		return 'Operator';
+		break;
 	}
 }
 
 function getStatus($status) {
 	switch ($status) {
-		case '1':
-			return 'Aktif';
-			break;
-		case '2':
-			return 'Tidak Aktif';
-			break;
+		case 1:
+		return 'Aktif';
+		break;
+		case 0:
+		return 'Tidak Aktif';
+		break;
 	}
 }
 
@@ -106,7 +107,17 @@ function getFullUrl() {
 }
 
 function isUrlMatch($url) {
-	// $subDirectory = explode('/', $_SERVER['REQUEST_URI'])[1];
 	$subDirectory = $_SERVER['SCRIPT_NAME'];
 	return $_SERVER['REQUEST_URI'] === $subDirectory.$url;
+}
+
+function setSelectedItem($arg1, $arg2) {
+	return ($arg1 == $arg2) ? 'selected' : '';
+}
+
+function getListLevelOperator() {
+	return [
+	0 => ['id' => 1, 'level' => 'Administrator'], 
+	1 => ['id' => 2, 'level' => 'Operator'], 
+	];
 }
