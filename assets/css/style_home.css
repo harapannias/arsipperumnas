@@ -21,22 +21,23 @@ body {
     background-color: #333;
     position: fixed;
     top: 0;
-    width: 100%;
+    margin-left: 16.7%;
+    width: 83.7%;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 #menukiri {
-    margin-top: 7%;
+    margin-top: 0;
     height: 100%;
     background-color: #FFF;
     border-right: 1px solid #cacaca;
     border-top: 1px solid #cacaca;
     padding: 0;
-    overflow: auto;
+    overflow: hidden;
     position: fixed;
 }
 .scroll-wrapper {
-    height: 90% !important;
-    max-height: 90%;
+    max-height: 100% !important;
+    height: 95%;
     overflow-y: auto;
 }
 .scroolbar-inner {
@@ -47,7 +48,7 @@ body {
 #menukanan{
     width: 81%;
     margin-left: 18%;
-    margin-top: 9%;
+    margin-top: 7%;
     margin-bottom: 100px;
 }
 .isi { 
@@ -125,4 +126,22 @@ ul.breadcrumb li a:hover {
 
 .cursor-pointer {
     cursor: pointer;
+}
+.avatar {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    text-align: center;
+}
+.avatar img {
+    width: 80px;
+    height: 80px;
+    /*border: 3px solid #cacaca;*/
+    box-shadow: 0 0 5px;   
+}
+.profil-name {
+    text-align: center;
+    margin-bottom: 10px;
+}
+#profil {
+    background-color: ;
 }
