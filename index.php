@@ -3,6 +3,8 @@ ob_start();
 session_start();
 include "config/helpers.php";
 authenticateCheck('index');
+
+// dd(getAuth());
 ?>
 
 <!DOCTYPE html>

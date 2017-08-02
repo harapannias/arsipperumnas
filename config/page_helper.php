@@ -14,7 +14,7 @@ if(isset($_GET['page'])){
 		
         //operator
 		case 'daftar_operator':
-		include("page/operator/data_operator.php");
+		include("page/operator/daftar_operator.php");
 		break;
 		case 'tambah_operator':
 		include("page/operator/tambah_operator.php");

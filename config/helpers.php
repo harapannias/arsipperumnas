@@ -68,6 +68,16 @@ function execGetCount($sql_query) {
 	return mysqli_num_rows($result);
 }
 
+function getUserInfo($field, $arg){
+	$tmpUser = execSelectQuery("select * from tp_user where id_user = $field limit 0,1");
+	$user = array_shift($tmpUser);
+	if (!isset($user[$arg])) {
+		die('Data "'.$arg.'" pada user tidak ditemukan');
+	} else {
+		return $user[$arg];
+	}
+}
+
 function execStatementQuery($sql_query) {
 	global $link;
 	if (mysqli_query($link, $sql_query) or die(mysqli_error($link). ' for sql ('.$sql_query.')')) {
@@ -120,4 +130,42 @@ function getListLevelOperator() {
 	0 => ['id' => 1, 'level' => 'Administrator'], 
 	1 => ['id' => 2, 'level' => 'Operator'], 
 	];
+}
+
+function getUserLevel() {
+	if(isset($_SESSION['login_detail']['level'])) {
+		return ['id' => $_SESSION['login_detail']['level'], 'uraian' => getLevelOperator($_SESSION['login_detail']['level'])];
+	} else {
+		die('User belum login');
+	}
+}
+
+function isAdmin($id_user = null) {
+	if($id_user == null) {
+		return $_SESSION['login_detail']['level'] == 1;
+	} else {
+		return getUserInfo($id_user, 'level') == 1;
+	}
+}
+
+function getAuth() {
+	return $_SESSION['login_detail'];
+}
+
+function isUserAuthenticated() {
+	return getUserInfo($id_user, 'level');
+}
+
+function updateUserLastLogin($id_user) {
+	return execStatementQuery("update tp_user set login_terakhir = now() where id_user = $id_user");
+}
+
+function saveLoginUserInfo($id_user) {
+	// record user login time
+	updateUserLastLogin($id_user);
+
+	$finalQuery = "select id_user, nama, username, level, login_terakhir, status, wk_rekam, wk_ubah, id_rekam, id_ubah from tp_user where id_user = $id_user";
+	$tmpLogin = execSelectQuery($finalQuery);
+	$_SESSION['login_detail'] = array_shift($tmpLogin);
+	return;
 }

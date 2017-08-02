@@ -5,8 +5,8 @@ if(isset($_GET['jenis'])){
 		case 'data_kelurahan':
 		include "laporan/data_kelurahan.php";
 		break;
-		case 'data_operator':
-		include "laporan/data_operator.php";
+		case 'daftar_operator':
+		include "laporan/daftar_operator.php";
 		break;
 		case 'data_keluarga':
 		include "laporan/data_keluarga.php";

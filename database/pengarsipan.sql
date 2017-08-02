@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : MySQLLocal
+Source Server         : MySQL Local sa
 Source Server Version : 50714
-Source Host           : localhost:3306
+Source Host           : 127.0.0.1:3306
 Source Database       : pengarsipan
 
 Target Server Type    : MYSQL
 Target Server Version : 50714
 File Encoding         : 65001
 
-Date: 2017-07-24 16:49:09
+Date: 2017-07-31 09:46:01
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -68,24 +68,24 @@ CREATE TABLE `tp_arsip_surat_masuk` (
 DROP TABLE IF EXISTS `tp_user`;
 CREATE TABLE `tp_user` (
   `id_user` int(5) NOT NULL AUTO_INCREMENT,
-  `kode_operator` varchar(5) DEFAULT NULL,
   `nama` varchar(100) DEFAULT NULL,
   `username` varchar(50) DEFAULT NULL,
   `password` varchar(100) DEFAULT NULL,
+  `level` int(1) DEFAULT NULL,
   `login_terakhir` datetime DEFAULT NULL,
   `status` int(1) DEFAULT '1',
-  `wk_rekam` datetime DEFAULT NULL,
+  `wk_rekam` datetime DEFAULT CURRENT_TIMESTAMP,
   `wk_ubah` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `id_rekam` varchar(15) DEFAULT NULL,
   `id_ubah` varchar(15) DEFAULT NULL,
-  `level` int(1) DEFAULT NULL,
   PRIMARY KEY (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of tp_user
 -- ----------------------------
-INSERT INTO `tp_user` VALUES ('1', 'ADM01', 'Administrator', 'admin', '21232f297a57a5a743894a0e4a801fc3', null, '1', '2017-07-24 15:20:54', '2017-07-24 15:23:15', 'admin', null, '1');
+INSERT INTO `tp_user` VALUES ('1', 'Administrator', 'admin', '21232f297a57a5a743894a0e4a801fc3', '1', null, '1', '2017-07-24 15:20:54', '2017-07-24 15:23:15', 'admin', null);
+INSERT INTO `tp_user` VALUES ('12', 'Harapan Jaya Harefa', 'harapan', '0192023a7bbd73250516f069df18b500', '1', null, '0', '2017-07-30 13:15:50', '2017-07-30 20:14:39', 'admin', 'admin');
 
 -- ----------------------------
 -- Table structure for tr_jenis_surat

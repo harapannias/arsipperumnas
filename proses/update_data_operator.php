@@ -8,13 +8,13 @@
   	$id_user = $_POST['id_user'];
 
   	if (empty($nama_operator) || $nama_operator == null) {
-  		header('Location: ../?page=tambah_data_operator&error=1');
+  		header('Location: ../?page=tambah_daftar_operator&error=1');
   	}elseif(empty($id_kelurahan) || $id_kelurahan == null){
-  		header('Location: ../?page=tambah_data_operator&error=2');
+  		header('Location: ../?page=tambah_daftar_operator&error=2');
   	}elseif (empty($username) || $username == null) {
-  		header('Location: ../?page=tambah_data_operator&error=3');
+  		header('Location: ../?page=tambah_daftar_operator&error=3');
   	}elseif (empty($password) || $password == null) {
-  		header('Location: ../?page=tambah_data_operator&error=4');
+  		header('Location: ../?page=tambah_daftar_operator&error=4');
   	}else{
   		include "../config/koneksi.php";
   		session_start();

@@ -12,7 +12,7 @@ switch (e($_GET['ref'])) {
 		$sql = "insert into tp_user (nama, username, password, level, status, id_rekam)
 		values ('$nama_operator', '$username', '$password', $level_operator, 1, '$id_rekam')";
 		execStatementQuery($sql);
-		redirect('?page=user_operator');
+		redirect('?page=daftar_operator');
 	break;
 
 	case 'edit':
@@ -33,7 +33,7 @@ switch (e($_GET['ref'])) {
 		status = $status, 
 		id_ubah = '$id_ubah' where id_user = '$id_user'";
 		execStatementQuery($sql);
-		redirect('?page=user_operator');
+		redirect('?page=daftar_operator');
 
 	break;
 }
