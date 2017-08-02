@@ -9,6 +9,11 @@ switch (e($_GET['ref'])) {
 		$password = md5(e($_POST['password']));
 		$id_rekam = e($_SESSION['login_detail']['username']);
 
+		$countOfUser = execGetCount("select * from tp_user where username = '$username'");
+		if($countOfUser > 0) {
+			die('Username sudah ada dalam database, silahkan gunakan username lain.');
+		}
+
 		$sql = "insert into tp_user (nama, username, password, level, status, id_rekam)
 		values ('$nama_operator', '$username', '$password', $level_operator, 1, '$id_rekam')";
 		execStatementQuery($sql);

@@ -3,8 +3,6 @@ ob_start();
 session_start();
 include "config/helpers.php";
 authenticateCheck('index');
-
-// dd(getAuth());
 ?>
 
 <!DOCTYPE html>
@@ -17,7 +15,7 @@ authenticateCheck('index');
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="assets/img/logo.png">
-    <title>Jumbotron Template for Bootstrap</title>
+    <title>Sistem Informasi Pengarsipan pada Perumnas Regional I Medan</title>
     <link href="assets/bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="assets/jqueryUI/jquery-ui.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style_home.css">
@@ -33,11 +31,16 @@ authenticateCheck('index');
         <div class="row">
             <div class="col-md-2 scroll-wrapper scrollbar-inner" id="menukiri">
                 <div class="list-group scroll-wrapper scrollbar-inner" style="position: relative;">
-                <div class="container-fluid" id="profil">
-                    <div class="avatar"><img src="assets/img/Perumnas2.jpg" class="img img-circle"></div>
-                    <div class="profil-name"><b>Berkat Jaya Harefa</b></div>
-                </div>
-                <a id="menu" href="?page=home" class="list-group-item <?= (isUrlMatch('?page=home') || isUrlMatch('')) ? 'active' : ''  ?>">
+                    <div class="container-fluid" id="profil">
+                        <div class="avatar"><img src="assets/img/Perumnas2.jpg" class="img img-circle"></div>
+                        <div class="profil-name">
+                            <b><?= getAuth()['nama']?></b><br>
+                            <small>Level: <?= getLevelOperator(getAuth()['id_user'])?></small>
+                        </div>
+                        <hr>
+                    </div>
+
+                    <a id="menu" href="?page=home" class="list-group-item <?= (isUrlMatch('?page=home') || isUrlMatch('')) ? 'active' : ''  ?>">
                         <span class="glyphicon glyphicon-home"></span>
                         <font>Dashboard</font>
                     </a>
@@ -119,13 +122,6 @@ authenticateCheck('index');
         
         $("#uploadBtn").change(function() {
             $("#uploadFile").val(this.value);
-        });
-
-        $(document).ready(function() {
-            $('#menu').click(function() {
-                $('#demo1').removeClass('out');
-                $('#demo1').addClass('in');
-            })
         });
 
         $('#chkUbahPassword').click(function() {

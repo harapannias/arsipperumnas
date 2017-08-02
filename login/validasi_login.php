@@ -13,24 +13,30 @@ if(isset($_POST['username'], $_POST['password'])){
 
 
 $query = "select * from tp_user where username = '$username'";
-
 $loginPass = md5($password);
+
 $loginQuery = "select * from tp_user where username = '$username' and password = '$loginPass'";
 
 if(execGetCount($query) > 0) {
+	$_tmpData = execSelectQuery($query);
+	$tmpData = array_shift($_tmpData);
 
-	$tmpLogin = execSelectQuery($loginQuery);
-	$dataLogin = array_shift($tmpLogin);
+	if($tmpData['password'] !== $loginPass) {
+		die('Username atau password salah');
+	} else {
+		$tmpLogin = execSelectQuery($loginQuery);
+		$dataLogin = array_shift($tmpLogin);
+		
+		if(getUserInfo($dataLogin['id_user'], 'status') != 1) {
+			die('Maaf, user sudah dinonaktifkan dari sistem.');
+		}	
 
-	if(getUserInfo($dataLogin['id_user'], 'status') != 1) {
-		die('Maaf, user sudah dinonaktifkan dari sistem.');
+		saveLoginUserInfo($dataLogin['id_user']);
 	}
-
-	saveLoginUserInfo($dataLogin['id_user']);
 
 	# store login information to session
 	header('Location: ../index.php');
 
 } else {
-	echo '<h3 align="center">Maaf, pengguna "'.$username.'" tidak dikenali atau sudah dinonaktifkan dalam sistem ini.</h3><h3 align="center"><a href="../index.php">Kembali</a></h3>';
+	die('Username tidak dikenali');
 }
