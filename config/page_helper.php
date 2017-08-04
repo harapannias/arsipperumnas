@@ -30,7 +30,13 @@ if(isset($_GET['page'])){
         case 'tambah_surat_masuk':
 		include("page/surat_masuk/tambah_surat_masuk.php");
 		break;
-        case 'daftar_surat_masuk':
+		case 'edit_surat_masuk':
+		include("page/surat_masuk/edit_surat_masuk.php");
+		break;
+        case 'simpan_surat_masuk':
+		include("page/surat_masuk/simpan_surat_masuk.php");
+		break;
+		case 'daftar_surat_masuk':
 		include("page/surat_masuk/daftar_surat_masuk.php");
 		break;
 

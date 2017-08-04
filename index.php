@@ -68,36 +68,37 @@ authenticateCheck('index');
                     <button type="button" class="list-group-item" data-toggle="collapse" data-target="#demo2">
                         <span class="glyphicon glyphicon-folder-close"></span> 
                         <font>Arsip Surat keluar</font>
-                        <span class="caret"></span></button>
-                        <div id="demo2" class="collapse out dropdownrevisi">
-                            <li class="list-group-item"><a id="menu" href="?page=form_suratkeluar">Tambah Surat</a></li>
-                            <li class="list-group-item"><a id="menu" href="?page=daftar_surat_keluar">Daftar Surat</a></li>
-                        </div>
+                        <span class="caret"></span>
                     </button>
+                    <div id="demo2" class="collapse out dropdownrevisi">
+                        <li class="list-group-item"><a id="menu" href="?page=form_suratkeluar">Tambah Surat</a></li>
+                        <li class="list-group-item"><a id="menu" href="?page=daftar_surat_keluar">Daftar Surat</a></li>
+                    </div>
                     <button type="button" class="list-group-item" data-toggle="collapse" data-target="#demo3">
                         <span class="glyphicon glyphicon-book"></span> 
                         <font>Laporan</font>
-                        <span class="caret"></span></button>
-                        <div id="demo3" class="collapse out dropdownrevisi">
-                            <li class="list-group-item"><a id="menu" href="laporan/laporan_operator.php">Data Operator</a></li>
-                            <li class="list-group-item"><a id="menu" href="laporan/laporan_surat_masuk.php">Arsip Surat Masuk</a></li>
-                            <li class="list-group-item"><a id="menu" href="laporan/laporan_surat_keluar">Arsip Surat Keluar</a></li>
-                        </div>
-                        <a id="menu" href="?page=logout" onclick="return confirm('Anda yakin ingin logout?')" class="list-group-item">
-                            <span class="glyphicon glyphicon-off"></span>
-                            <font>Log Out</font>
-                        </a>
+                        <span class="caret"></span>
+                    </button>
+                    <div id="demo3" class="collapse out dropdownrevisi">
+                        <li class="list-group-item"><a id="menu" href="laporan/laporan_operator.php">Data Operator</a></li>
+                        <li class="list-group-item"><a id="menu" href="laporan/laporan_surat_masuk.php">Arsip Surat Masuk</a></li>
+                        <li class="list-group-item"><a id="menu" href="laporan/laporan_surat_keluar">Arsip Surat Keluar</a></li>
                     </div>
+                    <a id="menu" href="?page=logout" onclick="return confirm('Anda yakin ingin logout?')" class="list-group-item">
+                        <span class="glyphicon glyphicon-off"></span>
+                        <font>Log Out</font>
+                    </a>
                 </div>
-                <div class="col-md-10" id="menukanan">
-                    <div class="isi">
-                        <div class="container-fluid">
-                            <?php include "config/page_helper.php" ?>
-                        </div>
+            </div>
+            <div class="col-md-10" id="menukanan">
+                <div class="isi">
+                    <div class="container-fluid">
+                        <?php include "config/page_helper.php" ?>
                     </div>
                 </div>
             </div>
-        </div> <!-- /container -->
+        </div>
+    </div> <!-- /container -->
 
 
 <!-- Bootstrap core JavaScript
@@ -114,7 +115,9 @@ authenticateCheck('index');
     </script>
     <script type="text/javascript">
         $(document).ready(function() {
-            $('.datepicker').datepicker();
+            $('.datepicker').datepicker({
+               dateFormat : "yy/dd/mm",
+            });
         })
         $(".fileUpload").click(function() {
             document.getElementById("uploadBtn").click();

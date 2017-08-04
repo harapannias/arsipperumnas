@@ -169,3 +169,30 @@ function saveLoginUserInfo($id_user) {
 	$_SESSION['login_detail'] = array_shift($tmpLogin);
 	return;
 }
+
+function saveUploadedDocument($jenis, $file) {
+	switch ($jenis) {
+		case 'surat_masuk':
+			# code...
+			$target_dir = 'uploads/';
+			$fileName = basename($_FILES["fileToUpload"]["name"]);
+			$target_file = $target_dir . $fileName;
+			$fileType = pathinfo($target_file,PATHINFO_EXTENSION);
+			$fileSize = $file['fileToUpload']['size'];
+			$fileContent = $file['fileToUpload']['tmp_name'];
+			if (move_uploaded_file($fileContent, $target_file)) {
+				return [
+					'fileName' => $fileName, 
+					'uploadedPath' => $target_file, 
+				];
+			} else {
+				die("Maaf, terjadi kesalahan saat mengupload file");
+			}
+
+			break;
+
+		case 'surat_masuk':
+			# code...
+			break;
+	}
+}
