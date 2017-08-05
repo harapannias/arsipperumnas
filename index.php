@@ -116,7 +116,7 @@ authenticateCheck('index');
     <script type="text/javascript">
         $(document).ready(function() {
             $('.datepicker').datepicker({
-               dateFormat : "yy/dd/mm",
+               dateFormat : "dd/mm/yy",
             });
         })
         $(".fileUpload").click(function() {

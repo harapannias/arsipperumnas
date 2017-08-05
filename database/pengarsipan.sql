@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50714
 File Encoding         : 65001
 
-Date: 2017-07-31 09:46:01
+Date: 2017-08-05 16:27:43
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -53,6 +53,11 @@ CREATE TABLE `tp_arsip_surat_masuk` (
   `perihal` varchar(255) DEFAULT NULL,
   `disposisi` varchar(100) DEFAULT NULL,
   `path_berkas` varchar(255) DEFAULT NULL,
+  `status` int(1) DEFAULT '1',
+  `wk_rekam` datetime DEFAULT CURRENT_TIMESTAMP,
+  `wk_ubah` datetime DEFAULT CURRENT_TIMESTAMP,
+  `id_rekam` varchar(15) DEFAULT NULL,
+  `id_ubah` varchar(15) DEFAULT NULL,
   PRIMARY KEY (`id_arsip_surat_masuk`),
   KEY `FK_id_jenis_surat` (`id_jenis_surat`),
   CONSTRAINT `FK_id_jenis_surat` FOREIGN KEY (`id_jenis_surat`) REFERENCES `tr_jenis_surat` (`id_jenis_surat`) ON DELETE NO ACTION ON UPDATE CASCADE
@@ -79,13 +84,14 @@ CREATE TABLE `tp_user` (
   `id_rekam` varchar(15) DEFAULT NULL,
   `id_ubah` varchar(15) DEFAULT NULL,
   PRIMARY KEY (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of tp_user
 -- ----------------------------
-INSERT INTO `tp_user` VALUES ('1', 'Administrator', 'admin', '21232f297a57a5a743894a0e4a801fc3', '1', null, '1', '2017-07-24 15:20:54', '2017-07-24 15:23:15', 'admin', null);
-INSERT INTO `tp_user` VALUES ('12', 'Harapan Jaya Harefa', 'harapan', '0192023a7bbd73250516f069df18b500', '1', null, '0', '2017-07-30 13:15:50', '2017-07-30 20:14:39', 'admin', 'admin');
+INSERT INTO `tp_user` VALUES ('1', 'Administrator', 'admin', '21232f297a57a5a743894a0e4a801fc3', '1', '2017-08-05 15:15:23', '1', '2017-07-24 15:20:54', '2017-08-05 15:15:23', 'admin', null);
+INSERT INTO `tp_user` VALUES ('12', 'Harapan Jaya Harefa', 'harapan', '21232f297a57a5a743894a0e4a801fc3', '1', null, '0', '2017-07-30 13:15:50', '2017-08-02 04:06:39', 'admin', 'admin');
+INSERT INTO `tp_user` VALUES ('13', 'Herlina Zebua', 'herlina', '21232f297a57a5a743894a0e4a801fc3', '2', '2017-08-02 04:06:57', '1', '2017-08-01 19:47:39', '2017-08-02 04:06:57', 'admin', null);
 
 -- ----------------------------
 -- Table structure for tr_jenis_surat

@@ -196,3 +196,8 @@ function saveUploadedDocument($jenis, $file) {
 			break;
 	}
 }
+
+function tgl($date){
+	$tmpDate = explode('/', $date);
+	return $tmpDate[2].'-'.$tmpDate[1].'-'.$tmpDate[0];
+}

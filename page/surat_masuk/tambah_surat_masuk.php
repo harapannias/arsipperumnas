@@ -41,7 +41,7 @@ include "config/koneksi.php";
     <div class="form-group">
       <label class="col-sm-2" for="tanggal_masuk">Tanggal Masuk</label>
       <div class="col-sm-3">          
-        <input type="text" class="form-control datepicker" name="tanggal_masuk" id="tanggal_masuk" placeholder="YYYY/MM/DD">
+        <input type="text" class="form-control datepicker" name="tanggal_masuk" id="tanggal_masuk" placeholder="dd/mm/yyyy">
       </div>
       <span class="glyphicon glyphicon-calendar kalender"></span>
     </div>
