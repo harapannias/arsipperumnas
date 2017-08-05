@@ -22,9 +22,10 @@ switch (e($_GET['ref'])) {
 
 			$sql = "insert into tp_arsip_surat_masuk (id_jenis_surat, nomor_urut,  nomor_berkas, nomor_surat_masuk, tanggal_masuk, pengirim, perihal, disposisi, path_berkas) 
 			values ($jenis_surat, $nomor_urut, '$nomor_berkas', '$nomor_surat_masuk', ".date('Y-m-d', strtotime($tanggal_masuk)).", '$pengirim', '$perihal', $disposisi, '$path_berkas')";
-			dd($sql);
-
-			// saveUploadedDocument('surat_masuk', $_FILES);
+			if(execStatementQuery($sql)) {
+				//berhasil menyimpan dokumen
+				redirect('?page=daftar_surat_masuk');
+			}
 		}
 	break;
 

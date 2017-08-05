@@ -1,8 +1,11 @@
 <div class="table-responsiv">
-	<h2>Daftar Arsip Surat Masuk
-		<hr>
-	</h2>
-	<p align="right"><font color="blue">Home</font> > Arsip Surat Masuk</p>
+	<h2>Daftar Arsip Surat Masuk<hr></h2>
+
+  <ul class="breadcrumb">
+    <li><a href="?page=home">Home</a></li>
+    <li>Arsip Surat Masuk</li>
+  </ul>
+
 	<p>&nbsp;</p>
 	<h4>Berikut daftar surat masuk yang sudah masuk kedalam sistem</h4>
 	<p>&nbsp;</p>
