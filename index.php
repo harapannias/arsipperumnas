@@ -56,7 +56,7 @@ authenticateCheck('index');
                             <li class="list-group-item <?= isUrlMatch('?page=daftar_operator') ? 'active' : ''?>"><a id="menu" href="?page=daftar_operator">Daftar Operator</a></li>
                         </div>
                     <?php } ?>
-                    
+
                     <button type="button" class="list-group-item" data-toggle="collapse" data-target="#demo1">
                         <span class="glyphicon glyphicon-folder-open"></span> 
                         <font>Arsip Surat Masuk</font>
@@ -77,15 +77,15 @@ authenticateCheck('index');
                         <li class="list-group-item <?= isUrlMatch('?page=tambah_surat_keluar') ? 'active' : ''?>"><a id="menu" href="?page=tambah_surat_keluar">Tambah Surat</a></li>
                         <li class="list-group-item <?= isUrlMatch('?page=daftar_surat_keluar') ? 'active' : ''?>"><a id="menu" href="?page=daftar_surat_keluar">Daftar Surat</a></li>
                     </div>
-                    <button type="button" class="list-group-item" data-toggle="collapse" data-target="#demo3">
+                    <button id="menuLaporan" type="button" class="list-group-item" data-toggle="collapse" data-target="#demo3">
                         <span class="glyphicon glyphicon-book"></span> 
                         <font>Laporan</font>
                         <span class="caret"></span>
                     </button>
-                    <div id="demo3" class="collapse out dropdownrevisi">
+                    <div id="demo3" class="collapse dropdownrevisi">
                         <li class="list-group-item"><a id="menu" href="laporan/laporan_operator.php">Data Operator</a></li>
                         <li class="list-group-item"><a id="menu" href="laporan/laporan_surat_masuk.php">Arsip Surat Masuk</a></li>
-                        <li class="list-group-item"><a id="menu" href="laporan/laporan_surat_keluar">Arsip Surat Keluar</a></li>
+                        <li class="list-group-item"><a id="menu" href="laporan/laporan_surat_keluar.php">Arsip Surat Keluar</a></li>
                     </div>
                     <a id="menu" href="?page=logout" onclick="return confirm('Anda yakin ingin logout?')" class="list-group-item">
                         <span class="glyphicon glyphicon-off"></span>
