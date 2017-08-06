@@ -171,33 +171,46 @@ function saveLoginUserInfo($id_user) {
 }
 
 function saveUploadedDocument($jenis, $file) {
-	switch ($jenis) {
-		case 'surat_masuk':
-			# code...
-			$target_dir = 'uploads/';
-			$fileName = basename($_FILES["fileToUpload"]["name"]);
-			$target_file = $target_dir . $fileName;
-			$fileType = pathinfo($target_file,PATHINFO_EXTENSION);
-			$fileSize = $file['fileToUpload']['size'];
-			$fileContent = $file['fileToUpload']['tmp_name'];
-			if (move_uploaded_file($fileContent, $target_file)) {
-				return [
-					'fileName' => $fileName, 
-					'uploadedPath' => $target_file, 
-				];
-			} else {
-				die("Maaf, terjadi kesalahan saat mengupload file");
-			}
+	if($jenis == 'surat_masuk') {
+		$target_dir = 'uploads/surat_masuk/';
+	} 	
+	if($jenis == 'surat_keluar') {
+		$target_dir = 'uploads/surat_keluar/';
+	}
 
-			break;
-
-		case 'surat_masuk':
-			# code...
-			break;
+	$fileName = basename($_FILES["fileToUpload"]["name"]);
+	$target_file = $target_dir . $fileName;
+	$fileType = pathinfo($target_file,PATHINFO_EXTENSION);
+	$fileSize = $file['fileToUpload']['size'];
+	$fileContent = $file['fileToUpload']['tmp_name'];
+	if (move_uploaded_file($fileContent, $target_file)) {
+		return [
+		'fileName' => $fileName, 
+		'uploadedPath' => $target_file, 
+		];
+	} else {
+		die("Maaf, terjadi kesalahan saat mengupload file");
 	}
 }
 
 function tgl($date){
 	$tmpDate = explode('/', $date);
 	return $tmpDate[2].'-'.$tmpDate[1].'-'.$tmpDate[0];
+}
+
+function getDisposisi($id) {
+	switch ($id) {
+		case '1':
+		return 'Ya';
+		break;
+		case '0':
+		return 'Tidak';
+		break;
+	}
+}
+
+function getJenisSurat($id) {
+	$tmpData = execSelectQuery("select * from tr_jenis_surat where id_jenis_surat = $id limit 0,1");
+	$data = array_shift($tmpData);
+	return $data['jenis'];
 }

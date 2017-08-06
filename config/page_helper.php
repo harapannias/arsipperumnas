@@ -11,19 +11,34 @@ if(isset($_GET['page'])){
 		case 'logout':
 		include "login/logout.php";
 		break;
-		
-        //operator
+
+	    //operator
 		case 'daftar_operator':
-		include("page/operator/daftar_operator.php");
+		if(getAuth()['level'] == 1)
+			include("page/operator/daftar_operator.php");
+		else 
+			echo "Anda tidak punya hak akses pada halaman ini.";
 		break;
+
 		case 'tambah_operator':
-		include("page/operator/tambah_operator.php");
+		if(getAuth()['level'] == 1)
+			include("page/operator/tambah_operator.php");
+		else 
+			echo "Anda tidak punya hak akses pada halaman ini.";
 		break;
+		
 		case 'edit_operator':
-		include("page/operator/edit_operator.php");
+		if(getAuth()['level'] == 1)
+			include("page/operator/edit_operator.php");
+		else 
+			echo "Anda tidak punya hak akses pada halaman ini.";
 		break;
+		
 		case 'simpan_operator':
-		include("page/operator/simpan_operator.php");
+		if(getAuth()['level'] == 1)
+			include("page/operator/simpan_operator.php");
+		else 
+			echo "Anda tidak punya hak akses pada halaman ini.";
 		break;
             
         //Surat Masuk
@@ -41,14 +56,14 @@ if(isset($_GET['page'])){
 		break;
 
 		//Surat Keluar
-        case 'form_suratkeluar':
-		include("page/form_suratkeluar.php");
+        case 'tambah_surat_keluar':
+		include("page/surat_keluar/tambah_surat_keluar.php");
 		break;
         case 'daftar_surat_keluar':
-		include("page/daftar_surat_keluar.php");
+		include("page/surat_keluar/daftar_surat_keluar.php");
 		break;
-        case 'surat_keluar':
-		include("page/surat_keluar.php");
+        case 'simpan_surat_keluar':
+		include("page/surat_keluar/simpan_surat_keluar.php");
 		break;
         case 'laporan_operator':
 		include("page/laporan_operator.php");
