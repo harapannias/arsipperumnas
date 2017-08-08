@@ -88,7 +88,7 @@ if(isset($_GET['id'])){
               <div class="col-sm-offset-2 col-sm-10">
               <input type="hidden" name="id_ref" value="<?= $row['id_user']?>">
                 <button type="submit" class="btn btn-success">Update Data</button>
-                <a href="?page=user_operator" type="submit" class="btn btn-danger">Batal</a>
+                <a href="?page=daftar_operator" type="submit" class="btn btn-danger">Batal</a>
               </div>
             </div>
           </form>

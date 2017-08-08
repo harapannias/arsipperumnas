@@ -87,7 +87,7 @@ include "config/koneksi.php";
     <div class="form-group">        
       <div class="col-sm-offset-2 col-sm-10">
         <button type="submit" class="btn btn-success" name="btnSimpan" value="simpan_surat_masuk">Simpan</button>
-        <a href="?page=home" class="btn btn-danger">Batal</a>
+        <a href="?page=tambah_surat_masuk" class="btn btn-danger">Batal</a>
       </div>
     </div>
   </form>
