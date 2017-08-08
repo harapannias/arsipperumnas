@@ -35,7 +35,7 @@ authenticateCheck('index');
                         <div class="avatar"><img src="assets/img/Perumnas2.jpg" class="img img-circle"></div>
                         <div class="profil-name">
                             <b><?= getAuth()['nama']?></b><br>
-                            <small>Level: <?= getLevelOperator(getAuth()['id_user'])?></small>
+                            <small>Level: <?= getLevelOperator(getAuth()['level'])?></small>
                         </div>
                         <hr>
                     </div>
@@ -45,15 +45,17 @@ authenticateCheck('index');
                         <font>Dashboard</font>
                     </a>
 
-                    <button type="button" class="list-group-item" data-toggle="collapse" data-target="#demo">
-                        <span class="glyphicon glyphicon-user"></span> 
-                        <font class="cursor-pointer">Manajemen Operator</font>
-                        <span class="caret"></span>
-                    </button>
-                    <div id="demo" class="collapse dropdownrevisi <?= (isUrlMatch('?page=daftar_operator') || isUrlMatch('?page=tambah_operator')) ? 'in' : 'out'?>">
-                        <li class="list-group-item <?= isUrlMatch('?page=tambah_operator') ? 'active' : ''?>"><a id="menu" href="?page=tambah_operator">Tambah Data</a></li>
-                        <li class="list-group-item <?= isUrlMatch('?page=daftar_operator') ? 'active' : ''?>"><a id="menu" href="?page=daftar_operator">Daftar Operator</a></li>
-                    </div>
+                    <?php if(getAuth()['level'] == 1) { ?>
+                        <button type="button" class="list-group-item" data-toggle="collapse" data-target="#demo">
+                            <span class="glyphicon glyphicon-user"></span> 
+                            <font class="cursor-pointer">Manajemen Operator</font>
+                            <span class="caret"></span>
+                        </button>
+                        <div id="demo" class="collapse dropdownrevisi <?= (isUrlMatch('?page=daftar_operator') || isUrlMatch('?page=tambah_operator')) ? 'in' : 'out'?>">
+                            <li class="list-group-item <?= isUrlMatch('?page=tambah_operator') ? 'active' : ''?>"><a id="menu" href="?page=tambah_operator">Tambah Data</a></li>
+                            <li class="list-group-item <?= isUrlMatch('?page=daftar_operator') ? 'active' : ''?>"><a id="menu" href="?page=daftar_operator">Daftar Operator</a></li>
+                        </div>
+                    <?php } ?>
 
                     <button type="button" class="list-group-item" data-toggle="collapse" data-target="#demo1">
                         <span class="glyphicon glyphicon-folder-open"></span> 
@@ -70,19 +72,20 @@ authenticateCheck('index');
                         <font>Arsip Surat keluar</font>
                         <span class="caret"></span>
                     </button>
-                    <div id="demo2" class="collapse out dropdownrevisi">
-                        <li class="list-group-item"><a id="menu" href="?page=form_suratkeluar">Tambah Surat</a></li>
-                        <li class="list-group-item"><a id="menu" href="?page=daftar_surat_keluar">Daftar Surat</a></li>
+
+                    <div id="demo2" class="collapse out dropdownrevisi <?= (isUrlMatch('?page=tambah_surat_keluar') || isUrlMatch('?page=daftar_surat_keluar')) ? 'in' : 'out'?>">
+                        <li class="list-group-item <?= isUrlMatch('?page=tambah_surat_keluar') ? 'active' : ''?>"><a id="menu" href="?page=tambah_surat_keluar">Tambah Surat</a></li>
+                        <li class="list-group-item <?= isUrlMatch('?page=daftar_surat_keluar') ? 'active' : ''?>"><a id="menu" href="?page=daftar_surat_keluar">Daftar Surat</a></li>
                     </div>
-                    <button type="button" class="list-group-item" data-toggle="collapse" data-target="#demo3">
+                    <button id="menuLaporan" type="button" class="list-group-item" data-toggle="collapse" data-target="#demo3">
                         <span class="glyphicon glyphicon-book"></span> 
                         <font>Laporan</font>
                         <span class="caret"></span>
                     </button>
-                    <div id="demo3" class="collapse out dropdownrevisi">
+                    <div id="demo3" class="collapse dropdownrevisi">
                         <li class="list-group-item"><a id="menu" href="laporan/laporan_operator.php">Data Operator</a></li>
                         <li class="list-group-item"><a id="menu" href="laporan/laporan_surat_masuk.php">Arsip Surat Masuk</a></li>
-                        <li class="list-group-item"><a id="menu" href="laporan/laporan_surat_keluar">Arsip Surat Keluar</a></li>
+                        <li class="list-group-item"><a id="menu" href="laporan/laporan_surat_keluar.php">Arsip Surat Keluar</a></li>
                     </div>
                     <a id="menu" href="?page=logout" onclick="return confirm('Anda yakin ingin logout?')" class="list-group-item">
                         <span class="glyphicon glyphicon-off"></span>

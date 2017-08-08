@@ -1,8 +1,12 @@
 <div class="container-fluid">
-	<h2>Daftar Arsip Surat Keluar
-		<hr>
-	</h2>
-	<p align="right"><font color="blue">Home</font> > Arsip Surat Keluar</p>
+	<h2>Daftar Arsip Surat Keluar<hr></h2>
+
+	<ul class="breadcrumb">
+		<li><a href="?page=home">Home</a></li>
+		<li>Arsip Surat Keluar</li>
+	</ul>
+	
+	<!-- <p align="right"><font color="blue">Home</font> > Arsip Surat Keluar</p> -->
 	<p>&nbsp;</p>
 	<h4>Berikut daftar surat Keluar yang sudah masuk kedalam sistem</h4>
 	<p>&nbsp;</p>
@@ -10,7 +14,7 @@
 		<div class="form-group">
 			<label class="col-sm-2" for="email">Nomor Surat</label>
 			<div class="col-sm-2">
-				<input type="text" class="form-control" required="true" name="nomor_urut" placeholder="ASM001">
+				<input type="text" class="form-control" required="true" name="nomor_urut" placeholder="Nomor Surat">
 			</div>
 		</div>
 		<div class="form-group">
@@ -34,96 +38,59 @@
 	</form>
 	<p>&nbsp;</p>
 	<div style="overflow-x: auto;">
-		<table class="table table-striped" width="">
+		<table class="table table-striped table-hover" width="">
 			<tr>
-				<th width="5%">No.</th>
-				<th>Nomor Urut</th>
-				<th width="15%">Nomor Berkas</th>
-				<th width="15%">Penerima</th>
-				<th>Tanggal Keluar</th>
-				<th>Nomor Surat keluar</th>
-				<th>Jenis Surat</th>
-				<th>Perihal</th>
-				<th width="5%">Preview Berkas</th>
-				<th width="5%">Action</th>
+				<th style="vertical-align: middle;" width="5%">No.</th>
+				<th style="vertical-align: middle;">Nomor Urut</th>
+				<th style="vertical-align: middle;" width="15%">Nomor Berkas</th>
+				<th style="vertical-align: middle;" width="15%">Penerima</th>
+				<th style="vertical-align: middle;">Tanggal Masuk</th>
+				<th style="vertical-align: middle;">Nomor Surat Masuk</th>
+				<th style="vertical-align: middle;">Jenis Surat</th>
+				<th style="vertical-align: middle;">Perihal</th>
+				<th style="vertical-align: middle;" class="text-center" width="5%">Preview Berkas</th>
+				<th style="vertical-align: middle;" class="text-center" width="5%">Action</th>
 			</tr>
-			<tr>
-				<td>1</td>
-				<td>ASM002</td>
-				<td>120/SU-BP/V/2017</td>
-				<td>Berkat Jaya Harefa</td>
-				<td>2017-07-18</td>
-				<td>01</td>
-				<td>Memo Dinas</td>
-				<td>Melamar Pekerjaan</td>
-				<td>Preview</td>
-				<td>
-					<a href="?page=form_suratmasuk&id=ASM002" class="btn btn-success btn-xs">Edit</a>
-				</td>
-			</tr>
-			<tr>
-				<td>2</td>
-				<td>ASM003</td>
-				<td>120/SU-BP/V/2017</td>
-				<td>Gido</td>
-				<td>2017-07-18</td>
-				<td>01</td>
-				<td>Memo Dinas</td>
-				<td>Melamar Pekerjaan</td>
-				<td>Preview</td>
-				<td>
-					<a href="?page=form_suratmasuk&id=ASM003" class="btn btn-success btn-xs">Edit</a>
-				</td>
-			</tr>
-			<tr>
-				<td>3</td>
-				<td>ASM001</td>
-				<td>120/SU-BP/V/2017</td>
-				<td>Otoni</td>
-				<td>2017-07-18</td>
-				<td>01</td>
-				<td>Memo Dinas</td>
-				<td>Melamar Pekerjaan</td>
-				<td>Preview</td>
-				<td>
-					<a href="?page=form_suratmasuk&id=ASM001" class="btn btn-success btn-xs">Edit</a>
-				</td>
-			</tr>
-			<tr>
-				<td>4</td>
-				<td>ASM004</td>
-				<td>120/SU-BP/V/2017</td>
-				<td>Barani Harefa</td>
-				<td>2017-07-18</td>
-				<td>01</td>
-				<td>Laporan Absensi</td>
-				<td>Melamar Pekerjaan</td>
-				<td>Preview</td>
-				<td>
-					<a href="?page=form_suratmasuk&id=ASM004" class="btn btn-success btn-xs">Edit</a>
-				</td>
-			</tr>
-			<tr>
-				<td>5</td>
-				<td>ASM004</td>
-				<td>120/SU-BP/V/2017</td>
-				<td>Barani Harefa</td>
-				<td>2017-07-18</td>
-				<td>01</td>
-				<td>Laporan Absensi</td>
-				<td>Melamar Pekerjaan</td>
-				<td>Preview</td>
-				<td>
-					<a href="?page=form_suratmasuk&id=ASM004" class="btn btn-success btn-xs">Edit</a>
-				</td>
-			</tr>
+			<?php
+			include "config/koneksi.php";
+			$sql = "select * from tp_arsip_surat_keluar";
+			$data = execSelectQuery($sql);
+
+			if (count($data) > 0) {
+				foreach ($data as $i => $row) {
+					?>
+					<tr>
+						<td><?= ($i + 1) ?>.</td>
+						<td><div style="width: 80px" class="text-center"><?= $row['nomor_urut']?></div></td>
+						<td><div style="width: 120px" class="text-center"><?= $row['nomor_berkas']?></div></td>
+						<td><div style="width: 200px" class="text-left"><?= $row['penerima']?></div></td>
+						<td><div style="width: 100px" class="text-left"><?= date('d-m-Y', strtotime($row['tanggal_keluar'])) ?></div></td>
+						<td><div style="width: 100px" class="text-left"><?= $row['nomor_surat_keluar']?></div></td>
+						<td><div style="width: 150px" class="text-left"><?= getJenisSurat($row['id_jenis_surat'])?></div></td>
+						<td><div style="width: 300px" class="text-left"><?= $row['perihal']?></div></td>
+						<td><div style="width: 150px" class="text-center">Preview</div></td>
+						<td class="text-center">
+							<a href="?page=edit_surat_keluar&id=<?= $row['id_arsip_surat_keluar']?>" class="btn btn-success btn-xs">Edit</a>
+						</td>
+					</tr>
+					<?php
+				}
+			}else{
+				?>
+				<tr>
+					<td colspan="11" class="text-center">Tidak ada data</td>
+				</tr>
+				<?php
+			}
+			mysqli_close($link);
+			?>
 
 		</table>
 	</div>
 </div>
 <div class="container-fluid">
 	<div class="row">
-	<div class="col-md-4" style="margin-top: 40px;">Menampilkan 5 Dari 15 surat</div>
+	<div class="col-md-4" style="margin-top: 40px;">Menampilkan <?=count($data)?> Dari <?=count($data)?> surat</div>
 		<div class="col-md-8" align="right">
 			<ul class="pagination">
 				<li><a href="#">Previous</a></li>

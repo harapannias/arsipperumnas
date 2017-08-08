@@ -3,10 +3,14 @@ include "config/koneksi.php";
 if(isset($_GET['id'])){  
   $id = htmlspecialchars($_GET['id']); ?>
   <div class="container-fluid">
-  <h2>Edit Arsip Surat Keluar
-    <hr>
-  </h2>
-  <p align="right"><font color="blue">Home > Arsip Surat Keluar</font> > Edit Arsip</p>
+  <h2>Edit Arsip Surat Keluar<hr></h2>
+
+
+  <!-- <p align="right"><font color="blue">Home > Arsip Surat Keluar</font> > Edit Arsip</p> -->
+  <ul class="breadcrumb">
+		<li><a href="?page=home">Home</a></li>
+		<li>Arsip Surat Masuk</li>
+	</ul>
   <p>&nbsp;</p>
   <h4>Silahkan ubah form berikut untuk mengedit arsip surat masuk</h4>
   <p>&nbsp;</p>

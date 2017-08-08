@@ -1,6 +1,7 @@
 <?php
 require('../assets/fpdf/customFPDF.php');
 require('../config/koneksi.php');
+require('../config/helpers.php');
 
 	$o = new customFPDF('L');
 		$o->AddPage();
@@ -14,7 +15,7 @@ require('../config/koneksi.php');
 		$o->SetFont('Arial','B',16);
 		$o->setY($y+20);
 		$o->setX(25);
-		$o->cell(240,10,'Laporan Operator',0,0,'C');
+		$o->cell(240,10,'Laporan Data Operator',0,0,'C');
 
 		//tabel
 		$o->ln();
@@ -29,11 +30,7 @@ require('../config/koneksi.php');
 
 		$o->MultiCell(10,20,'No',1,'C',0,0); 
 		$x+=10;                           
-		$o->SetXY($x, $y);               
-
-		$o->MultiCell(20,10,'Kode Operator',1,'C',0,0); 
-		$x+=20;                           
-		$o->SetXY($x, $y);               
+		$o->SetXY($x, $y);              
 
 		$o->MultiCell(70,20,'Nama',1,'C',0,0);
 		$x+=70;
@@ -72,10 +69,6 @@ require('../config/koneksi.php');
 			$x+=10;
 			$o->SetXY($x, $y);
 
-			$o->MultiCell(20,$height,$row['kode_operator'],1,'C');
-			$x+=20;
-			$o->SetXY($x, $y);
-
 			$o->MultiCell(70,$height1,$row['nama'],1,'L');
 			$x+=70;
 			$o->SetXY($x, $y);
@@ -96,7 +89,7 @@ require('../config/koneksi.php');
 			$y += $o->marginTable($row['nama'], 40, $y);
 			$y-=$o->customHeight();
 			
-			$o->MultiCell(30,$height,$row['status'],1,'C');
+			$o->MultiCell(30,$height, getStatus($row['status']),1,'C');
 			$x+=30;
 			$o->SetXY($x, $y);
 			// $y += $o->tableWrapFix($row['username'], 25, $height);
@@ -104,7 +97,7 @@ require('../config/koneksi.php');
 			$y = $o->automaticBreakTop(170, $y);
 
 		}
-		$o->automaticBreak(110, $y);
+		// $o->automaticBreak(110, $y);
 		$y = $o->automaticBreakTop(110, $y);
 		$y = $o->getY();
 		$prow=5;

@@ -37,17 +37,17 @@
 	<div style="overflow-x: auto;">
 		<table class="table table-striped table-hover" width="">
 			<tr>
-				<th width="5%">No.</th>
-				<th>Nomor Urut</th>
-				<th width="15%">Nomor Berkas</th>
-				<th width="15%">Pengirim</th>
-				<th>Tanggal Masuk</th>
-				<th>Nomor Surat Masuk</th>
-				<th>Jenis Surat</th>
-				<th>Perihal</th>
-				<th width="5%">Disposisi</th>
-				<th width="5%">Preview Berkas</th>
-				<th width="5%">Action</th>
+				<th style="vertical-align: middle;" width="5%">No.</th>
+				<th style="vertical-align: middle;">Nomor Urut</th>
+				<th style="vertical-align: middle;" width="15%">Nomor Berkas</th>
+				<th style="vertical-align: middle;" width="15%">Pengirim</th>
+				<th style="vertical-align: middle;">Tanggal Masuk</th>
+				<th style="vertical-align: middle;">Nomor Surat Masuk</th>
+				<th style="vertical-align: middle;">Jenis Surat</th>
+				<th style="vertical-align: middle;">Perihal</th>
+				<th style="vertical-align: middle;" class="text-center" width="5%">Disposisi</th>
+				<th style="vertical-align: middle;" class="text-center" width="5%">Preview Berkas</th>
+				<th style="vertical-align: middle;" class="text-center" width="5%">Action</th>
 			</tr>
 			<?php
 			include "config/koneksi.php";
@@ -59,16 +59,16 @@
 					?>
 					<tr>
 						<td><?= ($i + 1) ?>.</td>
-						<td><?= $row['nomor_urut']?></td>
-						<td><?= $row['nomor_berkas']?></td>
-						<td><?= $row['pengirim']?></td>
-						<td><?= date('d-m-Y', strtotime($row['tanggal_masuk'])) ?></td>
-						<td><?= $row['nomor_surat_masuk']?></td>
-						<td><?= $row['id_jenis_surat']?></td>
-						<td><?= $row['perihal']?></td>
-						<td align="center"><?= $row['disposisi']?></td>
-						<td>Preview</td>
-						<td>
+						<td><div style="width: 80px" class="text-center"><?= $row['nomor_urut']?></div></td>
+						<td><div style="width: 120px" class="text-center"><?= $row['nomor_berkas']?></div></td>
+						<td><div style="width: 200px" class="text-left"><?= $row['pengirim']?></div></td>
+						<td><div style="width: 100px" class="text-left"><?= date('d-m-Y', strtotime($row['tanggal_masuk'])) ?></div></td>
+						<td><div style="width: 100px" class="text-left"><?= $row['nomor_surat_masuk']?></div></td>
+						<td><div style="width: 100px" class="text-left"><?= getJenisSurat($row['id_jenis_surat'])?></div></td>
+						<td><div style="width: 300px" class="text-left"><?= $row['perihal']?></div></td>
+						<td><div style="width: 80px" class="text-center"><?= getDisposisi($row['disposisi'])?></div></td>
+						<td><div style="width: 150px" class="text-center">Preview</div></td>
+						<td class="text-center">
 							<a href="?page=form_suratmasuk&id=<?= $row['id_arsip_surat_masuk']?>" class="btn btn-success btn-xs">Edit</a>
 						</td>
 					</tr>
@@ -89,7 +89,7 @@
 </div>
 <div class="container-fluid">
 	<div class="row">
-		<div class="col-md-4" style="margin-top: 40px;">Menampilkan 5 Dari 15 surat</div>
+		<div class="col-md-4" style="margin-top: 40px;">Menampilkan <?=count($data)?> Dari <?=count($data)?> surat</div>
 		<div class="col-md-8" align="right">
 			<ul class="pagination">
 				<li><a href="#">Previous</a></li>
