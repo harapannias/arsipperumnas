@@ -43,16 +43,24 @@
         <input type="text" class="form-control" required="true" name="no_surat_keluar" id="no_surat_keluar" placeholder="Nomor Surat Masuk">
       </div>
     </div>
-    <div class="form-group">
+    <div class="form-group ">
       <label class="col-sm-2" for="jenis_surat">Jenis Surat</label>
       <div class="col-sm-3">          
         <select class="form-control" required="true" name="jenis_surat" id="jenis_surat">
           <option value="">-Pilih-</option>
           <?php foreach (execSelectQuery("select * from tr_jenis_surat order by id_jenis_surat asc") as $i => $row) { ?>
-          <option value="<?= $row['id_jenis_surat']?>"><?= $row['jenis']?></option>
+          <option class="jenis_surat" value="<?= $row['id_jenis_surat']?>"><?= $row['jenis']?></option>
           <?php } ?>
+          <option class="lain_jenis_surat">Lainnya</option>
         </select>
       </div>
+      (* Jika anda ingin menambahkan jenis surat maka anda bisa memilih option Lainnya.
+    </div>
+    <div class="form-group tambah_jenis_surat">
+    <label class="col-sm-2" for="no_surat_keluar"></label>
+      <div class="col-sm-5">
+          <input type="text" class="form-control" required="true" name="tambah_jenis_surat" id="tambah_jenis_surat" placeholder="Jenis Surat">
+        </div>
     </div>
     <div class="form-group">
       <label class="col-sm-2" for="perihal">Perihal</label>
@@ -69,7 +77,7 @@
     <div class="form-group">        
       <div class="col-sm-offset-2 col-sm-10">
         <button type="submit" class="btn btn-success" name="btnSimpan" value="simpan_surat_keluar">Simpan</button>
-        <a href="?page=form_suratkeluar" type="submit" class="btn btn-danger">Batal</a>
+        <a href="?page=tambah_surat_keluar" type="submit" class="btn btn-danger">Batal</a>
       </div>
     </div>
   </form>

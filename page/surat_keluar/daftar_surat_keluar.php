@@ -12,8 +12,8 @@
 	<p>&nbsp;</p>
 	<form class="form-horizontal" role="form">
 		<div class="form-group">
-			<label class="col-sm-2" for="email">Nomor Surat</label>
-			<div class="col-sm-2">
+			<label class="col-sm-2" for="email">Kunci Pencarian</label>
+			<div class="col-sm-6">
 				<input type="text" class="form-control" required="true" name="nomor_urut" placeholder="Nomor Surat">
 			</div>
 		</div>
@@ -21,12 +21,10 @@
 			<label class="col-sm-2" for="pwd">Jenis Surat</label>
 			<div class="col-sm-3">          
 				<select class="form-control" name="jenis_surat">
-					<option class="form-control" required="true">Belanja Pegawai</option>
-					<option class="form-control" required="true">Ajuan Diklat</option>
-					<option class="form-control" required="true">Ajuan Mutasi</option>
-					<option class="form-control" required="true">Promosi dan Demosi</option>
-					<option class="form-control" required="true">Permohonan Pensiun</option>
-					<option class="form-control" required="true">Ajuan Kesehatan</option>
+					<option class="form-control" required="true">Semua Jenis</option>
+					<?php foreach (execSelectQuery("select * from tr_jenis_surat order by id_jenis_surat asc") as $i => $row) { ?>
+          <option class="jenis_surat" value="<?= $row['id_jenis_surat']?>"><?= $row['jenis']?></option>
+          <?php } ?>
 				</select>
 			</div>
 		</div>

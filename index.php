@@ -23,7 +23,7 @@ authenticateCheck('index');
 
 <body>
     <nav class="navbar-fixed-top" id="header">
-        <div><img src="assets/img/header.jpg" width="100%"></div>
+        <div><img src="assets/img/header1.jpg" width="100%"></div>
     </nav>
 
     <div class="container-fluid">
@@ -137,6 +137,22 @@ authenticateCheck('index');
                 $('#password').attr('disabled', true);
             }
         });
+
+        $(document).ready(function() {
+            $('.tambah_jenis_surat').hide();
+        })
+        $(document).ready(function() {
+            $('.jenis_surat').click(function(){
+                $('.tambah_jenis_surat').hide();
+            });
+        })
+
+        $(document).ready(function() {
+            $('.lain_jenis_surat').click(function() {
+                $('.tambah_jenis_surat').show();
+            });
+        })
+
 
     </script>
     

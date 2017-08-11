@@ -9,22 +9,24 @@
 	<p>&nbsp;</p>
 	<h4>Berikut daftar surat masuk yang sudah masuk kedalam sistem</h4>
 	<p>&nbsp;</p>
-	<form class="form-horizontal" role="form">
+	<form class="form-horizontal" role="form" method="POST">
 		<div class="form-group">
-			<label class="col-sm-2" for="email">Nomor Surat</label>
-			<div class="col-sm-4">
-				<input type="text" class="form-control" required="true" name="nomor_urut" placeholder="Nomor Surat">
+			<label class="col-sm-2" for="pwd">Kategori</label>
+			<div class="col-sm-3">          
+				<select class="form-control" name="jenisPencarian">
+					<option class="kategori" value="">-Pilih-</option>
+					<option class="kategori" <?= (getPost('jenisPencarian') == 'nomor_urut' ? 'selected' : '') ?> value="nomor_urut">Nomor Urut</option>
+					<option class="kategori" <?= (getPost('jenisPencarian') == 'nomor_berkas' ? 'selected' : '') ?> value="nomor_berkas">Nomor Berkas</option>
+					<option class="kategori" <?= (getPost('jenisPencarian') == 'nomor_surat_masuk' ? 'selected' : '') ?> value="nomor_surat_masuk">Nomor Surat Masuk</option>
+					<option class="kategori" <?= (getPost('jenisPencarian') == 'pengirim' ? 'selected' : '') ?> value="pengirim">Pengirim</option>
+					<option class="kategori" <?= (getPost('jenisPencarian') == 'perihal' ? 'selected' : '') ?> value="perihal">Perihal</option>
+				</select>
 			</div>
 		</div>
-		<div class="form-group">
-			<label class="col-sm-2" for="pwd">Jenis Surat</label>
-			<div class="col-sm-3">          
-				<select class="form-control" required="true" name="jenis_surat">
-					<option value="">-Pilih-</option>
-					<?php foreach (execSelectQuery("select * from tr_jenis_surat order by id_jenis_surat asc") as $i => $row) { ?>
-					<option value="<?= $row['id_jenis_surat']?>"><?= $row['jenis']?></option>
-					<?php } ?>
-				</select>
+		<div class="form-group katakunci">
+			<label class="col-sm-2" for="email">Kata Kunci</label>
+			<div class="col-sm-4">
+				<input type="text" class="form-control" name="kataKunci" placeholder="Kata Kunci" value="<?= getPost('kataKunci') ?>">
 			</div>
 		</div>
 		<div class="form-group">        
@@ -51,21 +53,27 @@
 			</tr>
 			<?php
 			include "config/koneksi.php";
-			$sql = "select * from tp_arsip_surat_masuk";
-			$data = execSelectQuery($sql);
+
+			$data = null;
+			if(isset($_POST) && !empty($_POST)) {				
+				$data = cariSuratMasuk(e($_POST['jenisPencarian']), e($_POST['kataKunci']));
+			} else {
+				$sql = "select * from tp_arsip_surat_masuk";
+				$data = execSelectQuery($sql);
+			}
 
 			if (count($data) > 0) {
 				foreach ($data as $i => $row) {
 					?>
 					<tr>
 						<td><?= ($i + 1) ?>.</td>
-						<td><div style="width: 80px" class="text-center"><?= $row['nomor_urut']?></div></td>
+						<td><div style="width: 80px" class="text-center"><?= e($row['nomor_urut'])?></div></td>
 						<td><div style="width: 120px" class="text-center"><?= $row['nomor_berkas']?></div></td>
 						<td><div style="width: 200px" class="text-left"><?= $row['pengirim']?></div></td>
 						<td><div style="width: 100px" class="text-left"><?= date('d-m-Y', strtotime($row['tanggal_masuk'])) ?></div></td>
 						<td><div style="width: 100px" class="text-left"><?= $row['nomor_surat_masuk']?></div></td>
 						<td><div style="width: 100px" class="text-left"><?= getJenisSurat($row['id_jenis_surat'])?></div></td>
-						<td><div style="width: 300px" class="text-left"><?= $row['perihal']?></div></td>
+						<td><div style="width: 300px" class="text-left"><?= e( $row['perihal'])?></div></td>
 						<td><div style="width: 80px" class="text-center"><?= getDisposisi($row['disposisi'])?></div></td>
 						<td><div style="width: 150px" class="text-center">Preview</div></td>
 						<td class="text-center">

@@ -51,16 +51,18 @@ include "config/koneksi.php";
         <input type="text" class="form-control" required="true" name="no_suratmasuk" id="no_suratmasuk" placeholder="Nomor Surat Masuk">
       </div>
     </div>
-    <div class="form-group">
+    <div class="form-group ">
       <label class="col-sm-2" for="jenis_surat">Jenis Surat</label>
       <div class="col-sm-3">          
         <select class="form-control" required="true" name="jenis_surat" id="jenis_surat">
           <option value="">-Pilih-</option>
-        <?php foreach (execSelectQuery("select * from tr_jenis_surat order by id_jenis_surat asc") as $i => $row) { ?>
-          <option value="<?= $row['id_jenis_surat']?>"><?= $row['jenis']?></option>
-        <?php } ?>
+          <?php foreach (execSelectQuery("select * from tr_jenis_surat order by id_jenis_surat asc") as $i => $row) { ?>
+          <option class="jenis_surat" value="<?= $row['id_jenis_surat']?>"><?= $row['jenis']?></option>
+          <?php } ?>
+          <option class="lain_jenis_surat">Lainnya</option>
         </select>
       </div>
+      (* Jika anda ingin menambahkan jenis surat maka anda bisa memilih option Lainnya.
     </div>
     <div class="form-group">
       <label class="col-sm-2" for="perihal">Perihal Surat</label>
