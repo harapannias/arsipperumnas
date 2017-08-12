@@ -33,7 +33,7 @@ function authenticateCheck($fromPage) {
 	switch ($fromPage) {
 		case 'login':
 		if(isset($_SESSION["login_detail"])) {
-			header('Location: index.php');
+			header('Location: index.php?page=home');
 		}
 		break;
 
@@ -68,13 +68,13 @@ function execGetCount($sql_query) {
 	return mysqli_num_rows($result);
 }
 
-function getUserInfo($field, $arg){
-	$tmpUser = execSelectQuery("select * from tp_user where id_user = $field limit 0,1");
+function getUserInfo($id_user, $nama_field){
+	$tmpUser = execSelectQuery("select * from tp_user where id_user = $id_user limit 0,1");
 	$user = array_shift($tmpUser);
-	if (!isset($user[$arg])) {
-		die('Data "'.$arg.'" pada user tidak ditemukan');
+	if (!isset($user[$nama_field])) {
+		die('Data "'.$nama_field.'" pada user tidak ditemukan');
 	} else {
-		return $user[$arg];
+		return $user[$nama_field];
 	}
 }
 
@@ -87,7 +87,7 @@ function execStatementQuery($sql_query) {
 
 function e($arg) {
 	global $link;
-	return mysqli_escape_string($link, $arg);
+	return mysqli_escape_string($link, htmlspecialchars($arg));
 }
 
 function getLevelOperator($level) {
@@ -213,4 +213,18 @@ function getJenisSurat($id) {
 	$tmpData = execSelectQuery("select * from tr_jenis_surat where id_jenis_surat = $id limit 0,1");
 	$data = array_shift($tmpData);
 	return $data['jenis'];
+}
+
+function cariSuratMasuk($jenisPencarian, $kataKunci) {	
+	$data = execSelectQuery("select * from tp_arsip_surat_masuk where $jenisPencarian like '%$kataKunci%'");
+	return $data;
+}
+
+function cariSuratKeluar($jenisPencarian, $kataKunci) {	
+	$data = execSelectQuery("select * from tp_arsip_surat_keluar where $jenisPencarian like '%$kataKunci%'");
+	return $data;
+}
+
+function getPost($arg) {
+	return isset($_POST[$arg]) ? e($_POST[$arg]) : '';
 }

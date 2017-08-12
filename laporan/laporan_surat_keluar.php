@@ -60,7 +60,7 @@ require('../config/koneksi.php');
 		$y+=10;
 
 
-		$sql = $o->getQuery('tp_user');
+		$sql = $o->getQuery('');
 		$result = mysqli_query($link, $sql);
 		mysqli_num_rows($result);
 		$no = 0; 
@@ -69,45 +69,45 @@ require('../config/koneksi.php');
 			$x=25;
 			$y+=10;              
 			$o->SetXY($x, $y);
-			$height = $o->tableHeight($row['username'], 25);
-			$height1 = $o->tableWrap($row['username'], 25, $height);
+			$height = $o->tableHeight($row['penerima'], 25);
+			$height1 = $o->tableWrap($row['penerima'], 25, $height);
 
 			$o->MultiCell(10,$height,$no,1,'C');
 			$x+=10;
 			$o->SetXY($x, $y);
 
-			$o->MultiCell(20,$height,$row['kode_operator'],1,'C');
+			$o->MultiCell(20,$height,$row['nomor_urut'],1,'C');
 			$x+=20;
 			$o->SetXY($x, $y);
 
-			$o->MultiCell(50,$height,$row['nama'],1,'L');
+			$o->MultiCell(50,$height,$row['nomor_berkas'],1,'L');
 			$x+=50;
 			$o->SetXY($x, $y);
 
-			$o->MultiCell(40,$height1,$row['username'],1,'L');
+			$o->MultiCell(40,$height1,$row['penerima'],1,'L');
 			$x+=40;
 			$o->SetXY($x, $y);
-			$y += $o->marginTable($row['nama'], 50, $y);			
+			$y += $o->marginTable($row['nomor_berkas'], 50, $y);			
 			
 			$y-=$o->customHeight();
 			
-			$o->MultiCell(30,$height,$row['status'],1,'C');
+			$o->MultiCell(30,$height,$row['tgl_keluar'],1,'C');
 			$x+=30;
 			$o->SetXY($x, $y);
 			
-			$o->MultiCell(30,$height,$row['status'],1,'C');
+			$o->MultiCell(30,$height,$row['no_surat_keluar'],1,'C');
 			$x+=30;
 			$o->SetXY($x, $y);
 			
-			$o->MultiCell(30,$height,$row['status'],1,'C');
+			$o->MultiCell(30,$height,$row['jenis_surat'],1,'C');
 			$x+=30;
 			$o->SetXY($x, $y);
 
-			$o->MultiCell(40,$height,$row['status'],1,'C');
+			$o->MultiCell(40,$height,$row['perihal'],1,'C');
 			$x+=40;
 			$o->SetXY($x, $y);
 			
-			$y += $o->tableWrapFix($row['username'], 25, $height);
+			$y += $o->tableWrapFix($row['penerima'], 25, $height);
 			$o->automaticBreak(170, $y);
 			$y = $o->automaticBreakTop(170, $y);
 
