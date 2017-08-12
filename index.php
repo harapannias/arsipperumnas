@@ -139,7 +139,5 @@ authenticateCheck('index');
         });
 
     </script>
-    
-
 </body>
 </html>
