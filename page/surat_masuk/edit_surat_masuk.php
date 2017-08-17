@@ -1,7 +1,7 @@
 <?php
 include "config/koneksi.php";
-if(isset($_GET['id'])){  
-  $id = htmlspecialchars($_GET['id']); ?>
+if(isset($_GET['token'])){  
+  $id = buka(htmlspecialchars($_GET['token'])); ?>
   <div class="container-fluid">
   <h2>Edit Arsip Surat Masuk
     <hr>

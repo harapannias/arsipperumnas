@@ -13,6 +13,9 @@ if(isset($_GET['page'])){
 		break;
 
 	    //operator
+	    case 'operator':
+			include("page/operator/operator.php");
+		break;
 		case 'daftar_operator':
 		if(getAuth()['level'] == 1)
 			include("page/operator/daftar_operator.php");
@@ -54,6 +57,9 @@ if(isset($_GET['page'])){
 		case 'daftar_surat_masuk':
 		include("page/surat_masuk/daftar_surat_masuk.php");
 		break;
+		case 'detail_surat_masuk':
+		include("page/surat_masuk/detail_surat_masuk.php");
+		break;
 
 		//Surat Keluar
         case 'tambah_surat_keluar':
@@ -68,7 +74,22 @@ if(isset($_GET['page'])){
         case 'laporan_operator':
 		include("page/laporan_operator.php");
 		break;
+
+		//Administrasi
+		case 'jenis_surat_masuk':
+			include("page/administrasi/daftar_jenis_surat_masuk.php");
+		break;
+		case 'tambah_jenis_surat_masuk':
+			include("page/administrasi/tambah_jenis_surat_masuk.php");
+		break;
+		case 'jenis_surat_keluar':
+			include("page/administrasi/daftar_jenis_surat_keluar.php");
+		break;
+		case 'tambah_jenis_surat_keluar':
+			include("page/administrasi/tambah_jenis_surat_keluar.php");
+		break;
 		}
+
 
 }else{
 	include "page/home.php";

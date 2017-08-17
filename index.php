@@ -32,7 +32,11 @@ authenticateCheck('index');
             <div class="col-md-2 scroll-wrapper scrollbar-inner" id="menukiri">
                 <div class="list-group scroll-wrapper scrollbar-inner" style="position: relative;">
                     <div class="container-fluid" id="profil">
-                        <div class="avatar"><img src="assets/img/Perumnas2.jpg" class="img img-circle"></div>
+                        <div class="avatar"><img src="assets/img/Perumnas2.jpg" class="img img-circle profil"></div>
+                        <div class="profil_detail">
+                            <a href="assets/img/Perumnas2.jpg"><span class="glyphicon glyphicon-eye-open"></span></a>
+                            <a href="?page=operator&id=<?= getAuth()['id_user']?>"><span class="glyphicon glyphicon-pencil"></span></a>
+                        </div>
                         <div class="profil-name">
                             <b><?= getAuth()['nama']?></b><br>
                             <small>Level: <?= getLevelOperator(getAuth()['level'])?></small>
@@ -51,9 +55,9 @@ authenticateCheck('index');
                             <font class="cursor-pointer">Manajemen Operator</font>
                             <span class="caret"></span>
                         </button>
-                        <div id="demo" class="collapse dropdownrevisi <?= (isUrlMatch('?page=daftar_operator') || isUrlMatch('?page=tambah_operator')) ? 'in' : 'out'?>">
+                        <div id="demo" class="collapse dropdownrevisi <?= (isUrlMatch('?page=daftar_operator') || isUrlMatch('?page=tambah_operator') || isUrlMatch('?page=edit_operator')) ? 'in' : 'out'?>">
                             <li class="list-group-item <?= isUrlMatch('?page=tambah_operator') ? 'active' : ''?>"><a id="menu" href="?page=tambah_operator">Tambah Data</a></li>
-                            <li class="list-group-item <?= isUrlMatch('?page=daftar_operator') ? 'active' : ''?>"><a id="menu" href="?page=daftar_operator">Daftar Operator</a></li>
+                            <li class="list-group-item <?= isUrlMatch('?page=daftar_operator') || isUrlMatch('?page=edit_operator') ? 'active' : ''?>"><a id="menu" href="?page=daftar_operator">Daftar Operator</a></li>
                         </div>
                     <?php } ?>
 
@@ -62,9 +66,9 @@ authenticateCheck('index');
                         <font>Arsip Surat Masuk</font>
                         <span class="caret"></span>
                     </button>
-                    <div id="demo1" class="collapse dropdownrevisi <?= (isUrlMatch('?page=tambah_surat_masuk') || isUrlMatch('?page=daftar_surat_masuk')) ? 'in' : 'out'?>">
+                    <div id="demo1" class="collapse dropdownrevisi <?= (isUrlMatch('?page=tambah_surat_masuk') || isUrlMatch('?page=daftar_surat_masuk') || isUrlMatch('?page=detail_surat_masuk')) ? 'in' : 'out'?>">
                         <li class="list-group-item <?= isUrlMatch('?page=tambah_surat_masuk') ? 'active' : ''?>"><a id="menu" href="?page=tambah_surat_masuk">Tambah Surat</a></li>
-                        <li class="list-group-item <?= isUrlMatch('?page=daftar_surat_masuk') ? 'active' : ''?>"><a id="menu" href="?page=daftar_surat_masuk">Daftar Surat</a></li>
+                        <li class="list-group-item <?= isUrlMatch('?page=daftar_surat_masuk') || isUrlMatch('?page=detail_surat_masuk') ? 'active' : ''?>"><a id="menu" href="?page=daftar_surat_masuk">Daftar Surat</a></li>
                     </div>
 
                     <button type="button" class="list-group-item" data-toggle="collapse" data-target="#demo2">
@@ -87,6 +91,17 @@ authenticateCheck('index');
                         <li class="list-group-item"><a id="menu" href="laporan/laporan_surat_masuk.php">Arsip Surat Masuk</a></li>
                         <li class="list-group-item"><a id="menu" href="laporan/laporan_surat_keluar.php">Arsip Surat Keluar</a></li>
                     </div>
+
+                    <button id="menuAdministrasi" type="button" class="list-group-item" data-toggle="collapse" data-target="#administrasi">
+                        <span class="glyphicon glyphicon-tasks"></span> 
+                        <font>Administrasi</font>
+                        <span class="caret"></span>
+                    </button>
+                    <div id="administrasi" class="collapse dropdownrevisi">
+                        <li class="list-group-item"><a id="menu" href="?page=jenis_surat_masuk">Jenis Surat Masuk</a></li>
+                        <li class="list-group-item"><a id="menu" href="?page=jenis_surat_keluar">Jenis Surat Keluar</a></li>
+                    </div>
+
                     <a id="menu" href="?page=logout" onclick="return confirm('Anda yakin ingin logout?')" class="list-group-item">
                         <span class="glyphicon glyphicon-off"></span>
                         <font>Log Out</font>
@@ -153,6 +168,18 @@ authenticateCheck('index');
             });
         })
 
+        $(document).ready(function() {
+            $('.profil, .profil_detail').mouseenter(function() {
+                $('.profil').css({"opacity": "0.5", "filter": "alpha(opacity=50)"});
+                $('.profil_detail').css({"margin-top": "-55px", "margin-bottom" : "35px"});
+            });
+        })
+        $(document).ready(function() {
+            $('.profil, .profil_detail').mouseleave(function() {
+                $('.profil').css({"opacity": "1", "filter": "alpha(opacity=50)"});
+                $('.profil_detail').css({"margin-top": "-200px", "margin-bottom" : "180px"});
+            });
+        })
 
     </script>
 </body>
