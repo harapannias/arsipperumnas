@@ -36,7 +36,7 @@
 						<td><?= date('d-m-Y H:i:s', strtotime($row['login_terakhir'])) ?></td>
 						<td><?= getStatus($row['status'])?></td>
 						<td>
-							<a href="?page=edit_operator&token=<?= kunci($row['id_user'])?>" class="btn btn-success btn-xs"> Edit </a>
+							<a href="?page=edit_operator&id=<?= $row['id_user']?>" class="btn btn-success btn-xs"> Edit </a>
 						</td>
 					</tr>
 					<?php

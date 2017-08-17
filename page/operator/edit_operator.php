@@ -5,11 +5,10 @@ include "config/koneksi.php";
 
 // mengecek halaman, apakah halaman edit data operator?
 // Edit operator ditandai dengan adanya nilai variabel $_GET['id']
-if(isset($_GET['token'])){  
+if(isset($_GET['id'])){  
 
   // Membaca semua karakter dari variabel id
-  $id = buka(htmlspecialchars($_GET['token'])); 
-  ?>
+  $id = htmlspecialchars($_GET['id']); ?>
 
   <!-- Tampilan halaman Edit Data Operator -->
   <div class="container-fluid">
@@ -49,7 +48,7 @@ if(isset($_GET['token'])){
               <div class="col-sm-3">          
                 <select class="form-control" required="true" name="level_operator" id="level_operator">
                 <?php foreach(getListLevelOperator() as $level) { ?>
-                  <option <?= setSelectedItem($level['id'], $row['level'])?> class="form-control" required="true" value="<?= $level['id'] ?>"><?= $level['level'] ?></option>
+                  <option <?= setSelectedItem($level['level'], $row['level'])?> class="form-control" required="true" value="<?= $level['id'] ?>"><?= $level['level'] ?></option>
                 <?php } ?>
                 </select>
               </div>

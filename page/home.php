@@ -1,9 +1,4 @@
 <div class="jumbotron">
-	<div class="text-center">
-		<img src="assets/img/logo.png" width="250px">
-		<h2>
-			SELAMAT DATANG DI<br>
-			SISTEM INFORMASI PENGARSIPAN PERUMNAS REGIONAL I MEDAN
-		</h2>
-	</div>
+<h2>Selamat Datang di Aplikasi SISFO </h2>
+<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
 </div>
