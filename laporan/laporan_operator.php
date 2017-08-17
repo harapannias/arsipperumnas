@@ -121,5 +121,7 @@ require('../config/helpers.php');
 		$o->setX(25);
 		$o->cell(170,10);
 		$o->cell(90,10,'NIP : 010100100100 10 10 1',0,0,'L',0);
+
+	header('Content-type: application/pdf');
 	$o->Output();
 ?>

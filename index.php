@@ -87,6 +87,16 @@ authenticateCheck('index');
                         <li class="list-group-item"><a id="menu" href="laporan/laporan_surat_masuk.php">Arsip Surat Masuk</a></li>
                         <li class="list-group-item"><a id="menu" href="laporan/laporan_surat_keluar.php">Arsip Surat Keluar</a></li>
                     </div>
+
+                    <button id="menuAdministrasi" type="button" class="list-group-item" data-toggle="collapse" data-target="#administrasi">
+                        <span class="glyphicon glyphicon-tasks"></span> 
+                        <font>Administrasi</font>
+                        <span class="caret"></span>
+                    </button>
+                    <div id="administrasi" class="collapse dropdownrevisi">
+                        <li class="list-group-item"><a id="menu" href="?page=jenis_surat">Jenis Surat</a></li>
+                    </div>
+
                     <a id="menu" href="?page=logout" onclick="return confirm('Anda yakin ingin logout?')" class="list-group-item">
                         <span class="glyphicon glyphicon-off"></span>
                         <font>Log Out</font>

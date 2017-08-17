@@ -68,6 +68,14 @@ if(isset($_GET['page'])){
         case 'laporan_operator':
 		include("page/laporan_operator.php");
 		break;
+
+		//Administrasi
+		case 'jenis_surat':
+			include("page/administrasi/daftar_jenis_surat.php");
+		break;
+		case 'tambah_jenis_surat':
+			include("page/administrasi/tambah_jenis_surat.php");
+		break;
 		}
 
 }else{
