@@ -118,7 +118,7 @@ function getFullUrl() {
 
 function isUrlMatch($url) {
 	$subDirectory = $_SERVER['SCRIPT_NAME'];
-	return $_SERVER['REQUEST_URI'] === $subDirectory.$url;
+	return $_SERVER['REQUEST_URI'] === $subDirectory.$url || preg_match("/^.+".$url."+/", $_SERVER['REQUEST_URI']);
 }
 
 function setSelectedItem($arg1, $arg2) {
@@ -227,4 +227,21 @@ function cariSuratKeluar($jenisPencarian, $kataKunci) {
 
 function getPost($arg) {
 	return isset($_POST[$arg]) ? e($_POST[$arg]) : '';
+}
+
+function kunci($arg) {
+	$rand = rand(111,999);
+	$rand2 = rand(111,999);
+	$bs1 = bin2hex($rand.$arg.$rand2);
+	$bs0 = convert_uuencode(bin2hex($bs1));
+	return base64_encode($bs0);
+}
+
+function buka($arg) {
+	$data0 = base64_decode($arg);
+	$data = convert_uudecode($data0);
+	$de0 = hex2bin($data);
+	$de1 = hex2bin($de0);
+	$de2 = substr($de1, 3);
+	return substr($de2, 0, -3);
 }

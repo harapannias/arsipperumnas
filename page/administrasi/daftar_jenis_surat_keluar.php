@@ -1,15 +1,15 @@
 <div class="table-responsiv">
-	<h2>Jenis Surat<hr></h2>
+	<h2>Jenis Surat keluar<hr></h2>
 	<ul class="breadcrumb">
 		<li><a href="#">Home</a></li>
-		<li>Jenis Surat</li>
+		<li>Jenis Surat Keluar</li>
 	</ul>
 
 	<p>&nbsp;</p>
-	<h4>Berikut daftar jenis surat yang telah terdaftar dalam sistem.</h4>
+	<h4>Berikut daftar jenis surat keluar yang telah terdaftar dalam sistem.</h4>
 	<p>&nbsp;</p>
 	<div class="text-right">
-	<a href="?page=tambah_jenis_surat" class="btn btn-primary btn-md">Tambah Jenis Surat</a>
+	<a href="?page=tambah_jenis_surat_keluar" class="btn btn-primary btn-md">Tambah Jenis Surat Keluar</a>
 	</div>
 	<br>
 	<div style="overflow-x: auto;">

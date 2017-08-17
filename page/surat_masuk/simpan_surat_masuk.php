@@ -20,8 +20,8 @@ switch (e($_GET['ref'])) {
 			$disposisi = e($_POST['disposisi']);
 			$path_berkas = e($upload['uploadedPath']);
 
-			$sql = "insert into tp_arsip_surat_masuk (id_jenis_surat, nomor_urut,  nomor_berkas, nomor_surat_masuk, tanggal_masuk, pengirim, perihal, disposisi, path_berkas) 
-			values ('$jenis_surat', '$nomor_urut', '$nomor_berkas', '$nomor_surat_masuk', '$tanggal_masuk', '$pengirim', '$perihal', $disposisi, '$path_berkas')";
+			$sql = "insert into tp_arsip_surat_masuk (id_jenis_surat, nomor_urut,  nomor_berkas, nomor_surat_masuk, tanggal_masuk, pengirim, perihal, disposisi, path_berkas, id_rekam) 
+			values ('$jenis_surat', '$nomor_urut', '$nomor_berkas', '$nomor_surat_masuk', '$tanggal_masuk', '$pengirim', '$perihal', $disposisi, '$path_berkas', '".getAuth()['username']."')";
 			if(execStatementQuery($sql)) {
 			// dd($tanggal_masuk);
 				//berhasil menyimpan dokumen
