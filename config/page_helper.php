@@ -76,6 +76,13 @@ if(isset($_GET['page'])){
 		break;
 
 		//Administrasi
+<<<<<<< HEAD
+		case 'jenis_surat':
+			include("page/administrasi/daftar_jenis_surat.php");
+		break;
+		case 'tambah_jenis_surat':
+			include("page/administrasi/tambah_jenis_surat.php");
+=======
 		case 'jenis_surat_masuk':
 			include("page/administrasi/daftar_jenis_surat_masuk.php");
 		break;
@@ -87,6 +94,7 @@ if(isset($_GET['page'])){
 		break;
 		case 'tambah_jenis_surat_keluar':
 			include("page/administrasi/tambah_jenis_surat_keluar.php");
+>>>>>>> c52309644909f2d2a4abda3f8e6c8c96409411ca
 		break;
 		}
 
