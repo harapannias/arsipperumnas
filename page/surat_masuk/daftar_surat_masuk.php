@@ -40,22 +40,18 @@
 		<table class="table table-striped table-hover" width="">
 			<tr>
 				<th style="vertical-align: middle;" width="5%">No.</th>
-				<th style="vertical-align: middle;">Nomor Urut</th>
-				<th style="vertical-align: middle;" width="15%">Nomor Berkas</th>
+				<th style="vertical-align: middle;">Perihal Surat</th>
 				<th style="vertical-align: middle;" width="15%">Pengirim</th>
 				<th style="vertical-align: middle;">Tanggal Masuk</th>
-				<th style="vertical-align: middle;">Nomor Surat Masuk</th>
-				<th style="vertical-align: middle;">Jenis Surat</th>
-				<th style="vertical-align: middle;">Perihal</th>
-				<th style="vertical-align: middle;" class="text-center" width="5%">Disposisi</th>
-				<th style="vertical-align: middle;" class="text-center" width="5%">Preview Berkas</th>
-				<th style="vertical-align: middle;" class="text-center" width="5%">Action</th>
+				<th style="vertical-align: middle;" class="text-center" width="5%">Preview</th>
+				<th style="vertical-align: middle;" class="text-center" width="15%">Action</th>
 			</tr>
 			<?php
 			include "config/koneksi.php";
 
 			$data = null;
-			if(isset($_POST) && !empty($_POST)) {				
+
+			if (isset($_POST) && !empty($_POST) && ($_POST['jenisPencarian'] !== null && $_POST['jenisPencarian'] !== '')) {
 				$data = cariSuratMasuk(e($_POST['jenisPencarian']), e($_POST['kataKunci']));
 			} else {
 				$sql = "select * from tp_arsip_surat_masuk";
@@ -67,17 +63,13 @@
 					?>
 					<tr>
 						<td><?= ($i + 1) ?>.</td>
-						<td><div style="width: 80px" class="text-center"><?= e($row['nomor_urut'])?></div></td>
-						<td><div style="width: 120px" class="text-center"><?= $row['nomor_berkas']?></div></td>
+						<td><div style="width: 300px" class="text-left"><?= e( $row['perihal'])?></div></td>
 						<td><div style="width: 200px" class="text-left"><?= $row['pengirim']?></div></td>
 						<td><div style="width: 100px" class="text-left"><?= date('d-m-Y', strtotime($row['tanggal_masuk'])) ?></div></td>
-						<td><div style="width: 100px" class="text-left"><?= $row['nomor_surat_masuk']?></div></td>
-						<td><div style="width: 100px" class="text-left"><?= getJenisSurat($row['id_jenis_surat'])?></div></td>
-						<td><div style="width: 300px" class="text-left"><?= e( $row['perihal'])?></div></td>
-						<td><div style="width: 80px" class="text-center"><?= getDisposisi($row['disposisi'])?></div></td>
-						<td><div style="width: 150px" class="text-center">Preview</div></td>
+						<td><div style="width: 150px" class="text-center"><a href="<?= $row['path_berkas'] ?>">Tampilkan</a></div></td>
 						<td class="text-center">
-							<a href="?page=form_suratmasuk&id=<?= $row['id_arsip_surat_masuk']?>" class="btn btn-success btn-xs">Edit</a>
+							<a href="?page=detail_surat_masuk&token=<?= kunci($row['id_arsip_surat_masuk'])?>" class="btn btn-success btn-xs">Detail</a>
+							<a href="?page=edit_surat_masuk&token=<?= kunci($row['id_arsip_surat_masuk'])?>" class="btn btn-success btn-xs">Edit</a>
 						</td>
 					</tr>
 					<?php
