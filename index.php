@@ -66,9 +66,9 @@ authenticateCheck('index');
                         <font>Arsip Surat Masuk</font>
                         <span class="caret"></span>
                     </button>
-                    <div id="demo1" class="collapse dropdownrevisi <?= (isUrlMatch('?page=tambah_surat_masuk') || isUrlMatch('?page=daftar_surat_masuk') || isUrlMatch('?page=detail_surat_masuk')) ? 'in' : 'out'?>">
+                    <div id="demo1" class="collapse dropdownrevisi <?= (isUrlMatch('?page=tambah_surat_masuk') || isUrlMatch('?page=daftar_surat_masuk') || isUrlMatch('?page=detail_surat_masuk') || isUrlMatch('?page=edit_surat_masuk')) ? 'in' : 'out'?>">
                         <li class="list-group-item <?= isUrlMatch('?page=tambah_surat_masuk') ? 'active' : ''?>"><a id="menu" href="?page=tambah_surat_masuk">Tambah Surat</a></li>
-                        <li class="list-group-item <?= isUrlMatch('?page=daftar_surat_masuk') || isUrlMatch('?page=detail_surat_masuk') ? 'active' : ''?>"><a id="menu" href="?page=daftar_surat_masuk">Daftar Surat</a></li>
+                        <li class="list-group-item <?= isUrlMatch('?page=daftar_surat_masuk') || isUrlMatch('?page=detail_surat_masuk') || isUrlMatch('?page=edit_surat_masuk') ? 'active' : ''?>"><a id="menu" href="?page=daftar_surat_masuk">Daftar Surat</a></li>
                     </div>
 
                     <button type="button" class="list-group-item" data-toggle="collapse" data-target="#demo2">
