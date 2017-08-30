@@ -19,99 +19,93 @@ require('../config/koneksi.php');
 		//tabel
 		$o->ln();
 		$o->setY($y+40);
-		$o->setX(25);
-		$o->GetX(25); 
+		$o->setX(2);
+		$o->GetX(2); 
 		$x = $o->GetX();
 		$y = $o->GetY();
 		$o->setFillColor(233,233,233);  
 
-		$o->SetFont('Arial','',10);
+		$o->SetFont('Arial','',10);           
 
-		$o->MultiCell(10,20,'No',1,'C',0,0); 
-		$x+=10;                           
+		$o->MultiCell(15,5,'Nomor Urut',1,'C',0,0); 
+		$x+=15;                           
 		$o->SetXY($x, $y);               
 
-		$o->MultiCell(20,10,'Nomor Urut',1,'C',0,0); 
-		$x+=20;                           
+		$o->MultiCell(35,10,'Nomor Berkas',1,'C',0,0);
+		$x+=35;
 		$o->SetXY($x, $y);               
 
-		$o->MultiCell(50,20,'Nomor Berkas',1,'C',0,0);
-		$x+=50;
+		$o->MultiCell(85,10,'Pengirim',1,'C',0,0);
+		$x+=85;
 		$o->SetXY($x, $y);               
 
-		$o->MultiCell(40,20,'Penerima',1,'C',0,0);
-		$x+=40;
-		$o->SetXY($x, $y);               
-
-		$o->MultiCell(30,20,'Tanggal Masuk',1,'C',0,0);
-		$x+=30;
+		$o->MultiCell(20,5,'Tanggal Masuk',1,'C',0,0);
+		$x+=20;
 		$o->SetXY($x, $y);
-		
+		$o->SetFont('Arial','',8);
 		$o->MultiCell(30,10,'Nomor Surat Masuk',1,'C',0,0);
 		$x+=30;
 		$o->SetXY($x, $y);
-
-		$o->MultiCell(30,20,'Jenis Masuk',1,'C',0,0);
+		$o->SetFont('Arial','',10);
+		$o->MultiCell(30,10,'Jenis Masuk',1,'C',0,0);
 		$x+=30;
 		$o->SetXY($x, $y);
 
-		$o->MultiCell(40,20,'Perihal',1,'C',0,0);
+		$o->MultiCell(77,10,'Perihal',1,'C',0,0);
 		$x+=40;
-		$y+=10;
+		$y+=3; 
 
-
+		$o->SetFont('Arial','',8);
 		$sql = $o->getQuery('tp_arsip_surat_masuk');
 		$result = mysqli_query($link, $sql);
 		mysqli_num_rows($result);
 		$no = 0; 
 		while ($row = mysqli_fetch_assoc($result)) {
 			$no++;
-			$x=25;
-			$y+=10;              
+			$x=2;
+			$y+=7;              
 			$o->SetXY($x, $y);
-			$height = $o->tableHeight($row['id_arsip_surat_masuk'], 25);
-			$height1 = $o->tableWrap($row['id_arsip_surat_masuk'], 25, $height);
+			$height = $o->tableHeight($row['perihal'] , 45);
+			$height1 = $o->tableWrap($row['perihal'], 45, $height);
 
-			$o->MultiCell(10,$height,$no,1,'C');
-			$x+=10;
-			$o->SetXY($x, $y);
-
-			$o->MultiCell(20,$height,$row['nomor_urut'],1,'C');
-			$x+=20;
+			$o->MultiCell(15,$height,$row['nomor_urut'],1,'C');
+			$x+=15;
 			$o->SetXY($x, $y);
 
-			$o->MultiCell(50,$height,$row['nomor_berkas'],1,'L');
-			$x+=50;
+			$o->MultiCell(35,$height,$row['nomor_berkas'],1,'L');
+			$x+=35;
 			$o->SetXY($x, $y);
 
-			$o->MultiCell(40,$height1,$row['nomor_surat_masuk'],1,'L');
-			$x+=40;
+			$o->MultiCell(85,$height,$row['pengirim'],1,'L');
+			$x+=85;
 			$o->SetXY($x, $y);
 			$y += $o->marginTable($row['id_jenis_surat'], 50, $y);			
 			
 			$y-=$o->customHeight();
 			
-			$o->MultiCell(30,$height,$row['status'],1,'C');
+			$o->MultiCell(20,$height,$row['tanggal_masuk'],1,'C');
+			$x+=20;
+			$o->SetXY($x, $y);
+			
+			$o->MultiCell(30,$height,$row['nomor_surat_masuk'],1,'C');
 			$x+=30;
 			$o->SetXY($x, $y);
 			
-			$o->MultiCell(30,$height,$row['status'],1,'C');
-			$x+=30;
-			$o->SetXY($x, $y);
-			
-			$o->MultiCell(30,$height,$row['status'],1,'C');
+			$o->MultiCell(30,$height,$row['id_jenis_surat'],1,'C');
 			$x+=30;
 			$o->SetXY($x, $y);
 
-			$o->MultiCell(40,$height,$row['status'],1,'C');
+			$o->MultiCell(77,$height1,$row['perihal'],1,'l');
 			$x+=40;
 			$o->SetXY($x, $y);
+
 			
 			$y += $o->tableWrapFix($row['id_arsip_surat_masuk'], 25, $height);
 			$o->automaticBreak(170, $y);
 			$y = $o->automaticBreakTop(170, $y);
 
 		}
+		$o->SetFont('Arial','',10);
 		$o->automaticBreak(110, $y);
 		$y = $o->automaticBreakTop(110, $y);
 		$y = $o->getY();
