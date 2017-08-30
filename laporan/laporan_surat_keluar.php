@@ -60,7 +60,7 @@ require('../config/koneksi.php');
 		$y+=10;
 
 
-		$sql = $o->getQuery('');
+		$sql = $o->getQuery('tp_arsip_surat_keluar');
 		$result = mysqli_query($link, $sql);
 		mysqli_num_rows($result);
 		$no = 0; 
@@ -91,15 +91,15 @@ require('../config/koneksi.php');
 			
 			$y-=$o->customHeight();
 			
-			$o->MultiCell(30,$height,$row['tgl_keluar'],1,'C');
+			$o->MultiCell(30,$height,$row['tanggal_keluar'],1,'C');
 			$x+=30;
 			$o->SetXY($x, $y);
 			
-			$o->MultiCell(30,$height,$row['no_surat_keluar'],1,'C');
+			$o->MultiCell(30,$height,$row['nomor_surat_keluar'],1,'C');
 			$x+=30;
 			$o->SetXY($x, $y);
 			
-			$o->MultiCell(30,$height,$row['jenis_surat'],1,'C');
+			$o->MultiCell(30,$height,$row['id_jenis_surat'],1,'C');
 			$x+=30;
 			$o->SetXY($x, $y);
 
