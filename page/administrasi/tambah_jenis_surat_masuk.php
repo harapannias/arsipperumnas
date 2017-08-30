@@ -45,7 +45,7 @@ include "config/koneksi.php";
     <div class="form-group">        
       <div class="col-sm-offset-3 col-sm-10">
         <button type="submit" class="btn btn-success">Simpan</button>
-        <a href="?page=tambah_operator" type="submit" class="btn btn-danger">Batal</a>
+        <a href="?page=jenis_surat_masuk" type="submit" class="btn btn-danger">Batal</a>
       </div>
     </div>
   </form>

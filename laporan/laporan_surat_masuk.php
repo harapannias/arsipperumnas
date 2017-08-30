@@ -1,9 +1,10 @@
 <?php
 require('../assets/fpdf/customFPDF.php');
 require('../config/koneksi.php');
+require('../config/helpers.php');
 
 	$o = new customFPDF('L');
-		$o->AddPage();
+		$o->AddPage('A4');
 
 		//Logo
 		$y = 31;
@@ -25,11 +26,7 @@ require('../config/koneksi.php');
 		$y = $o->GetY();
 		$o->setFillColor(233,233,233);  
 
-		$o->SetFont('Arial','',10);
-
-		$o->MultiCell(10,20,'No',1,'C',0,0); 
-		$x+=10;                           
-		$o->SetXY($x, $y);               
+		$o->SetFont('Arial','',10);               
 
 		$o->MultiCell(20,10,'Nomor Urut',1,'C',0,0); 
 		$x+=20;                           
@@ -39,7 +36,7 @@ require('../config/koneksi.php');
 		$x+=50;
 		$o->SetXY($x, $y);               
 
-		$o->MultiCell(40,20,'Penerima',1,'C',0,0);
+		$o->MultiCell(40,20,'Pengirim',1,'C',0,0);
 		$x+=40;
 		$o->SetXY($x, $y);               
 
@@ -60,7 +57,7 @@ require('../config/koneksi.php');
 		$y+=10;
 
 
-		$sql = $o->getQuery('tp_arsip_surat_masuk');
+		$sql = 'select m.*, jm.jenis from tp_arsip_surat_masuk m inner join tr_jenis_surat_masuk jm on jm.id_jenis_surat_masuk = m.id_jenis_surat_masuk';
 		$result = mysqli_query($link, $sql);
 		mysqli_num_rows($result);
 		$no = 0; 
@@ -72,10 +69,6 @@ require('../config/koneksi.php');
 			$height = $o->tableHeight($row['id_arsip_surat_masuk'], 25);
 			$height1 = $o->tableWrap($row['id_arsip_surat_masuk'], 25, $height);
 
-			$o->MultiCell(10,$height,$no,1,'C');
-			$x+=10;
-			$o->SetXY($x, $y);
-
 			$o->MultiCell(20,$height,$row['nomor_urut'],1,'C');
 			$x+=20;
 			$o->SetXY($x, $y);
@@ -84,26 +77,26 @@ require('../config/koneksi.php');
 			$x+=50;
 			$o->SetXY($x, $y);
 
-			$o->MultiCell(40,$height1,$row['nomor_surat_masuk'],1,'L');
+			$o->MultiCell(40,$height1,$row['pengirim'],1,'L');
 			$x+=40;
 			$o->SetXY($x, $y);
-			$y += $o->marginTable($row['id_jenis_surat'], 50, $y);			
+			$y += $o->marginTable($row['id_jenis_surat_masuk'], 50, $y);			
 			
 			$y-=$o->customHeight();
-			
-			$o->MultiCell(30,$height,$row['status'],1,'C');
+			// dd($row);
+			$o->MultiCell(30,$height,date('d-m-Y', strtotime($row['tanggal_masuk'])),1,'C');
 			$x+=30;
 			$o->SetXY($x, $y);
 			
-			$o->MultiCell(30,$height,$row['status'],1,'C');
+			$o->MultiCell(30,$height,$row['nomor_surat_masuk'],1,'C');
 			$x+=30;
 			$o->SetXY($x, $y);
 			
-			$o->MultiCell(30,$height,$row['status'],1,'C');
+			$o->MultiCell(30,$height,$row['jenis'],1,'C');
 			$x+=30;
 			$o->SetXY($x, $y);
 
-			$o->MultiCell(40,$height,$row['status'],1,'C');
+			$o->MultiCell(40,$height,$row['perihal'],1,'C');
 			$x+=40;
 			$o->SetXY($x, $y);
 			

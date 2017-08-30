@@ -54,15 +54,14 @@ include "config/koneksi.php";
     <div class="form-group ">
       <label class="col-sm-2" for="jenis_surat">Jenis Surat</label>
       <div class="col-sm-3">          
-        <select class="form-control" required="true" name="jenis_surat" id="jenis_surat">
+        <select class="form-control" required="true" name="jenis_surat_masuk" id="jenis_surat_masuk">
           <option value="">-Pilih-</option>
-          <?php foreach (execSelectQuery("select * from tr_jenis_surat order by id_jenis_surat asc") as $i => $row) { ?>
-          <option class="jenis_surat" value="<?= $row['id_jenis_surat']?>"><?= $row['jenis']?></option>
+          <?php foreach (execSelectQuery("select * from tr_jenis_surat_masuk order by id_jenis_surat_masuk asc") as $i => $row) { ?>
+          <option class="jenis_surat" value="<?= $row['id_jenis_surat_masuk']?>"><?= $row['jenis']?></option>
           <?php } ?>
           <option class="lain_jenis_surat">Lainnya</option>
         </select>
       </div>
-      (* Jika anda ingin menambahkan jenis surat maka anda bisa memilih option Lainnya.
     </div>
     <div class="form-group">
       <label class="col-sm-2" for="perihal">Perihal Surat</label>
@@ -89,7 +88,7 @@ include "config/koneksi.php";
     <div class="form-group">        
       <div class="col-sm-offset-2 col-sm-10">
         <button type="submit" class="btn btn-success" name="btnSimpan" value="simpan_surat_masuk">Simpan</button>
-        <a href="?page=tambah_surat_masuk" class="btn btn-danger">Batal</a>
+        <a href="?page=daftar_surat_masuk" class="btn btn-danger">Batal</a>
       </div>
     </div>
   </form>

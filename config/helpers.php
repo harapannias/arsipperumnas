@@ -193,6 +193,11 @@ function saveUploadedDocument($jenis, $file) {
 	}
 }
 
+function deleteUpluoadedDocument($filepath) {
+	unlink($filepath);
+	return;
+}
+
 function tgl($date){
 	$tmpDate = explode('/', $date);
 	return $tmpDate[2].'-'.$tmpDate[1].'-'.$tmpDate[0];

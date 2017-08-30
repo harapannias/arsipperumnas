@@ -23,7 +23,7 @@ authenticateCheck('index');
 
 <body>
     <nav class="navbar-fixed-top" id="header">
-        <div><img src="assets/img/header1.jpg" width="100%"></div>
+        <!-- <div><img src="assets/img/header1.jpg" width="100%"></div> -->
     </nav>
 
     <div class="container-fluid">
@@ -35,7 +35,7 @@ authenticateCheck('index');
                         <div class="avatar"><img src="assets/img/Perumnas2.jpg" class="img img-circle profil"></div>
                         <div class="profil_detail">
                             <a href="assets/img/Perumnas2.jpg"><span class="glyphicon glyphicon-eye-open"></span></a>
-                            <a href="?page=operator&id=<?= getAuth()['id_user']?>"><span class="glyphicon glyphicon-pencil"></span></a>
+                            <a href="?page=profil&token=<?= kunci(getAuth()['id_user']) ?>"><span class="glyphicon glyphicon-pencil"></span></a>
                         </div>
                         <div class="profil-name">
                             <b><?= getAuth()['nama']?></b><br>
@@ -77,9 +77,9 @@ authenticateCheck('index');
                         <span class="caret"></span>
                     </button>
 
-                    <div id="demo2" class="collapse out dropdownrevisi <?= (isUrlMatch('?page=tambah_surat_keluar') || isUrlMatch('?page=daftar_surat_keluar')) ? 'in' : 'out'?>">
+                    <div id="demo2" class="collapse out dropdownrevisi <?= (isUrlMatch('?page=tambah_surat_keluar') || isUrlMatch('?page=daftar_surat_keluar') || isUrlMatch('?page=detail_surat_keluar') || isUrlMatch('?page=edit_surat_keluar')) ? 'in' : 'out'?>">
                         <li class="list-group-item <?= isUrlMatch('?page=tambah_surat_keluar') ? 'active' : ''?>"><a id="menu" href="?page=tambah_surat_keluar">Tambah Surat</a></li>
-                        <li class="list-group-item <?= isUrlMatch('?page=daftar_surat_keluar') ? 'active' : ''?>"><a id="menu" href="?page=daftar_surat_keluar">Daftar Surat</a></li>
+                        <li class="list-group-item <?= isUrlMatch('?page=daftar_surat_keluar') || isUrlMatch('?page=detail_surat_keluar') || isUrlMatch('?page=edit_surat_keluar') ? 'active' : ''?>"><a id="menu" href="?page=daftar_surat_keluar">Daftar Surat</a></li>
                     </div>
                     <button id="menuLaporan" type="button" class="list-group-item" data-toggle="collapse" data-target="#demo3">
                         <span class="glyphicon glyphicon-book"></span> 
@@ -87,9 +87,9 @@ authenticateCheck('index');
                         <span class="caret"></span>
                     </button>
                     <div id="demo3" class="collapse dropdownrevisi">
-                        <li class="list-group-item"><a id="menu" href="laporan/laporan_operator.php">Data Operator</a></li>
-                        <li class="list-group-item"><a id="menu" href="laporan/laporan_surat_masuk.php">Arsip Surat Masuk</a></li>
-                        <li class="list-group-item"><a id="menu" href="laporan/laporan_surat_keluar.php">Arsip Surat Keluar</a></li>
+                        <li class="list-group-item"><a id="menu" href="laporan/laporan_operator.php" target="_blank">Data Operator</a></li>
+                        <li class="list-group-item"><a id="menu" href="laporan/laporan_surat_masuk.php" target="_blank">Arsip Surat Masuk</a></li>
+                        <li class="list-group-item"><a id="menu" href="laporan/laporan_surat_keluar.php" target="_blank">Arsip Surat Keluar</a></li>
                     </div>
 
                     <button id="menuAdministrasi" type="button" class="list-group-item" data-toggle="collapse" data-target="#administrasi">
@@ -97,9 +97,9 @@ authenticateCheck('index');
                         <font>Administrasi</font>
                         <span class="caret"></span>
                     </button>
-                    <div id="administrasi" class="collapse dropdownrevisi">
-                        <li class="list-group-item"><a id="menu" href="?page=jenis_surat_masuk">Jenis Surat Masuk</a></li>
-                        <li class="list-group-item"><a id="menu" href="?page=jenis_surat_keluar">Jenis Surat Keluar</a></li>
+                    <div id="administrasi" class="collapse dropdownrevisi <?= isUrlMatch('?page=jenis_surat_masuk') || isUrlMatch('?page=tambah_jenis_surat_masuk') || isUrlMatch('?page=edit_jenis_surat_masuk') || isUrlMatch('?page=jenis_surat_keluar') || isUrlMatch('?page=tambah_jenis_surat_keluar') || isUrlMatch('?page=edit_jenis_surat_keluar') ? 'in' : ''?>">
+                        <li class="list-group-item <?= isUrlMatch('?page=jenis_surat_masuk') || isUrlMatch('?page=tambah_jenis_surat_masuk') || isUrlMatch('?page=edit_jenis_surat_masuk') ? 'active' : ''?>"><a id="menu" href="?page=jenis_surat_masuk">Jenis Surat Masuk</a></li>
+                        <li class="list-group-item <?= isUrlMatch('?page=jenis_surat_keluar') || isUrlMatch('?page=tambah_jenis_surat_keluar') || isUrlMatch('?page=edit_jenis_surat_keluar') ? 'active' : ''?>"><a id="menu" href="?page=jenis_surat_keluar">Jenis Surat Keluar</a></li>
                     </div>
 
                     <a id="menu" href="?page=logout" onclick="return confirm('Anda yakin ingin logout?')" class="list-group-item">

@@ -1,173 +1,103 @@
 <?php
 include "config/koneksi.php";
-if(isset($_GET['id'])){  
-  $id = htmlspecialchars($_GET['id']); ?>
-  <div class="container-fluid">
+if(!isset($_GET['token'])) {
+    redirect("index.php?page=daftar_surat_keluar");
+} else {
+  $id = buka(htmlspecialchars(e($_GET['token'])));
+   $data = execSelectQuery("select * from tp_arsip_surat_keluar where id_arsip_surat_keluar = $id limit 0,1");
+    $row = array_shift($data);
+?>
+
+<div class="container-fluid">
   <h2>Edit Arsip Surat Keluar<hr></h2>
 
-
-  <!-- <p align="right"><font color="blue">Home > Arsip Surat Keluar</font> > Edit Arsip</p> -->
   <ul class="breadcrumb">
-		<li><a href="?page=home">Home</a></li>
-		<li>Arsip Surat Masuk</li>
-	</ul>
+    <li><a href="?page=home">Home</a></li>
+    <li><a href="?page=daftar_surat_keluar">Arsip Surat Keluar</a></li>
+    <li>Edit Arsip</li>
+  </ul>
+
   <p>&nbsp;</p>
-  <h4>Silahkan ubah form berikut untuk mengedit arsip surat masuk</h4>
+  <h4>Silahkan mengubah arsip surat keluar melalui form di bawah ini.</h4>
   <p>&nbsp;</p>
-  <form class="form-horizontal" role="form">
-    <?php
-    include "config/koneksi.php";
-    $sql = "select * from arsip_suratmasuk where nmr_urut='".$id."'";
-    if ($result = mysqli_query($link, $sql)) {
-      if(mysqli_num_rows($result) > 0){
-        $no = 1; 
-        while ($row = mysqli_fetch_assoc($result)) {
+
+  <form class="form-horizontal" role="form" action="index.php?page=simpan_surat_keluar&ref=edit" method="post" enctype="multipart/form-data">
+    
+    <div class="form-group">
+      <label class="col-sm-2" for="nomor_urut">Nomor Urut</label>
+      <div class="col-sm-5">
+        <input type="text" class="form-control" required="true" name="nomor_urut" id="nomor_urut" placeholder="Nomor Urut" value="<?= $row['nomor_urut']?>">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-2" for="nomor_berkas">Nomor Berkas</label>
+      <div class="col-sm-5">          
+        <input type="text" class="form-control" required="true" name="nomor_berkas" id="nomor_berkas" placeholder="Nomor Berkas" value="<?= $row['nomor_berkas']?>">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-2" for="penerima">Penerima</label>
+      <div class="col-sm-5">          
+        <input type="text" class="form-control" required="true" name="penerima" id="penerima" placeholder="Penerima" value="<?= $row['penerima']?>">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-2" for="tanggal_keluar">Tanggal Keluar</label>
+      <div class="col-sm-3">          
+        <input type="text" class="form-control datepicker" name="tanggal_keluar" id="tanggal_keluar" placeholder="dd/mm/yyyy"  value="<?= date('d/m/Y', strtotime($row['tanggal_keluar']))?>">
+      </div>
+      <span class="glyphicon glyphicon-calendar kalender"></span>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2" for="no_suratkeluar">No. Surat Keluar</label>
+      <div class="col-sm-5">          
+        <input type="text" class="form-control" required="true" name="no_suratkeluar" id="no_suratkeluar" placeholder="Nomor Surat Keluar" value="<?= $row['nomor_surat_keluar']?>">
+      </div>
+    </div>
+    <div class="form-group ">
+      <label class="col-sm-2" for="jenis_surat">Jenis Surat</label>
+      <div class="col-sm-3">          
+        <select class="form-control" required="true" name="jenis_surat" id="jenis_surat">
+          <option value="">-Pilih-</option>
+          <?php foreach (execSelectQuery("select * from tr_jenis_surat_keluar order by id_jenis_surat_keluar asc") as $i => $rows) { ?>
+          <option <?= setSelectedItem($row['id_jenis_surat_keluar'], $rows['id_jenis_surat_keluar']) ?> class="jenis_surat" value="<?= $rows['id_jenis_surat_keluar']?>"><?= $rows['jenis']?></option>
+          <?php } ?>
+          <option class="lain_jenis_surat">Lainnya</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2" for="perihal">Perihal Surat</label>
+      <div class="col-sm-6">          
+        <input type="text" class="form-control" required="true" name="perihal" id="perihal" placeholder="Perihal Surat" value="<?= $row['perihal']?>">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2" for="fileToUpload">Upload Berkas</label>
+      <div class="col-sm-5">
+      <?php
+            if(!file_exists($row['path_berkas'])) {
+              echo "Berkas tidak ditemukan.";
+            } else {
+              echo "<a href=\"".$row['path_berkas']."\" target='_blank'>Download berkas</a>";    
+            }
           ?>
-          <div class="form-group">
-            <label class="col-sm-2" for="email">Nomor Urut</label>
-            <div class="col-sm-2">
-              <input type="text" class="form-control" required="true" name="nomor_urut" placeholder="ASM001" value="<?= $row['nmr_urut']?>">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-2" for="pwd">Nomor Berkas</label>
-            <div class="col-sm-3">          
-              <input type="text" class="form-control" required="true" name="nomor_berkas" placeholder="1234.SU/AB/X/2017" value="<?= $row['nomorberkas']?>">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-2" for="pwd">Penerima</label>
-            <div class="col-sm-4">          
-              <input type="text" class="form-control" required="true" name="penerima" placeholder="penerima" value="<?= $row['penerima']?>">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-2" for="pwd">Tanggal Keluar</label>
-            <div class="col-sm-2">          
-              <input type="text" class="form-control datepicker" required="true" name="tanggal_Keluar" placeholder="2017-01-30" value="<?= $row['tanggal_Keluar']?>">
-            </div>
-            <span class="glyphicon glyphicon-calendar kalender"></span>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-2" for="pwd">No. Surat Masuk</label>
-            <div class="col-sm-3">          
-              <input type="text" class="form-control" required="true" name="no_suratmasuk" placeholder="Nomor Surat Masuk" value="<?= $row['nmrsurat']?>">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-2" for="pwd">Jenis Surat</label>
-            <div class="col-sm-3">          
-              <select class="form-control" name="jenis_surat">
-                <option <?= setSelectedItem('Belanja Pegawai', $row['jenissurat'])?> class="form-control" required="true">Belanja Pegawai</option>
-                <option <?= setSelectedItem('Ajuan Diklat', $row['jenissurat'])?> class="form-control" required="true">Ajuan Diklat</option>
-                <option <?= setSelectedItem('Ajuan Mutasi', $row['jenissurat'])?> class="form-control" required="true">Ajuan Mutasi</option>
-                <option <?= setSelectedItem('Promisi dan Demosi', $row['jenissurat'])?> class="form-control" required="true">Promosi dan Demosi</option>
-                <option <?= setSelectedItem('Permohonan Pensiun', $row['jenissurat'])?> class="form-control" required="true">Permohonan Pensiun</option>
-                <option <?= setSelectedItem('Ajuan Kesehatan', $row['jenissurat'])?> class="form-control" required="true">Ajuan Kesehatan</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-2" for="pwd">Perihal</label>
-            <div class="col-sm-4">          
-              <input type="text" class="form-control" required="true" name="perihal" placeholder="Perihal" value="<?= $row['perihal']?>">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-2" for="pwd">Upload Berkas</label>
-            <div class="col-sm-2">          
-              <input id="uploadFile" class="form-control" required="true" placeholder="Pilih File..." disabled="disabled" value="<?= $row['lampiran']?>">
-            </div>
-            <div class="fileUpload btn btn-primary btn-md">
-              <span> Browser <input type="file" name="lampiran" id="uploadBtn" style="display: none;"></span>
-            </div>
-          </div>          
-        </div>
-        <div class="form-group">        
-          <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-success">Simpan</button>
-            <a href="?page=daftar_surat_masuk" type="submit" class="btn btn-danger">Batal</a>
-          </div>
-        </div>
-      </form>
+          <p></p>
+        <input type="file" name="fileToUpload" id="fileToUpload">
+        <input type="hidden" name="oldFileUpload" value="<?= $row['path_berkas']?>">
+        <input type="hidden" name="oldIdArsip" value="<?= $row['id_arsip_surat_keluar']?>">
       </div>
-      <p>&nbsp;</p>
-      <?php }}}}else { ?>
-      <div class="container-fluid">
-      <h2>Tambah Arsip Surat Keluar
-        <hr>
-      </h2>
-      <p align="right"><font color="blue">Home > Arsip Surat Keluar</font> > Tambah Arsip</p>
-      <p>&nbsp;</p>
-      <h4>Silahkan isi form berikut untuk menambah arsip surat masuk</h4>
-      <p>&nbsp;</p>
-      <form class="form-horizontal" role="form">
-        <div class="form-group">
-            <label class="col-sm-2" for="email">Nomor Urut</label>
-            <div class="col-sm-2">
-              <input type="text" class="form-control" required="true" name="nomor_urut" placeholder="ASM001">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-2" for="pwd">Nomor Berkas</label>
-            <div class="col-sm-3">          
-              <input type="text" class="form-control" required="true" name="nomor_berkas" placeholder="1234.SU/AB/X/2017">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-2" for="pwd">Penerima</label>
-            <div class="col-sm-4">          
-              <input type="text" class="form-control" required="true" name="penerima" placeholder="penerima">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-2" for="pwd">Tanggal Keluar</label>
-            <div class="col-sm-2">          
-              <input type="text" class="form-control datepicker" required="true" name="tanggal_Keluar" placeholder="2017-01-30">
-            </div>
-            <span class="glyphicon glyphicon-calendar kalender"></span>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-2" for="pwd">No. Surat Masuk</label>
-            <div class="col-sm-3">          
-              <input type="text" class="form-control" required="true" name="no_suratmasuk" placeholder="Nomor Surat Masuk">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-2" for="pwd">Jenis Surat</label>
-            <div class="col-sm-3">          
-              <select class="form-control" name="jenis_surat">
-                <option class="form-control" required="true">Belanja Pegawai</option>
-                <option class="form-control" required="true">Ajuan Diklat</option>
-                <option class="form-control" required="true">Ajuan Mutasi</option>
-                <option class="form-control" required="true">Promosi dan Demosi</option>
-                <option class="form-control" required="true">Permohonan Pensiun</option>
-                <option class="form-control" required="true">Ajuan Kesehatan</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-2" for="pwd">Perihal</label>
-            <div class="col-sm-4">          
-              <input type="text" class="form-control" required="true" name="perihal" placeholder="Perihal">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-2" for="pwd">Upload Berkas</label>
-            <div class="col-sm-2">          
-              <input id="uploadFile" class="form-control" required="true" placeholder="Pilih File..." disabled="disabled" >
-            </div>
-            <div class="fileUpload btn btn-primary btn-md">
-              <span> Browser <input type="file" name="lampiran" id="uploadBtn" style="display: none;"></span>
-            </div>
-          </div>          
-        </div>
-      <div class="form-group">        
-        <div class="col-sm-offset-2 col-sm-10">
-          <button type="submit" class="btn btn-success">Simpan</button>
-          <a href="?page=form_suratkeluar" type="submit" class="btn btn-danger">Batal</a>
-        </div>
+    </div>          
+    <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-success" name="btnSimpan" value="simpan_surat_keluar">Simpan perubahan</button>
+        <a href="?page=daftar_surat_keluar" class="btn btn-danger">Batal</a>
       </div>
-    </form>
-    <p>&nbsp;</p>
-    <?php }?>
+    </div>
+  </form>
+</div>
+<p>&nbsp;</p>
+<?php }

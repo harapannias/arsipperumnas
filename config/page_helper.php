@@ -13,7 +13,7 @@ if(isset($_GET['page'])){
 		break;
 
 	    //operator
-	    case 'operator':
+	    case 'profil':
 			include("page/operator/operator.php");
 		break;
 		case 'daftar_operator':
@@ -65,12 +65,20 @@ if(isset($_GET['page'])){
         case 'tambah_surat_keluar':
 		include("page/surat_keluar/tambah_surat_keluar.php");
 		break;
+		case 'edit_surat_keluar':
+		include("page/surat_keluar/edit_surat_keluar.php");
+		break;
         case 'daftar_surat_keluar':
 		include("page/surat_keluar/daftar_surat_keluar.php");
 		break;
         case 'simpan_surat_keluar':
 		include("page/surat_keluar/simpan_surat_keluar.php");
 		break;
+		case 'detail_surat_keluar':
+		include("page/surat_keluar/detail_surat_keluar.php");
+		break;
+
+        //laporan
         case 'laporan_operator':
 		include("page/laporan_operator.php");
 		break;
@@ -82,11 +90,17 @@ if(isset($_GET['page'])){
 		case 'tambah_jenis_surat_masuk':
 			include("page/administrasi/tambah_jenis_surat_masuk.php");
 		break;
+		case 'edit_jenis_surat_masuk':
+			include("page/administrasi/edit_jenis_surat_masuk.php");
+		break;
 		case 'jenis_surat_keluar':
 			include("page/administrasi/daftar_jenis_surat_keluar.php");
 		break;
 		case 'tambah_jenis_surat_keluar':
 			include("page/administrasi/tambah_jenis_surat_keluar.php");
+		break;
+		case 'edit_jenis_surat_keluar':
+			include("page/administrasi/edit_jenis_surat_keluar.php");
 		break;
 		}
 

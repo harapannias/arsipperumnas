@@ -23,7 +23,7 @@
 			</tr>
 			<?php
 			include "config/koneksi.php";
-			$sql = "select * from tr_jenis_surat";
+			$sql = "select * from tr_jenis_surat_masuk";
 			$data = execSelectQuery($sql);
 			if(count($data) > 0) {
 				foreach ($data as $i => $row) {
@@ -34,7 +34,7 @@
 						<td><?= empty($row['keterangan']) ? '-' : $row['keterangan']?></td>
 						<td><?= getStatus($row['status'])?></td>
 						<td>
-							<a href="?page=edit_operator&id=<?= $row['id_jenis_surat']?>" class="btn btn-success btn-xs"> Edit </a>
+							<a href="?page=edit_jenis_surat_masuk&token=<?= kunci($row['id_jenis_surat_masuk'])?>" class="btn btn-success btn-xs"> Edit </a>
 						</td>
 					</tr>
 					<?php

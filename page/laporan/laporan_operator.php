@@ -42,40 +42,6 @@ $o->SetXY($x, $y);
 
 $o->MultiCell(30,10,'Status',1,'C',0,0);
 $x+=30;
-
-
-// $o->ln();
-// $o->setY($y+40);
-// $o->setX(25);
-// $start_awal=$o->GetX(); 
-// $x = $o->GetX();
-// $y = $o->GetY();
-// $o->setFillColor(233,233,233);  
-
-// $o->SetFont('Arial','',12);
-
-// $o->MultiCell(10,10,'No',0,'L',0,0); 
-// $x+=15;                           
-// $o->SetXY($x, $y);               
-
-// $o->MultiCell(30,10,'Kode Operator',0,'L',0,0); 
-// $x+=35;                           
-// $o->SetXY($x, $y);               
-
-// $o->MultiCell(120,10,'Nama',0,'L',0,0);
-// $x+=125;
-// $o->SetXY($x, $y);               
-
-// $o->MultiCell(40,10,'Username',0,'L',0,0);
-// $x+=45;
-// $o->SetXY($x, $y);               
-
-// $o->MultiCell(30,10,'Status',0,'L',0,0);
-// $x+=35;
-
-// $o->setlineWidth(0,1);
-// $o->line(270,$y,23,$y);
-
 $link = mysqli_connect("localhost", "root", "", "pendataan_penduduk");
 $sql = "select * from tb_user";
 $no = 0;
@@ -83,38 +49,6 @@ if ($result = mysqli_query($link, $sql)) {
 	if(mysqli_num_rows($result) > 0){
 		$no = 0; 
 		while ($row = mysqli_fetch_assoc($result)) {
-			// $no++;
-			// $x=$start_awal;
-			// $y+=10;              
-			// $o->SetXY($x, $y);
-			// $o->setlineWidth(0,1);
-			// $o->line(270,$y,23,$y);
-
-			// $o->MultiCell(10,10,$no,0,'L');
-			// $x+=15;
-			// $o->SetXY($x, $y);
-
-			// $o->MultiCell(30,10,$row['kode_operator'],0,'L');
-			// $x+=35;
-			// $o->SetXY($x, $y);
-
-			// $o->MultiCell(120,10,$row['nama'],0,'L');
-			// $x+=125;
-			// $o->SetXY($x, $y);
-
-			// $o->MultiCell(40,10,$row['username'],0,'L');
-			// $x+=45;
-			// $o->SetXY($x, $y);
-
-			// if (strlen($row['nama'])>=50) {
-			// 	$y+=20;
-			// }else {
-			// 	$y+=10;
-			// }
-			// $y-=10;
-			// $o->MultiCell(30,10,$row['status'],0,'L');
-			// $x+=35;
-			// $o->SetXY($x, $y);
 
 			$no++;
 			$x=$start_awal;

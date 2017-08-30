@@ -1,31 +1,32 @@
-<div class="container-fluid">
+<div class="table-responsiv">
 	<h2>Daftar Arsip Surat Keluar<hr></h2>
 
 	<ul class="breadcrumb">
 		<li><a href="?page=home">Home</a></li>
 		<li>Arsip Surat Keluar</li>
 	</ul>
-	
-	<!-- <p align="right"><font color="blue">Home</font> > Arsip Surat Keluar</p> -->
+
 	<p>&nbsp;</p>
-	<h4>Berikut daftar surat Keluar yang sudah masuk kedalam sistem</h4>
+	<h4>Berikut daftar surat keluar yang sudah keluar kedalam sistem</h4>
 	<p>&nbsp;</p>
-	<form class="form-horizontal" role="form">
+	<form class="form-horizontal" role="form" method="POST">
 		<div class="form-group">
-			<label class="col-sm-2" for="email">Kunci Pencarian</label>
-			<div class="col-sm-6">
-				<input type="text" class="form-control" required="true" name="nomor_urut" placeholder="Nomor Surat">
+			<label class="col-sm-2" for="pwd">Kategori</label>
+			<div class="col-sm-3">          
+				<select class="form-control" name="jenisPencarian">
+					<option class="kategori" value="">-Pilih-</option>
+					<option class="kategori" <?= (getPost('jenisPencarian') == 'nomor_urut' ? 'selected' : '') ?> value="nomor_urut">Nomor Urut</option>
+					<option class="kategori" <?= (getPost('jenisPencarian') == 'nomor_berkas' ? 'selected' : '') ?> value="nomor_berkas">Nomor Berkas</option>
+					<option class="kategori" <?= (getPost('jenisPencarian') == 'nomor_surat_keluar' ? 'selected' : '') ?> value="nomor_surat_keluar">Nomor Surat Keluar</option>
+					<option class="kategori" <?= (getPost('jenisPencarian') == 'penerima' ? 'selected' : '') ?> value="penerima">Penerima</option>
+					<option class="kategori" <?= (getPost('jenisPencarian') == 'perihal' ? 'selected' : '') ?> value="perihal">Perihal</option>
+				</select>
 			</div>
 		</div>
-		<div class="form-group">
-			<label class="col-sm-2" for="pwd">Jenis Surat</label>
-			<div class="col-sm-3">          
-				<select class="form-control" name="jenis_surat">
-					<option class="form-control" required="true">Semua Jenis</option>
-					<?php foreach (execSelectQuery("select * from tr_jenis_surat order by id_jenis_surat asc") as $i => $row) { ?>
-          <option class="jenis_surat" value="<?= $row['id_jenis_surat']?>"><?= $row['jenis']?></option>
-          <?php } ?>
-				</select>
+		<div class="form-group katakunci">
+			<label class="col-sm-2" for="email">Kata Kunci</label>
+			<div class="col-sm-4">
+				<input type="text" class="form-control" name="kataKunci" placeholder="Kata Kunci" value="<?= getPost('kataKunci') ?>">
 			</div>
 		</div>
 		<div class="form-group">        
@@ -39,36 +40,36 @@
 		<table class="table table-striped table-hover" width="">
 			<tr>
 				<th style="vertical-align: middle;" width="5%">No.</th>
-				<th style="vertical-align: middle;">Nomor Urut</th>
-				<th style="vertical-align: middle;" width="15%">Nomor Berkas</th>
+				<th style="vertical-align: middle;">Perihal Surat</th>
 				<th style="vertical-align: middle;" width="15%">Penerima</th>
-				<th style="vertical-align: middle;">Tanggal Masuk</th>
-				<th style="vertical-align: middle;">Nomor Surat Masuk</th>
-				<th style="vertical-align: middle;">Jenis Surat</th>
-				<th style="vertical-align: middle;">Perihal</th>
-				<th style="vertical-align: middle;" class="text-center" width="5%">Preview Berkas</th>
-				<th style="vertical-align: middle;" class="text-center" width="5%">Action</th>
+				<th style="vertical-align: middle;">Tanggal Keluar</th>
+				<th style="vertical-align: middle;" class="text-center" width="5%">Preview</th>
+				<th style="vertical-align: middle;" class="text-center" width="15%">Action</th>
 			</tr>
 			<?php
 			include "config/koneksi.php";
-			$sql = "select * from tp_arsip_surat_keluar";
-			$data = execSelectQuery($sql);
+
+			$data = null;
+
+			if (isset($_POST) && !empty($_POST) && ($_POST['jenisPencarian'] !== null && $_POST['jenisPencarian'] !== '')) {
+				$data = cariSuratKeluar(e($_POST['jenisPencarian']), e($_POST['kataKunci']));
+			} else {
+				$sql = "select * from tp_arsip_surat_keluar";
+				$data = execSelectQuery($sql);
+			}
 
 			if (count($data) > 0) {
 				foreach ($data as $i => $row) {
 					?>
 					<tr>
 						<td><?= ($i + 1) ?>.</td>
-						<td><div style="width: 80px" class="text-center"><?= $row['nomor_urut']?></div></td>
-						<td><div style="width: 120px" class="text-center"><?= $row['nomor_berkas']?></div></td>
+						<td><div style="width: 300px" class="text-left"><?= e( $row['perihal'])?></div></td>
 						<td><div style="width: 200px" class="text-left"><?= $row['penerima']?></div></td>
 						<td><div style="width: 100px" class="text-left"><?= date('d-m-Y', strtotime($row['tanggal_keluar'])) ?></div></td>
-						<td><div style="width: 100px" class="text-left"><?= $row['nomor_surat_keluar']?></div></td>
-						<td><div style="width: 150px" class="text-left"><?= getJenisSurat($row['id_jenis_surat'])?></div></td>
-						<td><div style="width: 300px" class="text-left"><?= $row['perihal']?></div></td>
-						<td><div style="width: 150px" class="text-center">Preview</div></td>
+						<td><div style="width: 150px" class="text-center"><a href="<?= $row['path_berkas'] ?>">Tampilkan</a></div></td>
 						<td class="text-center">
-							<a href="?page=edit_surat_keluar&id=<?= $row['id_arsip_surat_keluar']?>" class="btn btn-success btn-xs">Edit</a>
+							<a href="?page=detail_surat_keluar&token=<?= kunci($row['id_arsip_surat_keluar'])?>" class="btn btn-success btn-xs">Detail</a>
+							<a href="?page=edit_surat_keluar&token=<?= kunci($row['id_arsip_surat_keluar'])?>" class="btn btn-success btn-xs">Edit</a>
 						</td>
 					</tr>
 					<?php
@@ -86,9 +87,10 @@
 		</table>
 	</div>
 </div>
+<?php if(false) { ?>
 <div class="container-fluid">
 	<div class="row">
-	<div class="col-md-4" style="margin-top: 40px;">Menampilkan <?=count($data)?> Dari <?=count($data)?> surat</div>
+		<div class="col-md-4" style="margin-top: 40px;">Menampilkan <?=count($data)?> Dari <?=count($data)?> surat</div>
 		<div class="col-md-8" align="right">
 			<ul class="pagination">
 				<li><a href="#">Previous</a></li>
@@ -102,4 +104,4 @@
 		</div>
 	</div>
 </div>
-				
+<?php } ?>

@@ -62,8 +62,8 @@ if(!isset($_GET['token'])) {
       <div class="col-sm-3">          
         <select class="form-control" required="true" name="jenis_surat" id="jenis_surat">
           <option value="">-Pilih-</option>
-          <?php foreach (execSelectQuery("select * from tr_jenis_surat order by id_jenis_surat asc") as $i => $rows) { ?>
-          <option <?= setSelectedItem($row['id_jenis_surat'], $rows['id_jenis_surat']) ?> class="jenis_surat" value="<?= $rows['id_jenis_surat']?>"><?= $rows['jenis']?></option>
+          <?php foreach (execSelectQuery("select * from tr_jenis_surat_masuk order by id_jenis_surat_masuk asc") as $i => $rows) { ?>
+          <option <?= setSelectedItem($row['id_jenis_surat_masuk'], $rows['id_jenis_surat_masuk']) ?> class="jenis_surat" value="<?= $rows['id_jenis_surat_masuk']?>"><?= $rows['jenis']?></option>
           <?php } ?>
           <option class="lain_jenis_surat">Lainnya</option>
         </select>
@@ -97,12 +97,14 @@ if(!isset($_GET['token'])) {
           ?>
           <p></p>
         <input type="file" name="fileToUpload" id="fileToUpload">
+        <input type="hidden" name="oldFileUpload" value="<?= $row['path_berkas']?>">
+        <input type="hidden" name="oldIdArsip" value="<?= $row['id_arsip_surat_masuk']?>">
       </div>
     </div>          
     <div class="form-group">        
       <div class="col-sm-offset-2 col-sm-10">
         <button type="submit" class="btn btn-success" name="btnSimpan" value="simpan_surat_masuk">Simpan perubahan</button>
-        <a href="?page=tambah_surat_masuk" class="btn btn-danger">Batal</a>
+        <a href="?page=daftar_surat_masuk" class="btn btn-danger">Batal</a>
       </div>
     </div>
   </form>

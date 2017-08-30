@@ -87,6 +87,7 @@
 		</table>
 	</div>
 </div>
+<?php if(false) { ?>
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-4" style="margin-top: 40px;">Menampilkan <?=count($data)?> Dari <?=count($data)?> surat</div>
@@ -103,3 +104,4 @@
 		</div>
 	</div>
 </div>
+<?php } ?>
