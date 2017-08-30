@@ -1,27 +1,34 @@
-/*
-Navicat MySQL Data Transfer
+-- phpMyAdmin SQL Dump
+-- version 4.6.4
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Aug 30, 2017 at 11:15 AM
+-- Server version: 5.7.14
+-- PHP Version: 7.0.10
 
-Source Server         : MySQL Local sa
-Source Server Version : 50714
-Source Host           : 127.0.0.1:3306
-Source Database       : pengarsipan
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
 
-Target Server Type    : MYSQL
-Target Server Version : 50714
-File Encoding         : 65001
 
-Date: 2017-08-17 23:48:51
-*/
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
-SET FOREIGN_KEY_CHECKS=0;
+--
+-- Database: `pengarsipan`
+--
 
--- ----------------------------
--- Table structure for tp_arsip_surat_keluar
--- ----------------------------
-DROP TABLE IF EXISTS `tp_arsip_surat_keluar`;
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tp_arsip_surat_keluar`
+--
+
 CREATE TABLE `tp_arsip_surat_keluar` (
-  `id_arsip_surat_keluar` int(10) NOT NULL AUTO_INCREMENT,
-  `id_jenis_surat` int(1) DEFAULT NULL,
+  `id_arsip_surat_keluar` int(10) NOT NULL,
+  `id_jenis_surat_keluar` int(1) DEFAULT NULL,
   `nomor_urut` varchar(50) DEFAULT NULL,
   `nomor_berkas` varchar(50) DEFAULT NULL,
   `nomor_surat_keluar` varchar(50) DEFAULT NULL,
@@ -29,24 +36,29 @@ CREATE TABLE `tp_arsip_surat_keluar` (
   `penerima` varchar(100) DEFAULT NULL,
   `perihal` varchar(255) DEFAULT NULL,
   `path_berkas` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id_arsip_surat_keluar`),
-  KEY `FK_id_jenis_surat` (`id_jenis_surat`),
-  CONSTRAINT `tp_arsip_surat_keluar_ibfk_1` FOREIGN KEY (`id_jenis_surat`) REFERENCES `tr_jenis_surat` (`id_jenis_surat`) ON DELETE NO ACTION ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+  `status` int(1) DEFAULT '1',
+  `wk_rekam` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `wk_ubah` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `id_rekam` varchar(15) DEFAULT NULL,
+  `id_ubah` varchar(15) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Records of tp_arsip_surat_keluar
--- ----------------------------
-INSERT INTO `tp_arsip_surat_keluar` VALUES ('1', '1', 'Nomor Urut', 'Nomor Berkas', 'aaaaa', '2017-08-06', '', 'Mohon Perbaikan Komputer di Bagian SDM', 'uploads/surat_keluar/jbptunikompp-gdl-andrianris-18258-4-daftari-i.doc');
-INSERT INTO `tp_arsip_surat_keluar` VALUES ('2', '2', 'Nomor Urut', 'Nomor Berkas', 'aaaaa', '2017-08-06', 'Penerima', 'Mohon Perbaikan Komputer di Bagian SDM', 'uploads/surat_keluar/Screen Shot 2017-06-29 at 11.53.47.png');
+--
+-- Dumping data for table `tp_arsip_surat_keluar`
+--
 
--- ----------------------------
--- Table structure for tp_arsip_surat_masuk
--- ----------------------------
-DROP TABLE IF EXISTS `tp_arsip_surat_masuk`;
+INSERT INTO `tp_arsip_surat_keluar` (`id_arsip_surat_keluar`, `id_jenis_surat_keluar`, `nomor_urut`, `nomor_berkas`, `nomor_surat_keluar`, `tanggal_keluar`, `penerima`, `perihal`, `path_berkas`, `status`, `wk_rekam`, `wk_ubah`, `id_rekam`, `id_ubah`) VALUES
+(3, 1, '1', 'NOB/01/08/2017', 'aaaaa', '2017-08-29', 'Penerima', 'Mohon Perbaikan Komputer di Bagian SDM1', 'uploads/surat_keluar/04 Waterfall.pdf', 1, '2017-08-28 22:45:54', '2017-08-28 22:45:54', NULL, 'admin');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tp_arsip_surat_masuk`
+--
+
 CREATE TABLE `tp_arsip_surat_masuk` (
-  `id_arsip_surat_masuk` int(10) NOT NULL AUTO_INCREMENT,
-  `id_jenis_surat` int(1) DEFAULT NULL,
+  `id_arsip_surat_masuk` int(10) NOT NULL,
+  `id_jenis_surat_masuk` int(1) DEFAULT NULL,
   `nomor_urut` varchar(50) DEFAULT NULL,
   `nomor_berkas` varchar(50) DEFAULT NULL,
   `nomor_surat_masuk` varchar(50) DEFAULT NULL,
@@ -59,24 +71,24 @@ CREATE TABLE `tp_arsip_surat_masuk` (
   `wk_rekam` datetime DEFAULT CURRENT_TIMESTAMP,
   `wk_ubah` datetime DEFAULT CURRENT_TIMESTAMP,
   `id_rekam` varchar(15) DEFAULT NULL,
-  `id_ubah` varchar(15) DEFAULT NULL,
-  PRIMARY KEY (`id_arsip_surat_masuk`),
-  KEY `FK_id_jenis_surat` (`id_jenis_surat`),
-  CONSTRAINT `FK_id_jenis_surat` FOREIGN KEY (`id_jenis_surat`) REFERENCES `tr_jenis_surat` (`id_jenis_surat`) ON DELETE NO ACTION ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+  `id_ubah` varchar(15) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Records of tp_arsip_surat_masuk
--- ----------------------------
-INSERT INTO `tp_arsip_surat_masuk` VALUES ('1', '1', '123', '12/AR-SM/8/2012', 'Istimewa', '2017-08-05', 'Harapan Jaya Harefa', 'Mohon Perbaika Komputer di Bagian SDM', '0', 'uploads/DESIGN WEB.docx', '1', '2017-08-05 20:01:55', '2017-08-05 20:01:55', null, null);
-INSERT INTO `tp_arsip_surat_masuk` VALUES ('2', '1', '12334', 'Nomor Berkas', 'Istimewa', '2017-08-13', 'Test', 'Perihal Surat Masuk', '1', 'uploads/surat_masuk/document.pdf', '1', '2017-08-13 19:16:19', '2017-08-13 19:16:19', null, null);
+--
+-- Dumping data for table `tp_arsip_surat_masuk`
+--
 
--- ----------------------------
--- Table structure for tp_user
--- ----------------------------
-DROP TABLE IF EXISTS `tp_user`;
+INSERT INTO `tp_arsip_surat_masuk` (`id_arsip_surat_masuk`, `id_jenis_surat_masuk`, `nomor_urut`, `nomor_berkas`, `nomor_surat_masuk`, `tanggal_masuk`, `pengirim`, `perihal`, `disposisi`, `path_berkas`, `status`, `wk_rekam`, `wk_ubah`, `id_rekam`, `id_ubah`) VALUES
+(1, 1, '1', 'NOB/01/08/2017', '2113/N4/8/2017', '2017-08-28', 'Bagian Sumber Daya Manusia', 'Mohon Perbaikan Komputer di Bagian SDM', '1', 'uploads/surat_masuk/document.pdf', 1, '2017-08-28 04:23:04', '2017-08-28 04:23:04', 'admin', 'admin');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tp_user`
+--
+
 CREATE TABLE `tp_user` (
-  `id_user` int(5) NOT NULL AUTO_INCREMENT,
+  `id_user` int(5) NOT NULL,
   `nama` varchar(100) DEFAULT NULL,
   `username` varchar(50) DEFAULT NULL,
   `password` varchar(100) DEFAULT NULL,
@@ -86,58 +98,172 @@ CREATE TABLE `tp_user` (
   `wk_rekam` datetime DEFAULT CURRENT_TIMESTAMP,
   `wk_ubah` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `id_rekam` varchar(15) DEFAULT NULL,
-  `id_ubah` varchar(15) DEFAULT NULL,
-  PRIMARY KEY (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+  `id_ubah` varchar(15) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Records of tp_user
--- ----------------------------
-INSERT INTO `tp_user` VALUES ('1', 'Administrator', 'admin', '21232f297a57a5a743894a0e4a801fc3', '1', '2017-08-17 20:19:39', '1', '2017-07-24 15:20:54', '2017-08-17 20:19:39', 'admin', null);
-INSERT INTO `tp_user` VALUES ('12', 'Harapan Jaya Harefa', 'harapan', '21232f297a57a5a743894a0e4a801fc3', '2', '2017-08-06 16:06:43', '1', '2017-07-30 13:15:50', '2017-08-17 11:27:58', 'admin', 'admin');
-INSERT INTO `tp_user` VALUES ('13', 'Herlina Zebua', 'herlina', '21232f297a57a5a743894a0e4a801fc3', '2', '2017-08-13 19:19:43', '1', '2017-08-01 19:47:39', '2017-08-13 19:19:43', 'admin', null);
+--
+-- Dumping data for table `tp_user`
+--
 
--- ----------------------------
--- Table structure for tr_jenis_surat
--- ----------------------------
-DROP TABLE IF EXISTS `tr_jenis_surat`;
-CREATE TABLE `tr_jenis_surat` (
-  `id_jenis_surat` int(1) NOT NULL AUTO_INCREMENT,
+INSERT INTO `tp_user` (`id_user`, `nama`, `username`, `password`, `level`, `login_terakhir`, `status`, `wk_rekam`, `wk_ubah`, `id_rekam`, `id_ubah`) VALUES
+(1, 'Administrator', 'admin', '21232f297a57a5a743894a0e4a801fc3', 1, '2017-08-30 11:15:59', 1, '2017-07-24 15:20:54', '2017-08-30 11:15:59', 'admin', 'admin');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tr_jenis_surat_keluar`
+--
+
+CREATE TABLE `tr_jenis_surat_keluar` (
+  `id_jenis_surat_keluar` int(1) NOT NULL,
   `jenis` varchar(255) NOT NULL,
   `keterangan` varchar(500) DEFAULT NULL,
   `status` int(1) NOT NULL DEFAULT '1',
   `id_rekam` varchar(15) NOT NULL,
   `wk_rekam` datetime DEFAULT CURRENT_TIMESTAMP,
   `id_ubah` varchar(15) DEFAULT NULL,
-  `wk_ubah` datetime DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id_jenis_surat`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+  `wk_ubah` datetime DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Records of tr_jenis_surat
--- ----------------------------
-INSERT INTO `tr_jenis_surat` VALUES ('1', 'Memo Dinas', null, '1', 'admin', '2017-08-12 10:48:09', null, '2017-08-12 10:48:09');
-INSERT INTO `tr_jenis_surat` VALUES ('2', 'Laporan Absensi', null, '1', 'admin', '2017-08-12 10:48:09', null, '2017-08-12 10:48:09');
-INSERT INTO `tr_jenis_surat` VALUES ('3', 'Pengajuan Diklat', null, '1', 'admin', '2017-08-12 10:48:09', null, '2017-08-12 10:48:09');
-INSERT INTO `tr_jenis_surat` VALUES ('4', 'Ajuan Uang Makan', null, '1', 'admin', '2017-08-12 10:48:09', null, '2017-08-12 10:48:09');
-INSERT INTO `tr_jenis_surat` VALUES ('5', 'Transportasi dan Gaji', null, '1', 'admin', '2017-08-12 10:48:09', null, '2017-08-12 10:48:09');
+--
+-- Dumping data for table `tr_jenis_surat_keluar`
+--
 
--- ----------------------------
--- Table structure for tr_jenis_surat_keluar
--- ----------------------------
-DROP TABLE IF EXISTS `tr_jenis_surat_keluar`;
-CREATE TABLE `tr_jenis_surat_keluar` (
-  `id_jenis_surat_keluar` int(2) NOT NULL AUTO_INCREMENT,
-  `jenis` varchar(255) DEFAULT NULL,
-  `keterangan` varchar(255) DEFAULT NULL,
-  `status` int(1) DEFAULT '1',
-  `id_rekam` varchar(20) DEFAULT NULL,
+INSERT INTO `tr_jenis_surat_keluar` (`id_jenis_surat_keluar`, `jenis`, `keterangan`, `status`, `id_rekam`, `wk_rekam`, `id_ubah`, `wk_ubah`) VALUES
+(1, 'Memo Dinas', NULL, 1, 'admin', '2017-08-12 10:48:09', NULL, '2017-08-12 10:48:09'),
+(2, 'Laporan Absensi', NULL, 1, 'admin', '2017-08-12 10:48:09', NULL, '2017-08-12 10:48:09'),
+(3, 'Pengajuan Diklat', NULL, 1, 'admin', '2017-08-12 10:48:09', NULL, '2017-08-12 10:48:09'),
+(4, 'Ajuan Uang Makan', NULL, 1, 'admin', '2017-08-12 10:48:09', NULL, '2017-08-12 10:48:09'),
+(5, 'Transportasi dan Gaji', NULL, 1, 'admin', '2017-08-12 10:48:09', NULL, '2017-08-12 10:48:09');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tr_jenis_surat_masuk`
+--
+
+CREATE TABLE `tr_jenis_surat_masuk` (
+  `id_jenis_surat_masuk` int(1) NOT NULL,
+  `jenis` varchar(255) NOT NULL,
+  `keterangan` varchar(500) DEFAULT NULL,
+  `status` int(1) NOT NULL DEFAULT '1',
+  `id_rekam` varchar(15) NOT NULL,
   `wk_rekam` datetime DEFAULT CURRENT_TIMESTAMP,
-  `id_ubah` varchar(20) DEFAULT NULL,
-  `wk_ubah` datetime DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id_jenis_surat_keluar`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `id_ubah` varchar(15) DEFAULT NULL,
+  `wk_ubah` datetime DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Records of tr_jenis_surat_keluar
--- ----------------------------
+--
+-- Dumping data for table `tr_jenis_surat_masuk`
+--
+
+INSERT INTO `tr_jenis_surat_masuk` (`id_jenis_surat_masuk`, `jenis`, `keterangan`, `status`, `id_rekam`, `wk_rekam`, `id_ubah`, `wk_ubah`) VALUES
+(1, 'Memo Dinas', NULL, 1, 'admin', '2017-08-12 10:48:09', NULL, '2017-08-12 10:48:09'),
+(2, 'Laporan Absensi', NULL, 1, 'admin', '2017-08-12 10:48:09', NULL, '2017-08-12 10:48:09'),
+(3, 'Pengajuan Diklat', NULL, 1, 'admin', '2017-08-12 10:48:09', NULL, '2017-08-12 10:48:09'),
+(4, 'Ajuan Uang Makan', NULL, 1, 'admin', '2017-08-12 10:48:09', NULL, '2017-08-12 10:48:09'),
+(5, 'Transportasi dan Gaji', NULL, 1, 'admin', '2017-08-12 10:48:09', NULL, '2017-08-12 10:48:09');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `tp_arsip_surat_keluar`
+--
+ALTER TABLE `tp_arsip_surat_keluar`
+  ADD PRIMARY KEY (`id_arsip_surat_keluar`),
+  ADD KEY `FK_tp_surat_keluar_tr_jenis_surat_keluar` (`id_jenis_surat_keluar`),
+  ADD KEY `FK_tp_surat_keluar_tp_user` (`id_rekam`);
+
+--
+-- Indexes for table `tp_arsip_surat_masuk`
+--
+ALTER TABLE `tp_arsip_surat_masuk`
+  ADD PRIMARY KEY (`id_arsip_surat_masuk`),
+  ADD KEY `FK_tp_surat_masuk_tr_jenis_surat_masuk` (`id_jenis_surat_masuk`),
+  ADD KEY `FK_tp_surat_masuk_tp_user` (`id_rekam`);
+
+--
+-- Indexes for table `tp_user`
+--
+ALTER TABLE `tp_user`
+  ADD PRIMARY KEY (`id_user`),
+  ADD KEY `username` (`username`);
+
+--
+-- Indexes for table `tr_jenis_surat_keluar`
+--
+ALTER TABLE `tr_jenis_surat_keluar`
+  ADD PRIMARY KEY (`id_jenis_surat_keluar`),
+  ADD KEY `FK_tr_jenis_surat_keluar_tp_user` (`id_rekam`);
+
+--
+-- Indexes for table `tr_jenis_surat_masuk`
+--
+ALTER TABLE `tr_jenis_surat_masuk`
+  ADD PRIMARY KEY (`id_jenis_surat_masuk`),
+  ADD KEY `FK_tr_jenis_surat_masuk_tp_user` (`id_rekam`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `tp_arsip_surat_keluar`
+--
+ALTER TABLE `tp_arsip_surat_keluar`
+  MODIFY `id_arsip_surat_keluar` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `tp_arsip_surat_masuk`
+--
+ALTER TABLE `tp_arsip_surat_masuk`
+  MODIFY `id_arsip_surat_masuk` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `tp_user`
+--
+ALTER TABLE `tp_user`
+  MODIFY `id_user` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `tr_jenis_surat_keluar`
+--
+ALTER TABLE `tr_jenis_surat_keluar`
+  MODIFY `id_jenis_surat_keluar` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT for table `tr_jenis_surat_masuk`
+--
+ALTER TABLE `tr_jenis_surat_masuk`
+  MODIFY `id_jenis_surat_masuk` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `tp_arsip_surat_keluar`
+--
+ALTER TABLE `tp_arsip_surat_keluar`
+  ADD CONSTRAINT `FK_tp_surat_keluar_tp_user` FOREIGN KEY (`id_rekam`) REFERENCES `tp_user` (`username`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `FK_tp_surat_keluar_tr_jenis_surat_keluar` FOREIGN KEY (`id_jenis_surat_keluar`) REFERENCES `tr_jenis_surat_keluar` (`id_jenis_surat_keluar`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `tp_arsip_surat_masuk`
+--
+ALTER TABLE `tp_arsip_surat_masuk`
+  ADD CONSTRAINT `FK_tp_surat_masuk_tp_user` FOREIGN KEY (`id_rekam`) REFERENCES `tp_user` (`username`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `FK_tp_surat_masuk_tr_jenis_surat_masuk` FOREIGN KEY (`id_jenis_surat_masuk`) REFERENCES `tr_jenis_surat_masuk` (`id_jenis_surat_masuk`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `tr_jenis_surat_keluar`
+--
+ALTER TABLE `tr_jenis_surat_keluar`
+  ADD CONSTRAINT `FK_tr_jenis_surat_keluar_tp_user` FOREIGN KEY (`id_rekam`) REFERENCES `tp_user` (`username`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `tr_jenis_surat_masuk`
+--
+ALTER TABLE `tr_jenis_surat_masuk`
+  ADD CONSTRAINT `FK_tr_jenis_surat_masuk_tp_user` FOREIGN KEY (`id_rekam`) REFERENCES `tp_user` (`username`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

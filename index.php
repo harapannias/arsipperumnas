@@ -23,7 +23,7 @@ authenticateCheck('index');
 
 <body>
     <nav class="navbar-fixed-top" id="header">
-        <!-- <div><img src="assets/img/header1.jpg" width="100%"></div> -->
+        <div><img src="assets/img/header1.jpg" width="100%"></div>
     </nav>
 
     <div class="container-fluid">
@@ -32,11 +32,9 @@ authenticateCheck('index');
             <div class="col-md-2 scroll-wrapper scrollbar-inner" id="menukiri">
                 <div class="list-group scroll-wrapper scrollbar-inner" style="position: relative;">
                     <div class="container-fluid" id="profil">
-                        <div class="avatar"><img src="assets/img/Perumnas2.jpg" class="img img-circle profil"></div>
-                        <div class="profil_detail">
-                            <a href="assets/img/Perumnas2.jpg"><span class="glyphicon glyphicon-eye-open"></span></a>
-                            <a href="?page=profil&token=<?= kunci(getAuth()['id_user']) ?>"><span class="glyphicon glyphicon-pencil"></span></a>
-                        </div>
+                        <a href="?page=profil&token=<?= kunci(getAuth()['id_user']) ?>">
+                            <div class="avatar"><img src="assets/img/perumnas2.jpg" class="img img-circle profil"></div>
+                        </a>
                         <div class="profil-name">
                             <b><?= getAuth()['nama']?></b><br>
                             <small>Level: <?= getLevelOperator(getAuth()['level'])?></small>
@@ -50,15 +48,15 @@ authenticateCheck('index');
                     </a>
 
                     <?php if(getAuth()['level'] == 1) { ?>
-                        <button type="button" class="list-group-item" data-toggle="collapse" data-target="#demo">
-                            <span class="glyphicon glyphicon-user"></span> 
-                            <font class="cursor-pointer">Manajemen Operator</font>
-                            <span class="caret"></span>
-                        </button>
-                        <div id="demo" class="collapse dropdownrevisi <?= (isUrlMatch('?page=daftar_operator') || isUrlMatch('?page=tambah_operator') || isUrlMatch('?page=edit_operator')) ? 'in' : 'out'?>">
-                            <li class="list-group-item <?= isUrlMatch('?page=tambah_operator') ? 'active' : ''?>"><a id="menu" href="?page=tambah_operator">Tambah Data</a></li>
-                            <li class="list-group-item <?= isUrlMatch('?page=daftar_operator') || isUrlMatch('?page=edit_operator') ? 'active' : ''?>"><a id="menu" href="?page=daftar_operator">Daftar Operator</a></li>
-                        </div>
+                    <button type="button" class="list-group-item" data-toggle="collapse" data-target="#demo">
+                        <span class="glyphicon glyphicon-user"></span> 
+                        <font class="cursor-pointer">Manajemen Operator</font>
+                        <span class="caret"></span>
+                    </button>
+                    <div id="demo" class="collapse dropdownrevisi <?= (isUrlMatch('?page=daftar_operator') || isUrlMatch('?page=tambah_operator') || isUrlMatch('?page=edit_operator')) ? 'in' : 'out'?>">
+                        <li class="list-group-item <?= isUrlMatch('?page=tambah_operator') ? 'active' : ''?>"><a id="menu" href="?page=tambah_operator">Tambah Data</a></li>
+                        <li class="list-group-item <?= isUrlMatch('?page=daftar_operator') || isUrlMatch('?page=edit_operator') ? 'active' : ''?>"><a id="menu" href="?page=daftar_operator">Daftar Operator</a></li>
+                    </div>
                     <?php } ?>
 
                     <button type="button" class="list-group-item" data-toggle="collapse" data-target="#demo1">
@@ -134,8 +132,8 @@ authenticateCheck('index');
     <script type="text/javascript">
         $(document).ready(function() {
             $('.datepicker').datepicker({
-               dateFormat : "dd/mm/yy",
-            });
+             dateFormat : "dd/mm/yy",
+         });
         })
         $(".fileUpload").click(function() {
             document.getElementById("uploadBtn").click();

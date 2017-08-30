@@ -10,7 +10,7 @@ if(isset($_GET['token'])) {
 		<div class="panel-body">
 			<div class="row">
 				<div class="col-lg-3 text-center">
-					<img src="assets/img/Perumnas2.jpg" class="img img-circle" style="opacity: 1; width: 200px; height: 200px; border: 2px solid #ccc;">
+					<img src="assets/img/perumnas2.jpg" class="img img-circle" style="opacity: 1; width: 200px; height: 200px; border: 2px solid #ccc;">
 				</div>
 				<div class="col-lg-9">
 
