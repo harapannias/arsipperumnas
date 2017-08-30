@@ -12,21 +12,25 @@ class customFPDF extends FPDF
 	public function getQuery($tabel) {
 		return $sql = "select * from ".$tabel."" ;
 	}
-	public function tableHeight($row, $max, $height = 10, $height1 = 10) {
+	public function tableHeight($row, $max, $height = 7, $height1 = 7) {
 		return (strlen($row) >= $max ? $height*2 : $height);
-		return (strlen($row) >= $max ? $height1= $height-10 : $height);
-	} 
+		return (strlen($row) >= $max ? $height1= $height-7 : $height);
+	}
+	public function tableFix($row, $max, $height = 7, $height1 = 7) {
+		return (strlen($row) >= $max ? $height*2 : $height);
+		return (strlen($row) >= $max ? $height1= $height-7 : $height);
+	}  
 	public function tableWrap($row, $max, $height) {
-		return (strlen($row) >= $max ? $height1= $height-10 : $height);
+		return (strlen($row) >= $max ? $height1= $height-7 : $height);
 	} 
 	public function tableWrapFix($row, $max, $y) {
-		return (strlen($row) >= $max ? $y= $y-10 : $y=$y - 10);
+		return (strlen($row) >= $max ? $y= $y-7 : $y=$y - 7);
 	}
 	public function marginTable($row, $max, $y) {
-		return (strlen($row) >= $max ? $y= 20 : $y = 10);
+		return (strlen($row) >= $max ? $y= 20 : $y = 7);
 	} 
 	public function customHeight() {
-		return "10";
+		return "7";
 	}
 	public function automaticBreak($max, $y) {
 		return ($y >= $max ? $this->AddPage() : $y);

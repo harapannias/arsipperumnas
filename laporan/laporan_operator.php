@@ -20,37 +20,37 @@ require('../config/helpers.php');
 		//tabel
 		$o->ln();
 		$o->setY($y+40);
-		$o->setX(25);
-		$o->GetX(25); 
+		$o->setX(5);
+		$o->GetX(5); 
 		$x = $o->GetX();
 		$y = $o->GetY();
 		$o->setFillColor(233,233,233);  
 
 		$o->SetFont('Arial','',10);
 
-		$o->MultiCell(10,20,'No',1,'C',0,0); 
+		$o->MultiCell(10,10,'No',1,'C',0,0); 
 		$x+=10;                           
 		$o->SetXY($x, $y);              
 
-		$o->MultiCell(70,20,'Nama',1,'C',0,0);
-		$x+=70;
+		$o->MultiCell(95,10,'Nama',1,'C',0,0);
+		$x+=95;
 		$o->SetXY($x, $y);               
 
-		$o->MultiCell(50,20,'Username',1,'C',0,0);
-		$x+=50;
+		$o->MultiCell(70,10,'Username',1,'C',0,0);
+		$x+=70;
 		$o->SetXY($x, $y);   
 
-		$o->MultiCell(35,20,'Tanggal Daftar',1,'C',0,0);
-		$x+=35;
+		$o->MultiCell(40,10,'Tanggal Daftar',1,'C',0,0);
+		$x+=40;
 		$o->SetXY($x, $y);  
 
-		$o->MultiCell(35,20,'Login Terakhir',1,'C',0,0);
-		$x+=35;
+		$o->MultiCell(40,10,'Login Terakhir',1,'C',0,0);
+		$x+=40;
 		$o->SetXY($x, $y);               
 
-		$o->MultiCell(30,20,'Status',1,'C',0,0);
+		$o->MultiCell(30,10,'Status',1,'C',0,0);
 		$x+=40;
-		$y+=10;
+		$y+=3;
 
 
 		$sql = $o->getQuery('tp_user');
@@ -59,31 +59,31 @@ require('../config/helpers.php');
 		$no = 0; 
 		while ($row = mysqli_fetch_assoc($result)) {
 			$no++;
-			$x=25;
-			$y+=10;              
+			$x=5;
+			$y+=7;              
 			$o->SetXY($x, $y);
-			$height = $o->tableHeight($row['nama'], 40);
-			$height1 = $o->tableWrap($row['nama'], 40, $height);
+			$height = $o->tableHeight($row['nama'], 60);
+			$height1 = $o->tableWrap($row['nama'], 60, $height);
 
 			$o->MultiCell(10,$height,$no,1,'C');
 			$x+=10;
 			$o->SetXY($x, $y);
 
-			$o->MultiCell(70,$height1,$row['nama'],1,'L');
+			$o->MultiCell(95,$height1,$row['nama'],1,'L');
+			$x+=95;
+			$o->SetXY($x, $y);
+
+			$o->MultiCell(70,$height,$row['username'],1,'C');
 			$x+=70;
 			$o->SetXY($x, $y);
-
-			$o->MultiCell(50,$height,$row['username'],1,'C');
-			$x+=50;
-			$o->SetXY($x, $y);
 			
-			$o->MultiCell(35,$height,$row['wk_rekam'],1,'C');
-			$x+=35;
+			$o->MultiCell(40,$height,$row['wk_rekam'],1,'C');
+			$x+=40;
 			$o->SetXY($x, $y);
 
 
-			$o->MultiCell(35,$height,$row['login_terakhir'],1,'C');
-			$x+=35;
+			$o->MultiCell(40,$height,$row['login_terakhir'],1,'C');
+			$x+=40;
 			$o->SetXY($x, $y);
 
 			$y += $o->marginTable($row['nama'], 40, $y);
