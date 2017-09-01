@@ -160,25 +160,34 @@ function updateUserLastLogin($id_user) {
 	return execStatementQuery("update tp_user set login_terakhir = now() where id_user = $id_user");
 }
 
-function saveLoginUserInfo($id_user) {
+function saveLoginUserInfo($id_user, $isReload = false) {
 	// record user login time
 	updateUserLastLogin($id_user);
 
-	$finalQuery = "select id_user, nama, username, level, login_terakhir, status, wk_rekam, wk_ubah, id_rekam, id_ubah from tp_user where id_user = $id_user";
+	$finalQuery = "select id_user, nama, username, bidang_pekerjaan, tanggal_lahir, jenis_kelamin, alamat, email, nomor_hp, level, avatar, login_terakhir, status, id_rekam, wk_rekam, id_ubah, wk_ubah from tp_user where id_user = $id_user";
 	$tmpLogin = execSelectQuery($finalQuery);
 	$_SESSION['login_detail'] = array_shift($tmpLogin);
 	return;
 }
 
-function saveUploadedDocument($jenis, $file) {
-	if($jenis == 'surat_masuk') {
+function saveUploadedDocument($jenis, $file, $newFileName = null) {
+	switch ($jenis) {
+		case 'surat_masuk':
 		$target_dir = 'uploads/surat_masuk/';
-	} 	
-	if($jenis == 'surat_keluar') {
+		break;
+		case 'surat_keluar':
 		$target_dir = 'uploads/surat_keluar/';
+		break;
+		case 'avatar':
+		$target_dir = 'uploads/avatar/';
+		break;
 	}
 
-	$fileName = basename($_FILES["fileToUpload"]["name"]);
+	if($newFileName === null) {
+		$fileName = basename($_FILES["fileToUpload"]["name"]);
+	} else {
+		$fileName = $newFileName.'.'.explode('.', $file['fileToUpload']['name'])[1];
+	}
 	$target_file = $target_dir . $fileName;
 	$fileType = pathinfo($target_file,PATHINFO_EXTENSION);
 	$fileSize = $file['fileToUpload']['size'];
@@ -249,4 +258,25 @@ function buka($arg) {
 	$de1 = hex2bin($de0);
 	$de2 = substr($de1, 3);
 	return substr($de2, 0, -3);
+}
+
+function getJenisKelamin($kd) {
+	switch ($kd) {
+		case 'L':
+		return 'Laki-laki';
+		break;
+		case 'P':
+		return 'Perempuan';
+		break;		
+		default:
+		return '';
+		break;
+	}
+}
+
+function getUserAvatar() {
+		return getAuth()['avatar'] === null ? 'uploads/avatar/default.png' : getAuth()['avatar']; 
+}
+function getAvatar($avatar) {
+		return !file_exists($avatar) ? 'uploads/avatar/default.png' : $avatar; 
 }

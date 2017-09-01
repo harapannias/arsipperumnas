@@ -12,10 +12,18 @@ if(isset($_GET['page'])){
 		include "login/logout.php";
 		break;
 
-	    //operator
+	    //profil
 	    case 'profil':
-			include("page/operator/operator.php");
+			include("page/operator/profil.php");
 		break;
+		case 'edit_profil':
+			include("page/operator/edit_profil.php");
+		break;
+		case 'simpan_profil':
+			include("page/operator/simpan_profil.php");
+		break;
+		
+	    //operator
 		case 'daftar_operator':
 		if(getAuth()['level'] == 1)
 			include("page/operator/daftar_operator.php");

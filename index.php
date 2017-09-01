@@ -33,7 +33,7 @@ authenticateCheck('index');
                 <div class="list-group scroll-wrapper scrollbar-inner" style="position: relative;">
                     <div class="container-fluid" id="profil">
                         <a href="?page=profil&token=<?= kunci(getAuth()['id_user']) ?>">
-                            <div class="avatar"><img src="assets/img/perumnas2.jpg" class="img img-circle profil"></div>
+                            <div class="avatar"><img src="<?= getUserAvatar() ?>" class="img img-circle profil"></div>
                         </a>
                         <div class="profil-name">
                             <b><?= getAuth()['nama']?></b><br>
@@ -179,6 +179,11 @@ authenticateCheck('index');
             });
         })
 
+        <?php
+            if(isUrlMatch('?page=edit_profil') && isset($_SESSION['edit_profil'])) {
+                echo $_SESSION['edit_profil'];
+            }
+        ?>
     </script>
 </body>
 </html>
