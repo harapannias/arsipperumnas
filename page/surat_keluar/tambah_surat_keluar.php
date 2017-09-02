@@ -51,15 +51,8 @@
           <?php foreach (execSelectQuery("select * from tr_jenis_surat_keluar order by id_jenis_surat_keluar asc") as $i => $row) { ?>
           <option class="jenis_surat" value="<?= $row['id_jenis_surat_keluar']?>"><?= $row['jenis']?></option>
           <?php } ?>
-          <option class="lain_jenis_surat">Lainnya</option>
         </select>
       </div>
-    </div>
-    <div class="form-group tambah_jenis_surat">
-    <label class="col-sm-2" for="no_surat_keluar"></label>
-      <div class="col-sm-5">
-          <input type="text" class="form-control" name="tambah_jenis_surat" id="tambah_jenis_surat" placeholder="Jenis Surat">
-        </div>
     </div>
     <div class="form-group">
       <label class="col-sm-2" for="perihal">Perihal Surat</label>

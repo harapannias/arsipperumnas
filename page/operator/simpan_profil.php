@@ -21,7 +21,7 @@ switch (e($_GET['ref'])) {
 	break;
 
 	case 'update_profil':
-	$upload = saveUploadedDocument('avatar', $_FILES, getAuth()['username']);
+	$upload = saveUploadedDocument('avatar', $_FILES, getUserInfo(e($_POST['idUserOld']), 'username'));
 	$sql = "update tp_user set avatar = '".$upload['uploadedPath']."' where id_user = '".e($_POST['idUserOld'])."'";
 	if(execStatementQuery($sql)) {
 		if(getAuth()['id_user'] == $_POST['idUserOld']){

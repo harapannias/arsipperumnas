@@ -277,6 +277,12 @@ function getJenisKelamin($kd) {
 function getUserAvatar() {
 		return getAuth()['avatar'] === null ? 'uploads/avatar/default.png' : getAuth()['avatar']; 
 }
+
 function getAvatar($avatar) {
 		return !file_exists($avatar) ? 'uploads/avatar/default.png' : $avatar; 
+}
+
+function cegahPengunjung()
+{
+	echo "<center>Anda tidak diperbolehkan mengakses halaman ini.</center>";
 }

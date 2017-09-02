@@ -31,7 +31,7 @@ if(!isset($_GET['token'])) {
     <div class="form-group">
       <label class="col-sm-3" for="keterangan">Keterangan</label>
       <div class="col-sm-6">          
-        <input type="text" class="form-control" required="true" name="keterangan" id="keterangan" placeholder="Keterangan" value="<?= $row['keterangan']?>">
+        <input type="text" class="form-control" name="keterangan" id="keterangan" placeholder="Keterangan" value="<?= $row['keterangan']?>">
       </div>
     </div>
     
@@ -48,6 +48,7 @@ if(!isset($_GET['token'])) {
 
     <div class="form-group">        
       <div class="col-sm-offset-3 col-sm-10">
+        <input type="hidden" name="oldIdJenis" style="display: none;" value="<?= $row['id_jenis_surat_keluar']?>">
         <button type="submit" class="btn btn-success">Simpan</button>
         <a href="?page=jenis_surat_keluar" type="submit" class="btn btn-danger">Batal</a>
       </div>

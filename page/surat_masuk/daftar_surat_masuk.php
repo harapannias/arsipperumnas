@@ -69,7 +69,7 @@
 						<td><div style="width: 150px" class="text-center"><a href="<?= $row['path_berkas'] ?>">Tampilkan</a></div></td>
 						<td class="text-center">
 							<a href="?page=detail_surat_masuk&token=<?= kunci($row['id_arsip_surat_masuk'])?>" class="btn btn-success btn-xs">Detail</a>
-							<a href="?page=edit_surat_masuk&token=<?= kunci($row['id_arsip_surat_masuk'])?>" class="btn btn-success btn-xs">Edit</a>
+							<a href="?page=edit_surat_masuk&token=<?= kunci($row['id_arsip_surat_masuk'])?>" class="btn btn-primary btn-xs">Edit</a>
 						</td>
 					</tr>
 					<?php

@@ -33,7 +33,7 @@ authenticateCheck('index');
                 <div class="list-group scroll-wrapper scrollbar-inner" style="position: relative;">
                     <div class="container-fluid" id="profil">
                         <a href="?page=profil&token=<?= kunci(getAuth()['id_user']) ?>">
-                            <div class="avatar"><img src="<?= getUserAvatar() ?>" class="img img-circle profil"></div>
+                            <div class="avatar"><img src="<?= getAvatar(getUserInfo(getAuth()['id_user'], 'avatar')) ?>" class="img img-circle profil"></div>
                         </a>
                         <div class="profil-name">
                             <b><?= getAuth()['nama']?></b><br>

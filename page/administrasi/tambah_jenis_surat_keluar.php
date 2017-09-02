@@ -15,7 +15,7 @@ include "config/koneksi.php";
   <p>&nbsp;</p>
   <h4>Silahkan isi form berikut untuk menambah data jenis surat keluar</h4>
   <p>&nbsp;</p>
-  <form class="form-horizontal" role="form" action="?page=simpan_operator&ref=tambah" method="post">
+  <form class="form-horizontal" role="form" action="?page=simpan_jenis_surat_keluar&ref=tambah" method="post">
     
     <div class="form-group">
       <label class="col-sm-3" for="jenis_surat">Jenis Surat</label>
@@ -27,7 +27,7 @@ include "config/koneksi.php";
     <div class="form-group">
       <label class="col-sm-3" for="keterangan">Keterangan</label>
       <div class="col-sm-6">          
-        <input type="text" class="form-control" required="true" name="keterangan" id="keterangan" placeholder="Keterangan">
+        <input type="text" class="form-control" name="keterangan" id="keterangan" placeholder="Keterangan">
       </div>
     </div>
     
@@ -37,7 +37,7 @@ include "config/koneksi.php";
         <select class="form-control" required="true" name="status" id="status">
           <option class="form-control" value="">-Pilih-</option>
           <option class="form-control" value="1">Aktif</option>
-          <option class="form-control" value="2">Tidak Aktif</option>
+          <option class="form-control" value="0">Tidak Aktif</option>
         </select>
       </div>
     </div>

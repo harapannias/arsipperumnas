@@ -59,7 +59,6 @@ include "config/koneksi.php";
           <?php foreach (execSelectQuery("select * from tr_jenis_surat_masuk order by id_jenis_surat_masuk asc") as $i => $row) { ?>
           <option class="jenis_surat" value="<?= $row['id_jenis_surat_masuk']?>"><?= $row['jenis']?></option>
           <?php } ?>
-          <option class="lain_jenis_surat">Lainnya</option>
         </select>
       </div>
     </div>

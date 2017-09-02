@@ -35,6 +35,7 @@
 						<td><?= getStatus($row['status'])?></td>
 						<td>
 							<a href="?page=edit_jenis_surat_masuk&token=<?= kunci($row['id_jenis_surat_masuk'])?>" class="btn btn-success btn-xs"> Edit </a>
+							<a href="?page=hapus_jenis_surat&jenis=masuk&token=<?= kunci($row['id_jenis_surat_masuk'])?>" onclick="return confirm('Anda yakin ingin menghapus data?')" class="btn btn-danger btn-xs"> Hapus </a>
 						</td>
 					</tr>
 					<?php
