@@ -11,7 +11,7 @@ switch (e($_GET['ref'])) {
 	$sql .= (isset($_POST['alamat']) && !empty($_POST['alamat'])) ? ", alamat = '".e($_POST['alamat'])."'" : "" ;
 	$sql .= (isset($_POST['email']) && !empty($_POST['email'])) ? ", email = '".e($_POST['email'])."'" : "" ;
 	$sql .= (isset($_POST['nomor_hp']) && !empty($_POST['nomor_hp'])) ? ", nomor_hp = '".e($_POST['nomor_hp'])."'" : "" ;
-	$sql .= " where id_user = '".e($_POST['idUserOld'])."'" ;
+	$sql .= ", id_ubah ='".getAuth()['username']."' where id_user = '".e($_POST['idUserOld'])."'" ;
 	if(execStatementQuery($sql)) {
 		if(getAuth()['id_user'] == $_POST['idUserOld']){
 			saveLoginUserInfo(getAuth()['id_user'], true);
@@ -22,7 +22,7 @@ switch (e($_GET['ref'])) {
 
 	case 'update_profil':
 	$upload = saveUploadedDocument('avatar', $_FILES, getUserInfo(e($_POST['idUserOld']), 'username'));
-	$sql = "update tp_user set avatar = '".$upload['uploadedPath']."' where id_user = '".e($_POST['idUserOld'])."'";
+	$sql = "update tp_user set avatar = '".$upload['uploadedPath'].", 'id_ubah ='".getAuth()['username']."' where id_user = '".e($_POST['idUserOld'])."'";
 	if(execStatementQuery($sql)) {
 		if(getAuth()['id_user'] == $_POST['idUserOld']){
 			saveLoginUserInfo(getAuth()['id_user'], true);

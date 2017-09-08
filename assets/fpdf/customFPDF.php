@@ -3,7 +3,7 @@ require('fpdf.php');
 class customFPDF extends FPDF
 {
 	public function getCustomHeight($var, $max, $h = 10) {
-		return ($var >= $max ? $h*2 : $h);
+		return ($var >= $max ? $h*3 : $h);
 	}
 
 	public function getCustomY($height) {

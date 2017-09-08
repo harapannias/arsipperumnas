@@ -17,8 +17,8 @@ switch (e($_GET['ref'])) {
 			$perihal= e($_POST['perihal']);
 			$path_berkas = e($upload['uploadedPath']);
 
-			$sql = "insert into tp_arsip_surat_keluar (id_jenis_surat_keluar, nomor_urut,  nomor_berkas, nomor_surat_keluar, tanggal_keluar, penerima, perihal, path_berkas) 
-			values ('$jenis_surat', '$nomor_urut', '$nomor_berkas', '$nomor_surat_keluar', '$tanggal_keluar', '$penerima', '$perihal', '$path_berkas')";
+			$sql = "insert into tp_arsip_surat_keluar (id_jenis_surat_keluar, nomor_urut,  nomor_berkas, nomor_surat_keluar, tanggal_keluar, penerima, perihal, path_berkas, id_rekam) 
+			values ('$jenis_surat', '$nomor_urut', '$nomor_berkas', '$nomor_surat_keluar', '$tanggal_keluar', '$penerima', '$perihal', '$path_berkas', '".getAuth()['username']."')";
 			if(execStatementQuery($sql)) {
 			// dd($tanggal_keluar);
 				//berhasil menyimpan dokumen
