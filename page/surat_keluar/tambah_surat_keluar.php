@@ -51,7 +51,12 @@
           <?php foreach (execSelectQuery("select * from tr_jenis_surat_keluar order by id_jenis_surat_keluar asc") as $i => $row) { ?>
           <option class="jenis_surat" value="<?= $row['id_jenis_surat_keluar']?>"><?= $row['jenis']?></option>
           <?php } ?>
+          <option class="jenis_surat" value="" onclick="createNewJenisSurat()">Lainnya</option>
         </select>
+
+      </div>
+      <div class="col-sm-5" id="newJenisSuratSpace" style="display: none">          
+        <input type="tex" name="NewJenisSurat" class="form-control" id="NewJenisSurat" placeholder="Jenis Surat Baru" style="display: none">
       </div>
     </div>
     <div class="form-group">
@@ -74,3 +79,11 @@
     </div>
   </form>
 </div>
+<?php
+  $_SESSION['tambah_surat_keluar'] = '
+  function createNewJenisSurat() {
+    $("#newJenisSuratSpace").show();
+    $("#NewJenisSurat").show();
+  }
+';
+?>

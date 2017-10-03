@@ -85,6 +85,11 @@ function execStatementQuery($sql_query) {
 	}
 }
 
+function getLastInsertedID() {
+	global $link;
+	return mysqli_insert_id($link);
+}
+
 function e($arg) {
 	global $link;
 	return mysqli_escape_string($link, htmlspecialchars($arg));

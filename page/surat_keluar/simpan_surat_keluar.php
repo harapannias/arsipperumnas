@@ -3,8 +3,19 @@
 switch (e($_GET['ref'])) {
 	case 'tambah':
 		if(isset($_POST['btnSimpan']) && e($_POST['btnSimpan']) === 'simpan_surat_keluar') {
+			$last_id = '';
+
 			if(!isset($_FILES['fileToUpload'])) {
 				die('Anda harus mengupload dokumen sebagai lampiran.');
+			}
+
+			if(isset($_POST['NewJenisSurat']) && !empty($_POST['NewJenisSurat']) && empty($_POST['jenis_surat_masuk'])) {
+				//sipman jenis surat baru
+				$sql = "insert into tr_jenis_surat_keluar (jenis, id_rekam) values('$_POST[NewJenisSurat]', '".getAuth()['id_user']."')";
+				if(execStatementQuery($sql)) {
+					//berhasil menyimpan
+					$last_id = getLastInsertedID();		
+				}
 			}
 
 			$upload = saveUploadedDocument('surat_keluar', $_FILES);
@@ -17,8 +28,8 @@ switch (e($_GET['ref'])) {
 			$perihal= e($_POST['perihal']);
 			$path_berkas = e($upload['uploadedPath']);
 
-			$sql = "insert into tp_arsip_surat_keluar (id_jenis_surat_keluar, nomor_urut,  nomor_berkas, nomor_surat_keluar, tanggal_keluar, penerima, perihal, path_berkas, id_rekam) 
-			values ('$jenis_surat', '$nomor_urut', '$nomor_berkas', '$nomor_surat_keluar', '$tanggal_keluar', '$penerima', '$perihal', '$path_berkas', '".getAuth()['username']."')";
+			$sql = "insert into tp_arsip_surat_keluar (id_jenis_surat_keluar, nomor_urut,  nomor_berkas, nomor_surat_keluar, tanggal_keluar, penerima, perihal, path_berkas) 
+			values ('$last_id', '$nomor_urut', '$nomor_berkas', '$nomor_surat_keluar', '$tanggal_keluar', '$penerima', '$perihal', '$path_berkas')";
 			if(execStatementQuery($sql)) {
 			// dd($tanggal_keluar);
 				//berhasil menyimpan dokumen
