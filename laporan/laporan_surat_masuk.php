@@ -95,7 +95,7 @@ $before[$loop] = $max;
 $o->ln($loop == 0 ? 10 : ($loop > 0 ? $before[$loop-1] : $max));
 
 //8
-$o->MultiCell(20, height($h_no_urut, $max), (($max/$h_perihal)), 1,'C', false);
+$o->MultiCell(20, height($h_no_urut, $max), $row['nomor_urut'], 1,'C', false);
 $o->setXY(30, $o->GetY()-$max) + 1;
 
 // 10

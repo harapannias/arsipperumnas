@@ -71,10 +71,10 @@ function execGetCount($sql_query) {
 function getUserInfo($id_user, $nama_field){
 	$tmpUser = execSelectQuery("select * from tp_user where id_user = $id_user limit 0,1");
 	$user = array_shift($tmpUser);
-	if (!isset($user[$nama_field])) {
+	if (!array_key_exists($nama_field, $user)) {
 		die('Data "'.$nama_field.'" pada user tidak ditemukan');
 	} else {
-		return $user[$nama_field];
+		return $user[$nama_field] === null ? '' : $user[$nama_field];
 	}
 }
 
