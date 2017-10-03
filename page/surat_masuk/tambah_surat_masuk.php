@@ -59,7 +59,11 @@ include "config/koneksi.php";
           <?php foreach (execSelectQuery("select * from tr_jenis_surat_masuk order by id_jenis_surat_masuk asc") as $i => $row) { ?>
           <option class="jenis_surat" value="<?= $row['id_jenis_surat_masuk']?>"><?= $row['jenis']?></option>
           <?php } ?>
+          <option class="jenis_surat" value="" onclick="createNewJenisSurat()">Lainnya</option>
         </select>
+      </div>
+      <div class="col-sm-5" id="newJenisSuratSpace" style="display: none">          
+        <input type="tex" name="NewJenisSurat" class="form-control" id="NewJenisSurat" placeholder="Jenis Surat Baru" style="display: none">
       </div>
     </div>
     <div class="form-group">
@@ -93,3 +97,11 @@ include "config/koneksi.php";
   </form>
 </div>
 <p>&nbsp;</p>
+<?php
+  $_SESSION['tambah_surat_masuk'] = '
+  function createNewJenisSurat() {
+    $("#newJenisSuratSpace").show();
+    $("#NewJenisSurat").show();
+  }
+';
+?>

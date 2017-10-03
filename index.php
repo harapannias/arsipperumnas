@@ -85,7 +85,9 @@ authenticateCheck('index');
                         <span class="caret"></span>
                     </button>
                     <div id="demo3" class="collapse dropdownrevisi">
+                        <?php if(getAuth()['level'] == 1) { ?>
                         <li class="list-group-item"><a id="menu" href="laporan/laporan_operator.php" target="_blank">Data Operator</a></li>
+                        <?php } ?>
                         <li class="list-group-item"><a id="menu" href="laporan/laporan_surat_masuk.php" target="_blank">Arsip Surat Masuk</a></li>
                         <li class="list-group-item"><a id="menu" href="laporan/laporan_surat_keluar.php" target="_blank">Arsip Surat Keluar</a></li>
                     </div>
@@ -132,8 +134,8 @@ authenticateCheck('index');
     <script type="text/javascript">
         $(document).ready(function() {
             $('.datepicker').datepicker({
-             dateFormat : "dd/mm/yy",
-         });
+               dateFormat : "dd/mm/yy",
+           });
         })
         $(".fileUpload").click(function() {
             document.getElementById("uploadBtn").click();
@@ -151,20 +153,7 @@ authenticateCheck('index');
             }
         });
 
-        $(document).ready(function() {
-            $('.tambah_jenis_surat').hide();
-        })
-        $(document).ready(function() {
-            $('.jenis_surat').click(function(){
-                $('.tambah_jenis_surat').hide();
-            });
-        })
-
-        $(document).ready(function() {
-            $('.lain_jenis_surat').click(function() {
-                $('.tambah_jenis_surat').show();
-            });
-        })
+     
 
         $(document).ready(function() {
             $('.profil, .profil_detail').mouseenter(function() {
@@ -180,9 +169,17 @@ authenticateCheck('index');
         })
 
         <?php
-            if(isUrlMatch('?page=edit_profil') && isset($_SESSION['edit_profil'])) {
-                echo $_SESSION['edit_profil'];
-            }
+        if(isUrlMatch('?page=edit_profil') && isset($_SESSION['edit_profil'])) {
+            echo $_SESSION['edit_profil'];
+        }
+
+        if(isUrlMatch('?page=tambah_surat_masuk') && isset($_SESSION['tambah_surat_masuk'])) {
+            echo $_SESSION['tambah_surat_masuk'];
+        }
+
+         if(isUrlMatch('?page=tambah_surat_keluar') && isset($_SESSION['tambah_surat_keluar'])) {
+            echo $_SESSION['tambah_surat_keluar'];
+        }
         ?>
     </script>
 </body>
